@@ -1,0 +1,51 @@
+Pimx\ModelBundle\Entity\Movement:
+    type: entity
+    table: movimientos
+    id:
+        id:
+            type: integer
+            column: mov_ID
+            generator:
+              strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            length: 100
+            column: mov_Nombre
+        date:
+            type: datetime
+            column: mov_FecHora
+        inputdate:
+            type: datetime
+            column: mov_FecHoraIng
+        notes:
+            type: text
+            column: mov_Detalle
+    manyToOne:
+        group:
+            targetEntity: MovementGroup
+            joinColumn:
+                name: movgmv_cod
+                referencedColumnName: gmv_Cod
+        type:
+            targetEntity: MovementType
+            joinColumn:
+                name: movtmv_cod
+                referencedColumnName: tmv_Cod
+    oneToMany:
+        appliedAccounts:
+          targetEntity: MovementAccount
+          mappedBy: movement
+          cascade: [persist, remove]
+          orphanRemoval: true
+    manyToMany:
+        groups:
+          targetEntity: Label
+          joinTable:
+            name: labels_movim
+            joinColumns:
+              lxmmov_ID:
+                referencedColumnName: id
+            inverseJoinColumns:
+              lbl_ID:
+                referencedColumnName: id

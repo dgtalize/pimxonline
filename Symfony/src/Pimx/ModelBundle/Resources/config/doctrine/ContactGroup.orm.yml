@@ -1,0 +1,14 @@
+Pimx\ModelBundle\Entity\ContactGroup:
+    type: entity
+    table: gruposcontacto
+    id:
+        id:
+            type: integer
+            column: gco_ID
+            generator:
+              strategy: AUTO
+    fields:
+        description:
+            type: string
+            length: 50
+            column: gco_Desc

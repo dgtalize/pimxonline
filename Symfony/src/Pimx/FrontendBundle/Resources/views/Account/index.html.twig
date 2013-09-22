@@ -1,0 +1,32 @@
+{% extends 'PimxFrontendBundle::layout.html.twig' %}
+
+{% block main_content %}
+<h1 class="title">{% trans %}account.title{% endtrans %}</h1>
+
+<a class="button" href="{{ path('_account_new') }}">
+                    {% trans %}text.add{% endtrans %}
+    </a>
+
+    <table class="datagrid">
+        <thead>
+            <tr>
+                <th>{%trans%}text.code{%endtrans%}</th>
+                <th>{%trans%}text.description{%endtrans%}</th>
+                <th>{%trans%}account.sign{%endtrans%}</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for item in items %}
+                <tr>
+                    <td>
+                        <a href="{{ path('_account_edit', {'item_id': item.code}) }}">
+                    {{ item.code }}
+                            </a>
+                        </td>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.sign }}</td>
+                    </tr>
+    {% endfor %}
+                </tbody>
+            </table>
+{% endblock %}

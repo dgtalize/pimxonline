@@ -1,0 +1,28 @@
+_account:
+    pattern:  /account/
+    defaults: { _controller: PimxFrontendBundle:Account:index }
+_account_new:
+    pattern:  /account/new/
+    defaults: { _controller: PimxFrontendBundle:Account:new }
+_account_edit:
+    pattern:  /account/edit/{item_id}
+    defaults: { _controller: PimxFrontendBundle:Account:edit }
+    
+_movement:
+    pattern:  /movement/
+    defaults: { _controller: PimxFrontendBundle:Movement:index }
+_movement_edit:
+    pattern:  /movement/edit/{item_id}
+    defaults: { _controller: PimxFrontendBundle:Movement:edit }
+
+login:
+    pattern:   /login
+    defaults:  { _controller: PimxFrontendBundle:Security:login }
+login_check:
+    pattern:   /login_check
+logout:
+    path:      /logout
+    
+_home:
+    pattern:  /
+    defaults: { _controller: PimxFrontendBundle:General:home }

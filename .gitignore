@@ -1,0 +1,5 @@
+/Symfony/app/logs
+/Symfony/app/cache
+/nbproject
+/Symfony/src/Acme
+/public_html/bundles/acmedemo

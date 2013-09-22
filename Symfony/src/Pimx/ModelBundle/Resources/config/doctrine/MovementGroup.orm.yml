@@ -1,0 +1,13 @@
+Pimx\ModelBundle\Entity\MovementGroup:
+    type: entity
+    table: gruposmovim
+    id:
+        code:
+            type: string
+            length: 10
+            column: gmv_Cod
+    fields:
+        description:
+            type: string
+            length: 50
+            column: gmv_Desc

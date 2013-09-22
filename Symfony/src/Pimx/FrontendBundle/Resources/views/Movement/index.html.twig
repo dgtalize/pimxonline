@@ -1,0 +1,32 @@
+{% extends 'PimxFrontendBundle::layout.html.twig' %}
+
+{% block main_content %}
+<h1 class="title">{% trans %}movement.title{% endtrans %}</h1>
+
+<table class="datagrid">
+    <thead>
+        <tr>
+            <th>{%trans%}text.name{%endtrans%}</th>
+            <th>{%trans%}text.date{%endtrans%}</th>
+            <th>{%trans%}text.in{%endtrans%}</th>
+            <th>{%trans%}text.out{%endtrans%}</th>
+            <th>{%trans%}text.notes{%endtrans%}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+            <tr>
+                <td>
+                    <a href="{{ path('_movement_edit', {'item_id': item.id}) }}">
+                    {{ item.name }}
+                        </a>
+                    </td>
+                    <td>{{ item.date|date('Y-m-d H:i') }}</td>
+                    <td class="amount">{{ item.inTotal|number_format(2) }}</td>
+                    <td class="amount">{{ item.outTotal|number_format(2) }}</td>
+                    <td>{{ item.notes }}</td>
+                </tr>
+    {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

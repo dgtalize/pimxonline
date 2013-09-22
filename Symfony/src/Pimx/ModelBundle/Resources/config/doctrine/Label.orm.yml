@@ -1,0 +1,12 @@
+Pimx\ModelBundle\Entity\Label:
+    type: entity
+    table: labels
+    id:
+        id:
+            type: integer
+            column: lbl_ID
+    fields:
+        name:
+            type: string
+            length: 50
+            column: lbl_Nombre

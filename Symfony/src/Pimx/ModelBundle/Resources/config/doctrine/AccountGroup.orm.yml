@@ -1,0 +1,13 @@
+Pimx\ModelBundle\Entity\AccountGroup:
+    type: entity
+    table: gruposcuenta
+    id:
+        code:
+            type: string
+            length: 10
+            column: gct_Cod
+    fields:
+        description:
+            type: string
+            length: 50
+            column: gct_Desc

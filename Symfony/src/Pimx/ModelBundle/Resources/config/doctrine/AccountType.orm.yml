@@ -1,0 +1,13 @@
+Pimx\ModelBundle\Entity\AccountType:
+    type: entity
+    table: tiposcuenta
+    id:
+        codigo:
+            type: string
+            length: 10
+            column: tct_Cod
+    fields:
+        description:
+            type: string
+            length: 50
+            column: tct_Desc

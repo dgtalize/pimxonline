@@ -1,0 +1,29 @@
+Pimx\ModelBundle\Entity\Account:
+    type: entity
+    table: cuentas
+    id:
+        code:
+            type: string
+            column: cta_Cod
+    fields:
+        description:
+            type: string
+            length: 100
+            column: cta_Desc
+        sign:
+            type: integer
+            column: cta_Signo
+        notes:
+            type: text
+            column: cta_Notas
+    manyToOne:
+        group:
+            targetEntity: AccountGroup
+            joinColumn:
+                name: ctagct_cod
+                referencedColumnName: gct_Cod
+        type:
+            targetEntity: AccountType
+            joinColumn:
+                name: ctatct_cod
+                referencedColumnName: tct_Cod

@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>welcome</source>
+                <target>Welcome!</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>welcome.pimxtreme</source>
+                <target>Welcome to PIM Xtreme Online.</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>menu.home</source>
+                <target>Home</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>account.title</source>
+                <target>Accounts</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>text.code</source>
+                <target>Code</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>text.description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>menu.accounts</source>
+                <target>Accounts</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>user.logout</source>
+                <target>Log out</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>text.notes</source>
+                <target>Notes</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>menu.movements</source>
+                <target>Movements</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>movement.title</source>
+                <target>Movements</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>text.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>text.date</source>
+                <target>Date</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>account.newaccount</source>
+                <target>New Account</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>text.add</source>
+                <target>Add</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>movement.edit</source>
+                <target>Edit Movement</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

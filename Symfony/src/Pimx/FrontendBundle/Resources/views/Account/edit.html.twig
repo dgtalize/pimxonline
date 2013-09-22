@@ -1,0 +1,14 @@
+{% extends 'PimxFrontendBundle::layout.html.twig' %}
+
+{% block main_content %}
+<h1 class="title">{% trans %}account.title{% endtrans %}</h1>
+
+<h2>{% trans %}account.edit{% endtrans %}</h2>
+
+<form class="entity_form"
+      action="{{ path('_account_edit', {'item_id': form.vars.value.code}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" class="button" value="Save" />
+</form>
+{% endblock %}

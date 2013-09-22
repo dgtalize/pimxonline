@@ -1,0 +1,25 @@
+{% block form_widget_compound %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }} class="fields_container">
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_rows') }}
+        {{ form_rest(form) }}
+            
+        {% if prototype is defined and allow_add is defined  %}
+            <button class="button add_subitem" >Add new</button>
+        {% endif %}
+    </div>
+{% endspaceless %}
+{% endblock form_widget_compound %}
+
+{% block form_row %}
+{% spaceless %}
+    <div class="form_row">
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+        </div>
+{% endspaceless %}
+{% endblock form_row %}

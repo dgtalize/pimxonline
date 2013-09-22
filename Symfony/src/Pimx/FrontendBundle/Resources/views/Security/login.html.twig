@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+            <title>{% block title 'PIM Xtreme Online' %}</title>
+            <link rel="stylesheet" href="{{ asset('css/template.css') }}" />
+        {% endblock %}
+        </head>
+        <body>
+        {% block body %}
+
+                <div id="header">
+                    <a class="pimx_logo" href="{{ path('_home') }}">
+                        <img src="{{ asset('images/pimxlogo.png') }}" />
+                    </a>
+                </div>
+
+            {% block main_content %}
+
+
+            <form class="login" action="{{ path('login_check') }}" method="post">
+                    <div class="form_row">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                    </div>
+
+                    <div class="form_row">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="_password" />
+                    </div>
+            {#
+                If you want to control the URL the user
+                is redirected to on success (more details below)
+                <input type="hidden" name="_target_path" value="/account" />
+            #}
+
+                    <button type="submit">login</button>
+                    
+                    {% if error %}
+                        <div class="error_message">{{ error.message }}</div>
+                    {% endif %}
+                </form>
+
+            {% endblock %}
+
+        {% endblock %}
+                </body>
+            </html>

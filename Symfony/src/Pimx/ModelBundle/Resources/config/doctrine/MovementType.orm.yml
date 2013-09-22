@@ -1,0 +1,13 @@
+Pimx\ModelBundle\Entity\MovementType:
+    type: entity
+    table: tiposmovim
+    id:
+        codigo:
+            type: string
+            length: 10
+            column: tmv_Cod
+    fields:
+        description:
+            type: string
+            length: 50
+            column: tmv_Desc
