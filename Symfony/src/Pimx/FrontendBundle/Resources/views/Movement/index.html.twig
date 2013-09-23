@@ -3,6 +3,10 @@
 {% block main_content %}
 <h1 class="title">{% trans %}movement.title{% endtrans %}</h1>
 
+<a class="button" href="{{ path('_movement_new') }}">
+    {% trans %}text.add{% endtrans %}
+</a>
+
 <table class="datagrid">
     <thead>
         <tr>
@@ -11,22 +15,28 @@
             <th>{%trans%}text.in{%endtrans%}</th>
             <th>{%trans%}text.out{%endtrans%}</th>
             <th>{%trans%}text.notes{%endtrans%}</th>
+            <th>{%trans%}text.labels{%endtrans%}</th>
         </tr>
     </thead>
     <tbody>
     {% for item in items %}
-            <tr>
-                <td>
-                    <a href="{{ path('_movement_edit', {'item_id': item.id}) }}">
+        <tr>
+            <td>
+                <a href="{{ path('_movement_edit', {'item_id': item.id}) }}">
                     {{ item.name }}
-                        </a>
-                    </td>
-                    <td>{{ item.date|date('Y-m-d H:i') }}</td>
-                    <td class="amount">{{ item.inTotal|number_format(2) }}</td>
-                    <td class="amount">{{ item.outTotal|number_format(2) }}</td>
-                    <td>{{ item.notes }}</td>
-                </tr>
+                </a>
+            </td>
+            <td>{{ item.date|date('Y-m-d H:i') }}</td>
+            <td class="amount">{{ item.inTotal|number_format(2) }}</td>
+            <td class="amount">{{ item.outTotal|number_format(2) }}</td>
+            <td>{{ item.notes }}</td>
+            <td>
+                {% for label in item.labels %}
+                    <span class="label">{{ label.name }}</span>
+                {% endfor %}
+            </td>
+        </tr>
     {% endfor %}
-            </tbody>
-        </table>
+    </tbody>
+</table>
 {% endblock %}

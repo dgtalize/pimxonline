@@ -4,8 +4,14 @@
         {% block head %}
             <title>{% block title 'PIM Xtreme Online' %}</title>
             <link rel="stylesheet" href="{{ asset('css/template.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/pimx/jquery-ui-1.10.3.custom.min.css') }}" />
 
             <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+            <script src="{{ asset('js/jquery-ui-1.10.3.custom.min.js') }}"></script>
+            <script src="{{ asset('js/knockout-2.2.1.js') }}"></script>
+            <script src="{{ asset('js/globalize.min.js') }}"></script>
+            <script src="{{ asset('js/dx.chartjs.js') }}"></script>
+            
             <script src="{{ asset('js/forms.js') }}" ></script>
         {% endblock %}
         </head>

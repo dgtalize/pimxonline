@@ -1,0 +1,24 @@
+{% extends 'PimxFrontendBundle::layout.html.twig' %}
+{% import _self as macros %}
+
+{% block main_content %}
+<h1 class="title">{% trans %}label.title{% endtrans %}</h1>
+
+<ul class="labels">
+    {{ macros.items_tree(items) }}
+</ul>
+
+{% endblock %}
+
+
+{% macro items_tree(treenodes) %}
+    {% for item in treenodes %}
+        <li>
+            <span class="child_icon">&nbsp;</span>
+            <a href="#" class="label">{{ item.name }}</a>
+            {% if item.children %}
+                <ul>{{ _self.items_tree(item.children) }}</ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+{% endmacro %}

@@ -34,18 +34,18 @@ Pimx\ModelBundle\Entity\Movement:
                 referencedColumnName: tmv_Cod
     oneToMany:
         appliedAccounts:
-          targetEntity: MovementAccount
-          mappedBy: movement
-          cascade: [persist, remove]
-          orphanRemoval: true
+            targetEntity: MovementAccount
+            mappedBy: movement
+            cascade: [persist, remove]
+            orphanRemoval: true
     manyToMany:
-        groups:
-          targetEntity: Label
-          joinTable:
-            name: labels_movim
-            joinColumns:
-              lxmmov_ID:
-                referencedColumnName: id
-            inverseJoinColumns:
-              lbl_ID:
-                referencedColumnName: id
+        labels:
+            targetEntity: Label
+            joinTable:
+                name: labels_movim
+                joinColumns:
+                    lxmmov_ID:
+                        referencedColumnName: mov_ID
+                inverseJoinColumns:
+                    lxmlbl_ID:
+                        referencedColumnName: lbl_ID

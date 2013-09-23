@@ -6,6 +6,10 @@
 
 $(document).ready(function() {
 
+    $('input[type="date"]').datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
+
     $('a.add_subitem, button.add_subitem').click(function(ev) {
         // Gets the container of items
         var fieldsContainer = $(this).parent('.fields_container');

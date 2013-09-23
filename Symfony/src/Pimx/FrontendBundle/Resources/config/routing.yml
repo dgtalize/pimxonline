@@ -11,10 +11,21 @@ _account_edit:
 _movement:
     pattern:  /movement/
     defaults: { _controller: PimxFrontendBundle:Movement:index }
+_movement_new:
+    pattern:  /movement/new/
+    defaults: { _controller: PimxFrontendBundle:Movement:new }
 _movement_edit:
     pattern:  /movement/edit/{item_id}
     defaults: { _controller: PimxFrontendBundle:Movement:edit }
 
+_label:
+    pattern:  /label/
+    defaults: { _controller: PimxFrontendBundle:Label:index }
+    
+_report_fin:
+    pattern:  /report/finance/
+    defaults: { _controller: PimxFrontendBundle:Report:finance }
+    
 login:
     pattern:   /login
     defaults:  { _controller: PimxFrontendBundle:Security:login }

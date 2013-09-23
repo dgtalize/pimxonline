@@ -20,7 +20,6 @@ class AccountController extends Controller {
         $account = new \Pimx\ModelBundle\Entity\Account();
 
         $form = $this->createForm(new \Pimx\FrontendBundle\Form\Type\AccountType(), $account);
-
         $form->handleRequest($request);
 
         //Validate before save

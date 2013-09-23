@@ -66,6 +66,38 @@
                 <source>movement.edit</source>
                 <target>Edit Movement</target>
             </trans-unit>
+            <trans-unit id="17">
+                <source>text.labels</source>
+                <target>Labels</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>text.in</source>
+                <target>In</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>text.out</source>
+                <target>Out</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>menu.labels</source>
+                <target>Labels</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>label.title</source>
+                <target>Labels</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>text.month</source>
+                <target>Month</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>text.balance</source>
+                <target>Balance</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>menu.reports</source>
+                <target>Reports</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -5,8 +5,21 @@ Pimx\ModelBundle\Entity\Label:
         id:
             type: integer
             column: lbl_ID
+            generator:
+              strategy: IDENTITY
     fields:
         name:
             type: string
             length: 50
             column: lbl_Nombre
+    oneToMany:
+      children:
+        targetEntity: Label
+        mappedBy: parent
+    manyToOne:
+      parent:
+        targetEntity: Label
+        inversedBy: children
+        joinColumn:
+            name: lbllbl_IDPadre
+            referencedColumnName: lbl_ID

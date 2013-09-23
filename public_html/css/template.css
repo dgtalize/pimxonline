@@ -69,7 +69,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     border-bottom: 1px solid #D0D0D0;
     position: relative;
 
-
     background-image: linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
     background-image: -o-linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
     background-image: -moz-linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
@@ -83,6 +82,11 @@ table, caption, tbody, tfoot, thead, tr, th, td {
         color-stop(0, rgb(255,212,254)),
         color-stop(1, rgb(255,255,255))
         );
+    
+    
+    -moz-box-shadow: 0 2px 5px 3px #E0E0E0;
+    -webkit-box-shadow: 0 2px 5px 3px #E0E0E0;
+    box-shadow: 0 2px 5px 3px #E0E0E0;
 }
 
 #header .pimx_logo {
@@ -97,7 +101,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     left: 230px;
 }
 #header ul.menu li {
-    margin: 15px 5px 0 0;
+    /*margin: 15px 5px 0 0;*/
     display: inline-block;
 }
 #header ul.menu li a {
@@ -135,14 +139,23 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 
 #main_content {
-    padding: 10px;
+    padding: 0 10px 10px 10px;
 }
 
 /* ******************** General ************************** */
 h1 {
-    margin: 10px 0 15px 0;
+    margin: 0 -10px 10px -10px;
+    padding: 10px;
     font-weight: bold;
     font-size: x-large;
+    background-color: #F6F6F6;
+}
+h2 {
+    margin: 10px 0 10px 0;
+    font-weight: bold;
+    font-size: large;
+    background-color: #F6F6F6;
+    padding: 5px;
 }
 
 a.button, button, input[type=submit] {
@@ -171,6 +184,18 @@ a.button:hover, button:hover, input[type=submit]:hover {
     box-shadow: 1px 1px 2px 0 #D0D0D0;
 }
 
+span.label, a.label {
+    font-size: 10pt;
+    display: inline-block;
+    background-color: #ff9900;
+    color: #FFFFFF;
+    padding: 1px 2px;
+}
+span.label:hover, a.label:hover {
+    background-color: #ffcc33;
+}
+
+/* ********************* Tables ********************** */
 table.datagrid {
 
 }
@@ -207,7 +232,33 @@ table.datagrid td.amount {
     text-align: right;
 }
 
-/* ******* Forms *********** */
+
+/* ****************** Lists ************************* */
+ul.labels {
+    
+}
+ul.labels li {
+    margin: 5px 0;
+}
+ul.labels li .child_icon {
+    width: 16px;
+    height: 16px;
+    background-image: url('pimx/images/ui-icons_ef8c08_256x240.png');
+    background-position: -80px 0;
+    display: inline-block;
+}
+ul.labels > li > .child_icon {
+    background-position: -32px 0;
+}
+ul.labels li ul {
+    padding: 0 0 0 20px;
+    margin: 0 0 5px 0;
+}
+ul.labels li a.label {
+    font-size: 12pt;
+}
+
+/* ****************** Forms ************************* */
 input, textarea, select {
     font-family: Arial, sans-serif;
     font-size: 10pt;
@@ -262,6 +313,7 @@ form.entity_form {
 form.entity_form .form_row {
     margin: 5px 0;
     display: inline-block;
+    width: 100%;
 }
 form.entity_form .form_row * {
     float: left;
@@ -330,4 +382,19 @@ form.entity_form #movement_appliedAccounts input[type=text],
 form.entity_form #movement_appliedAccounts input[type=number],
 form.entity_form #movement_appliedAccounts select {
     width: 120px;
+}
+
+
+form.entity_form #movement_labels .fields_container {
+    display: inline-block;
+}
+form.entity_form #movement_labels .form_row {
+    float: left;
+}
+form.entity_form #movement_labels label {
+    display: none;
+}
+form.entity_form #movement_labels input[type=text] {
+    width: auto;
+    display: inline-block;
 }

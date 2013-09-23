@@ -254,4 +254,43 @@ class Movement {
         return $total;
     }
 
+    
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $labels;
+
+
+    /**
+     * Add labels
+     *
+     * @param \Pimx\ModelBundle\Entity\Label $labels
+     * @return Movement
+     */
+    public function addLabel(\Pimx\ModelBundle\Entity\Label $labels)
+    {
+        $this->labels[] = $labels;
+    
+        return $this;
+    }
+
+    /**
+     * Remove labels
+     *
+     * @param \Pimx\ModelBundle\Entity\Label $labels
+     */
+    public function removeLabel(\Pimx\ModelBundle\Entity\Label $labels)
+    {
+        $this->labels->removeElement($labels);
+    }
+
+    /**
+     * Get labels
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
 }

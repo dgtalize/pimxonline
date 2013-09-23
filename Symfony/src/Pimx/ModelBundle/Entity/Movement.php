@@ -254,42 +254,43 @@ class Movement {
         return $total;
     }
 
+    
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $groups;
+    private $labels;
 
 
     /**
-     * Add groups
+     * Add labels
      *
-     * @param \Pimx\ModelBundle\Entity\Label $groups
+     * @param \Pimx\ModelBundle\Entity\Label $labels
      * @return Movement
      */
-    public function addGroup(\Pimx\ModelBundle\Entity\Label $groups)
+    public function addLabel(\Pimx\ModelBundle\Entity\Label $labels)
     {
-        $this->groups[] = $groups;
+        $this->labels[] = $labels;
     
         return $this;
     }
 
     /**
-     * Remove groups
+     * Remove labels
      *
-     * @param \Pimx\ModelBundle\Entity\Label $groups
+     * @param \Pimx\ModelBundle\Entity\Label $labels
      */
-    public function removeGroup(\Pimx\ModelBundle\Entity\Label $groups)
+    public function removeLabel(\Pimx\ModelBundle\Entity\Label $labels)
     {
-        $this->groups->removeElement($groups);
+        $this->labels->removeElement($labels);
     }
 
     /**
-     * Get groups
+     * Get labels
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getGroups()
+    public function getLabels()
     {
-        return $this->groups;
+        return $this->labels;
     }
 }

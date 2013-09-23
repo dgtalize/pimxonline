@@ -14,7 +14,7 @@ class MovementAccountType extends AbstractType {
                     'property' => 'description',
                 ))
                 ->add('sign', 'choice', array(
-                    'choices' => array('1' => 'Entrada', '-1' => 'Salida'),
+                    'choices' => array('1' => 'In', '-1' => 'Out'),
                     'required' => true
                 ))
                 ->add('amount', 'number')
