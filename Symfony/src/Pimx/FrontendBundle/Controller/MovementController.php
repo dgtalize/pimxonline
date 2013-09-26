@@ -14,7 +14,7 @@ class MovementController extends Controller {
 
         return $this->render('PimxFrontendBundle:Movement:index.html.twig', array('items' => $movements));
     }
-    
+
     public function newAction(Request $request) {
 
         $movement = new \Pimx\ModelBundle\Entity\Movement();
@@ -30,17 +30,21 @@ class MovementController extends Controller {
             $em->persist($movement);
             $em->flush();
 
+            $translator = $this->get('translator');
+            $this->get('session')->getFlashBag()->add(
+                    'notice', $translator->trans('text.elementsaved', array('%element%', $translator->trans('text.movement')))
+            );
             return $this->redirect($this->generateUrl('_movement'));
         }
 
         return $this->render('PimxFrontendBundle:Movement:new.html.twig', array(
                     'form' => $form->createView(),
-        ));
+                ));
     }
-    
+
     public function editAction(Request $request) {
         $item_id = $request->get('item_id');
-        
+
         $movement = $this->getDoctrine()
                 ->getRepository('PimxModelBundle:Movement')
                 ->find($item_id);
@@ -56,12 +60,16 @@ class MovementController extends Controller {
             $em->persist($movement);
             $em->flush();
 
+            $translator = $this->get('translator');
+            $this->get('session')->getFlashBag()->add(
+                    'notice', $translator->trans('text.elementsaved', array('%element%', $translator->trans('text.movement')))
+            );
             return $this->redirect($this->generateUrl('_movement'));
         }
 
         return $this->render('PimxFrontendBundle:Movement:edit.html.twig', array(
-            'form' => $form->createView(),
-        ));
+                    'form' => $form->createView(),
+                ));
     }
 
 }

@@ -14,14 +14,14 @@ Pimx\ModelBundle\Entity\MovementAccount:
             type: decimal
             column: cxm_Importe
     manyToOne:
-        account:
-            targetEntity: Account
-            joinColumn:
-                name: cxmcta_cod
-                referencedColumnName: cta_Cod
         movement:
             targetEntity: Movement
             inversedBy: appliedAccounts
             joinColumn:
                 name: cxmmov_ID
                 referencedColumnName: mov_ID
+        account:
+            targetEntity: Account
+            joinColumn:
+                name: cxmcta_cod
+                referencedColumnName: cta_Cod

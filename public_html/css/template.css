@@ -64,7 +64,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     font-size: 11pt;
 }
 
-#header {
+body > header {
     height: 70px;
     border-bottom: 1px solid #D0D0D0;
     position: relative;
@@ -89,22 +89,22 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     box-shadow: 0 2px 5px 3px #E0E0E0;
 }
 
-#header .pimx_logo {
+body > header .pimx_logo {
     margin-right: 20px;
     float: left;
 }
 
-#header ul.menu {
+body > header ul.menu {
     display: block;
     position: absolute;
     bottom: 0;
     left: 230px;
 }
-#header ul.menu li {
+body > header ul.menu li {
     /*margin: 15px 5px 0 0;*/
     display: inline-block;
 }
-#header ul.menu li a {
+body > header ul.menu li a {
     display: block;
     padding: 10px 5px;
     color: #333;
@@ -122,7 +122,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     -webkit-box-shadow: 0px 0px 3px 2px #EEEEEE;
     box-shadow: 0px 0px 3px 2px #EEEEEE;*/
 }
-#header ul.menu li a:hover {
+body > header ul.menu li a:hover {
     border-left: 1px solid #D0D0D0;
     border-top: 1px solid #D0D0D0;
     border-right: 1px solid #D0D0D0;
@@ -131,15 +131,24 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     box-shadow: inset 0px 0px 3px 2px #EEEEEE;
 }
 
-#header .user_panel {
+body > header .user_panel {
     position: absolute;
     right: 10px;
     top: 10px;
 }
 
-
 #main_content {
     padding: 0 10px 10px 10px;
+}
+
+
+.flash-message {
+    display: block;
+    padding: 3px 10px;
+}
+.flash-message.notice {
+    background-color: #99ff99;
+    color: #003300;
 }
 
 /* ******************** General ************************** */
@@ -295,7 +304,7 @@ form.login .form_row {
 }
 form.login .form_row label {
     display: inline-block;
-    width: 120px;
+    width: 100px;
 }
 form.login .form_row input {
     border: 1px solid #E0E0E0;
@@ -313,7 +322,6 @@ form.entity_form {
 form.entity_form .form_row {
     margin: 5px 0;
     display: inline-block;
-    width: 100%;
 }
 form.entity_form .form_row * {
     float: left;

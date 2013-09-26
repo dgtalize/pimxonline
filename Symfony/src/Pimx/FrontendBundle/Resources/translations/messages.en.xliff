@@ -98,6 +98,14 @@
                 <source>menu.reports</source>
                 <target>Reports</target>
             </trans-unit>
+            <trans-unit id="25">
+                <source>text.elementsaved</source>
+                <target>The %element% has been saved succesfully!</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>text.movement</source>
+                <target>movement</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

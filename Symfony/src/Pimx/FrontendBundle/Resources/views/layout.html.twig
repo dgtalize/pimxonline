@@ -11,18 +11,14 @@
             <script src="{{ asset('js/knockout-2.2.1.js') }}"></script>
             <script src="{{ asset('js/globalize.min.js') }}"></script>
             <script src="{{ asset('js/dx.chartjs.js') }}"></script>
-            
+
             <script src="{{ asset('js/forms.js') }}" ></script>
         {% endblock %}
         </head>
         <body>
 
     {% block body %}
-        {% for flashMessage in app.session.flashbag.get('notice') %}
-            <div class="flash-message"> {{ flashMessage }} </div>
-        {% endfor %}
-
-            <div id="header">
+            <header>
                 <a class="pimx_logo" href="{{ path('_home') }}">
                     <img src="{{ asset('images/pimxlogo.png') }}" />
                 </a>
@@ -33,13 +29,17 @@
                     <a class="button" href="{{ path('logout') }}">{% trans %}user.logout{%endtrans%}</a>
                 </div>
                 {% endif %}
-            </div>
+            </header>
 
-            <div id="main_content">
+            <section id="main_content">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-message notice"> {{ flashMessage }} </div>
+        {% endfor %}
+                
         {% block main_content %}
         {% endblock %}
-                </div>
+            </section>
 
 {% endblock %}
-            </body>
-        </html>
+        </body>
+    </html>
