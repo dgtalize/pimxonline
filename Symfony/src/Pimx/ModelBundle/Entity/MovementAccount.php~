@@ -127,13 +127,14 @@ class MovementAccount
         return $this->account;
     }
 
+
     /**
      * Set movement
      *
      * @param \Pimx\ModelBundle\Entity\Movement $movement
      * @return MovementAccount
      */
-    public function setMovement(\Pimx\ModelBundle\Entity\Movement $movement = null)
+    public function setMovement(\Pimx\ModelBundle\Entity\Movement $movement)
     {
         $this->movement = $movement;
     

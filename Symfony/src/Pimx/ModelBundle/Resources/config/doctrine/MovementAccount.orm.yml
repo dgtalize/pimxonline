@@ -2,21 +2,21 @@ Pimx\ModelBundle\Entity\MovementAccount:
     type: entity
     table: cuentasxmovim
     id:
-        movement:
-            associationKey: true
-        account:
-            associationKey: true
+        id:
+            type: integer
+            column: cxm_ID
+            generator:
+              strategy: AUTO
+    fields:
         sign:
             type: integer
             column: cxm_Sentido
-    fields:
         amount:
             type: decimal
             column: cxm_Importe
     manyToOne:
         movement:
             targetEntity: Movement
-            inversedBy: appliedAccounts
             joinColumn:
                 name: cxmmov_ID
                 referencedColumnName: mov_ID

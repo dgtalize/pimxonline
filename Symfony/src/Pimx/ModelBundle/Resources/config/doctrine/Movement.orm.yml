@@ -1,12 +1,13 @@
 Pimx\ModelBundle\Entity\Movement:
     type: entity
     table: movimientos
+    repositoryClass: Pimx\ModelBundle\Repository\MovementRepository
     id:
         id:
             type: integer
             column: mov_ID
             generator:
-              strategy: IDENTITY
+              strategy: AUTO
     fields:
         name:
             type: string
@@ -36,8 +37,7 @@ Pimx\ModelBundle\Entity\Movement:
         appliedAccounts:
             targetEntity: MovementAccount
             mappedBy: movement
-            cascade: [persist, remove]
-            orphanRemoval: true
+            cascade: [persist,remove]
     manyToMany:
         labels:
             targetEntity: Label
