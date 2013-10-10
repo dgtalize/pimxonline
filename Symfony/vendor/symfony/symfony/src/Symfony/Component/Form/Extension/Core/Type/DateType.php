@@ -247,10 +247,10 @@ class DateType extends AbstractType
         $pattern = $formatter->getPattern();
         $timezone = $formatter->getTimezoneId();
 
-        if (version_compare(\PHP_VERSION, '5.5.0-dev', '>=')) {
-            $formatter->setTimeZone(\DateTimeZone::UTC);
+        if ($setTimeZone = method_exists($formatter, 'setTimeZone')) {
+            $formatter->setTimeZone('UTC');
         } else {
-            $formatter->setTimeZoneId(\DateTimeZone::UTC);
+            $formatter->setTimeZoneId('UTC');
         }
 
         if (preg_match($regex, $pattern, $matches)) {
@@ -265,7 +265,7 @@ class DateType extends AbstractType
             $formatter->setPattern($pattern);
         }
 
-        if (version_compare(\PHP_VERSION, '5.5.0-dev', '>=')) {
+        if ($setTimeZone) {
             $formatter->setTimeZone($timezone);
         } else {
             $formatter->setTimeZoneId($timezone);
