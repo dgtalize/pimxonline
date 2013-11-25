@@ -16,6 +16,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Pimx\DoctrineBundle\PimxDoctrineBundle(),
             new Pimx\ModelBundle\PimxModelBundle(),
             new Pimx\FrontendBundle\PimxFrontendBundle(),
         );
