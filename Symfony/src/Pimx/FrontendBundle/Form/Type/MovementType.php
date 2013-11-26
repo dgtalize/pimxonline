@@ -14,10 +14,14 @@ class MovementType extends AbstractType {
                 ->add('type', 'entity', array(
                     'class' => 'PimxModelBundle:MovementType',
                     'property' => 'description',
+                    'required' => false,
+                    'empty_value' => '(none)'
                 ))
                 ->add('group', 'entity', array(
                     'class' => 'PimxModelBundle:MovementGroup',
                     'property' => 'description',
+                    'required' => false,
+                    'empty_value' => '(none)'
                 ))
                 ->add('notes', 'textarea')
                 ->add('appliedAccounts', 'collection', array(

@@ -10,12 +10,14 @@
 <table class="datagrid">
     <thead>
         <tr>
-            <th>{%trans%}text.name{%endtrans%}</th>
-            <th>{%trans%}text.date{%endtrans%}</th>
-            <th>{%trans%}text.in{%endtrans%}</th>
-            <th>{%trans%}text.out{%endtrans%}</th>
-            <th>{%trans%}text.notes{%endtrans%}</th>
-            <th>{%trans%}text.labels{%endtrans%}</th>
+            <th>{{'text.name'|trans}}</th>
+            <th>{{'text.date'|trans}}</th>
+            <th>{{'text.group'|trans}}</th>
+            <th>{{'text.type'|trans}}</th>
+            <th>{{'text.in'|trans}}</th>
+            <th>{{'text.out'|trans}}</th>
+            <th>{{'text.notes'|trans}}</th>
+            <th>{{'text.labels'|trans}}</th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +29,8 @@
                 </a>
             </td>
             <td>{{ item.date|date('Y-m-d H:i') }}</td>
+            <td>{{ item.group is null ? '' : item.group.description }}</td>
+            <td>{{ item.type is null ? '' : item.type.description }}</td>
             <td class="amount">{{ item.inTotal|number_format(2) }}</td>
             <td class="amount">{{ item.outTotal|number_format(2) }}</td>
             <td>{{ item.notes }}</td>
