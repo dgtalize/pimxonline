@@ -421,3 +421,9 @@ form.entity_form #movement_labels .form_row {
 form.entity_form #movement_labels label {
 
 }
+
+
+/* ****************** Reports ************************* */
+.report {
+    display: inline-block;
+}

@@ -3,43 +3,13 @@
 {% block main_content %}
 <h1 class="title">{% trans %}report.finance{% endtrans %}</h1>
 
-<table class="datagrid" style="float:left;">
-    <thead>
-        <tr>
-            <th>{%trans%}text.month{%endtrans%}</th>
-            <th>{%trans%}text.balance{%endtrans%}</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for month_balance in months_balance %}
-            <tr>
-                <td>{{ month_balance.Month }}</td>
-                <td class="amount">{{ month_balance.Balance|number_format(2) }}</td>
-            </tr>
-    {% endfor %}
-        </tbody>
-    </table>
+<div id="report_monthbalance" class="report">
+    <h2>{{'report.monthbalance'|trans}}</h2>
+    {{ include( 'PimxFrontendBundle:Report:monthbalance.html.twig' ) }}
+</div>
 
-    <div id="monthbalance_chart" class="chart" style="float:left; width:600px; height: 400px;"></div>
-    <script>
-        var dataSource = [
-            {% for month_balance in months_balance %}
-                {month: '{{ month_balance.Month }}', balance: {{ month_balance.Balance|number_format(2, '.', '') }} },
-            {% endfor %}
-            ];
-        $(function() {
-             $("#monthbalance_chart").dxChart({
-                dataSource: dataSource,
-                commonSeriesSettings: {
-                    argumentField: 'month'
-                },
-                series: [
-                    { valueField: 'balance', name: 'Balance' }
-                ],
-                tooltip:{
-                    enabled: true
-                }
-            });
-        });
-        </script>
+<div id="report_accountbalance" class="report">
+    <h2>{{'report.accountbalance'|trans}}</h2>
+    {{ include( 'PimxFrontendBundle:Report:accountbalance.html.twig' ) }}
+</div>
 {% endblock %}

@@ -1,0 +1,49 @@
+<table class="datagrid" style="float:left;">
+    <thead>
+        <tr>
+            <th>{{ 'text.account'|trans }}</th>
+            <th>{{ 'text.balance'|trans }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for account_balance in accounts_balance %}
+            <tr>
+                <td>{{ account_balance.Account_Description }}</td>
+                <td class="amount">{{ account_balance.Balance|number_format(2) }}</td>
+            </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<div id="accountbalance_chart" class="chart" style="float:left; width:600px; height: 400px;"></div>
+<script>
+    var accountBalanceDataSource = [
+        {% for account_balance in accounts_balance %}
+            {account: '{{ account_balance.Account_Description }}', balance: {{ account_balance.Balance|number_format(2, '.', '') }} },
+        {% endfor %}
+        ];
+    $(function() {
+         $("#accountbalance_chart").dxPieChart({
+            size:{ 
+                width: 500
+            },
+            dataSource: accountBalanceDataSource,
+            series: [
+                { 
+                    argumentField: 'account',
+                    valueField: 'balance', 
+                    label:{
+                        visible: true,
+                        connector:{
+                            visible:true,           
+                            width: 1
+                        }
+                    }
+                }
+            ],
+            tooltip:{
+                enabled: false
+            }
+        });
+    });
+</script>
