@@ -7,7 +7,7 @@
     {% trans %}text.add{% endtrans %}
 </a>
 
-<table class="datagrid">
+<table id="movements_grid" class="datagrid">
     <thead>
         <tr>
             <th>{{'text.name'|trans}}</th>
@@ -28,7 +28,7 @@
                     {{ item.name }}
                 </a>
             </td>
-            <td>{{ item.date|date('Y-m-d H:i') }}</td>
+            <td class="datetime">{{ item.date|date('Y-m-d H:i') }}</td>
             <td>{{ item.group is null ? '' : item.group.description }}</td>
             <td>{{ item.type is null ? '' : item.type.description }}</td>
             <td class="amount">{{ item.inTotal|number_format(2) }}</td>

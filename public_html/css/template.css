@@ -198,7 +198,7 @@ span.label, a.label {
     display: inline-block;
     background-color: #ff9900;
     color: #FFFFFF;
-    padding: 1px 2px;
+    padding: 2px 3px;
 }
 span.label:hover, a.label:hover {
     background-color: #ffcc33;
@@ -422,6 +422,10 @@ form.entity_form #movement_labels label {
 
 }
 
+table#movements_grid td.datetime {
+    font-size: 9pt;
+    white-space: nowrap;
+}
 
 /* ****************** Reports ************************* */
 .report {

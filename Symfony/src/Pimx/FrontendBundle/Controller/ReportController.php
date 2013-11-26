@@ -27,7 +27,7 @@ class ReportController extends Controller {
                     SUM(CASE WHEN cxm_Sentido > 0 THEN cxm_Sentido * cuentasxmovim.cxm_Importe ELSE 0 END) AS Income,
                     SUM(CASE WHEN cxm_Sentido < 0 THEN cxm_Sentido * cuentasxmovim.cxm_Importe ELSE 0 END) AS Outcome,
                     sum((cuentasxmovim.cxm_Sentido * cuentasxmovim.cxm_Importe)) AS Balance
-            FROM  Movimientos
+            FROM  movimientos
                     INNER JOIN cuentasxmovim ON cuentasxmovim.cxmmov_ID = movimientos.mov_ID
             WHERE
                     (mov_FecHora >= (now() + interval -(:last_months) month))
