@@ -4,16 +4,28 @@ namespace Pimx\FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Pimx\FrontendBundle\Pagination\Paginator;
 use Pimx\ModelBundle\Entity\Movement;
 
 class MovementController extends Controller {
 
-    public function indexAction() {
+    public function indexAction(Request $request) {
+
+        $pageSize = 12;
+        $currentPage = $request->get('page', 1);
+
+        $paginator = new Paginator($pageSize, $currentPage);
+
         $movements = $this->getDoctrine()
                 ->getRepository('PimxModelBundle:Movement')
-                ->findBy(array(), array('date' => 'DESC'));
+                ->findBy(array(), array('date' => 'DESC'), $paginator->getPageSize(), // limit
+                $paginator->getOffset() // offset
+        );
 
-        return $this->render('PimxFrontendBundle:Movement:index.html.twig', array('items' => $movements));
+        return $this->render('PimxFrontendBundle:Movement:index.html.twig', array(
+                    'items' => $movements,
+                    'paginator' => $paginator
+        ));
     }
 
     public function newAction(Request $request) {
@@ -55,7 +67,7 @@ class MovementController extends Controller {
 
         return $this->render($view, array(
                     'form' => $form->createView(),
-                ));
+        ));
     }
 
 }

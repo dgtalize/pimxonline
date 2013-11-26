@@ -241,6 +241,23 @@ table.datagrid td.amount {
     text-align: right;
 }
 
+ul.pagination {
+    background-color: #EFEFEF;
+}
+ul.pagination li {
+    display: inline-block;
+}
+ul.pagination li.prev {
+    
+}
+ul.pagination li.next {
+    
+}
+ul.pagination li a,
+ul.pagination li span {
+    display: block;
+    padding: 5px;
+}
 
 /* ****************** Lists ************************* */
 ul.labels {

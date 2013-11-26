@@ -106,6 +106,14 @@
                 <source>text.movement</source>
                 <target>movement</target>
             </trans-unit>
+            <trans-unit id="27">
+                <source>pagination.prev</source>
+                <target>&lt; Previous</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>pagination.next</source>
+                <target>Next &gt;</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

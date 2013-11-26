@@ -1,0 +1,18 @@
+<ul class="pagination">
+    <li class="prev">
+        {% if(paginator.currentPage > 1) %}
+        <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage - 1}) }}">
+            {{'pagination.prev'|trans}}
+        </a>
+        {% else %}
+        <span>
+            {{'pagination.prev'|trans}}
+        </span>
+        {% endif %}
+    </li>
+    <li class="next">
+        <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage + 1}) }}">
+            {{'pagination.next'|trans}}
+        </a>
+    </li>
+</ul>

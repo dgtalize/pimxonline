@@ -39,4 +39,6 @@
     {% endfor %}
     </tbody>
 </table>
+
+{{ include( 'PimxFrontendBundle:Pagination:navigation.html.twig', {'paginator': paginator} ) }}
 {% endblock %}
