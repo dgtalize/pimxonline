@@ -23,22 +23,26 @@ class ReportController extends Controller {
     private function getMonthBalanceResult($connection) {
         $sqlQuery = "
             SELECT
-                    date_format(movimientos.mov_FecHora, '%Y-%m') AS Month,
-                    SUM(CASE WHEN cxm_Sentido > 0 THEN cxm_Sentido * cuentasxmovim.cxm_Importe ELSE 0 END) AS Income,
-                    SUM(CASE WHEN cxm_Sentido < 0 THEN cxm_Sentido * cuentasxmovim.cxm_Importe ELSE 0 END) AS Outcome,
-                    sum((cuentasxmovim.cxm_Sentido * cuentasxmovim.cxm_Importe)) AS Balance
-            FROM  movimientos
-                    INNER JOIN cuentasxmovim ON cuentasxmovim.cxmmov_ID = movimientos.mov_ID
-            WHERE
-                    (mov_FecHora >= (now() + interval -(:last_months) month))
-            GROUP BY date_format(movimientos.mov_FecHora, '%Y %m')
-            ORDER BY movimientos.mov_FecHora DESC";
+                    date_format(mov_FecHora, '%Y-%m') AS Month,
+                    SUM(CASE WHEN MovAmount > 0 THEN MovAmount ELSE 0 END) AS Income,
+                    SUM(CASE WHEN MovAmount < 0 THEN MovAmount ELSE 0 END) AS Outcome,
+                    SUM(MovAmount) AS Balance
+            FROM  (SELECT mov_ID, mov_FecHora, 
+                        SUM(cxm_Sentido * cxm_Importe) AS MovAmount
+                    FROM movimientos
+                        INNER JOIN cuentasxmovim ON cxmmov_ID = movimientos.mov_ID
+                    WHERE (mov_FecHora >= (now() + interval -(:last_months) month))
+                    GROUP BY mov_ID, mov_FecHora
+                    ) AS MovimsGroup
+            GROUP BY date_format(mov_FecHora, '%Y %m')
+            ORDER BY mov_FecHora DESC";
 
         $stmt = $connection->prepare($sqlQuery);
         $stmt->bindValue('last_months', 12);
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    
     private function getAccountBalanceResult($connection) {
         $sqlQuery = "
             SELECT 
