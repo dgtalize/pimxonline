@@ -16,9 +16,7 @@
                 </div>
 
             {% block main_content %}
-
-
-            <form class="login" action="{{ path('login_check') }}" method="post">
+                <form class="login" action="{{ path('login_check') }}" method="post">
                     <div class="form_row">
                         <label for="username">Username:</label>
                         <input type="text" id="username" name="_username" value="{{ last_username }}" />
@@ -32,15 +30,15 @@
                     
                     <div class="form_row">
                         <label for="db_name">DB Database:</label>
-                        <input type="text" id="db_name" name="db_name" />
+                        <input type="password" id="db_name" name="db_name" />
                     </div>
                     <div class="form_row">
                         <label for="db_user">DB User:</label>
-                        <input type="text" id="db_user" name="db_user" />
+                        <input type="password" id="db_user" name="db_user" />
                     </div>
                     <div class="form_row">
                         <label for="db_pass">DB Pass:</label>
-                        <input type="text" id="db_pass" name="db_pass" />
+                        <input type="password" id="db_pass" name="db_pass" />
                     </div>
 
                     <button type="submit">login</button>

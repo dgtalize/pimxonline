@@ -334,7 +334,8 @@ form.login button {
 
 /* ----- Entity --------- */
 form.entity_form {
-    width: 500px;
+    /*width: 500px;*/
+    display: inline-block;
 }
 form.entity_form .form_row {
     margin: 5px 0;
@@ -393,6 +394,47 @@ form.entity_form input[type=number]{
 
 form.entity_form .form_row .fields_container {
     background-color: #F0F0F0;
+}
+
+form.entity_form section {
+	float: left;
+	margin-left: 2.0%;
+	margin-bottom: 30px;
+	width: 48.4%;
+}
+form.entity_form section:nth-of-type(2n+1) {
+	margin-left: 0;
+	clear: left;
+}
+@media screen and (max-width: 600px) {
+	form.entity_form section {
+		width: 100% !important;
+		margin-left: 0 !important;
+		clear: none !important;
+	}
+}
+@media screen and (max-width: 500px) {
+	form.entity_form section .form_row {
+		width: 90%;
+	}
+	form.entity_form section .form_row label {
+        float: none;
+    }
+    form.entity_form section input[type=text],
+    form.entity_form section input[type=number],
+    form.entity_form section input[type=password],
+    form.entity_form section textarea,
+    form.entity_form section select {
+        width: 100%;
+    }
+    form.entity_form section input[type="date"],
+    form.entity_form section input[type="time"] {
+        width: 30%;
+    }
+}
+form.entity_form section.bottom {
+    display: block;
+    float: none;
 }
 
 /* Specifics */

@@ -14,6 +14,14 @@
 {% endspaceless %}
 {% endblock form_widget_compound %}
 
+{% block form_rows %}
+{% spaceless %}
+    {% for child in form %}
+        {{ form_row(child) }}
+    {% endfor %}
+{% endspaceless %}
+{% endblock form_rows %}
+
 {% block form_row %}
 {% spaceless %}
     <div class="form_row">

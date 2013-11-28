@@ -5,9 +5,52 @@
 
 <form class="entity_form"
       action="{{ path('_movement_new') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+    
+    <section>
+        <div class="form_row">
+            {{ form_label(form.name) }}
+            {{ form_errors(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="form_row">
+            {{ form_label(form.date) }}
+            {{ form_errors(form.date) }}
+            {{ form_widget(form.date) }}
+        </div>
+        <div class="form_row">
+            {{ form_label(form.type) }}
+            {{ form_errors(form.type) }}
+            {{ form_widget(form.type) }}
+        </div>
+        <div class="form_row">
+            {{ form_label(form.group) }}
+            {{ form_errors(form.group) }}
+            {{ form_widget(form.group) }}
+        </div>
+        <div class="form_row">
+            {{ form_label(form.labels) }}
+            {{ form_errors(form.labels) }}
+            {{ form_widget(form.labels) }}
+        </div>
+    </section>
+    <section>
+        <div class="form_row">
+            {{ form_label(form.notes) }}
+            {{ form_errors(form.notes) }}
+            {{ form_widget(form.notes) }}
+        </div>
+        <div class="form_row">
+            {{ form_label(form.appliedAccounts) }}
+            {{ form_errors(form.appliedAccounts) }}
+            {{ form_widget(form.appliedAccounts) }}
+        </div>
+    </section>
+    
+    <section class="bottom">
+        {{ form_widget(form) }}
+        <input type="submit" class="button" value="Save" />
+    </section>
 
-    <input type="submit" class="button" value="Save" />
 </form>
 
 {% endblock %}
