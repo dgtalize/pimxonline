@@ -7,16 +7,39 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ReportController extends Controller {
 
-    public function financeAction() {
+    public function accountbalanceAction() {
+        $manager = $this->getDoctrine()->getManager();
+        $connection = $manager->getConnection();
+
+        $accounts_balance = $this->getAccountBalanceResult($connection);
+
+        return $this->render('PimxFrontendBundle:Report:accountbalance.html.twig', array(
+            'accounts_balance' => $accounts_balance
+            ));
+    }
+    public function groupbalanceAction(Request $request) {
+        $manager = $this->getDoctrine()->getManager();
+        $connection = $manager->getConnection();
+
+        $filters = array();
+        $filters['date_start'] = $request->get('date_start', date('Y').'-01-01');
+        $filters['date_end'] = $request->get('date_end', date('Y').'-12-31');
+        
+        $groups_balance = $this->getGroupBalanceResult($connection, $filters);
+
+        return $this->render('PimxFrontendBundle:Report:groupbalance.html.twig', array(
+            'groups_balance' => $groups_balance,
+            'filters' => $filters
+            ));
+    }
+    public function monthbalanceAction() {
         $manager = $this->getDoctrine()->getManager();
         $connection = $manager->getConnection();
 
         $months_balance = $this->getMonthBalanceResult($connection);
-        $accounts_balance = $this->getAccountBalanceResult($connection);
 
-        return $this->render('PimxFrontendBundle:Report:finance.html.twig', array(
-            'months_balance' => $months_balance,
-            'accounts_balance' => $accounts_balance
+        return $this->render('PimxFrontendBundle:Report:monthbalance.html.twig', array(
+            'months_balance' => $months_balance
             ));
     }
     
@@ -54,6 +77,25 @@ class ReportController extends Controller {
             GROUP BY cta_cod, cta_Desc";
 
         $stmt = $connection->prepare($sqlQuery);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
+    private function getGroupBalanceResult($connection, $filters) {
+        $sqlQuery = "
+            SELECT 
+                    gmv_Cod AS Group_Cod,
+                    gmv_Desc AS Group_Description,
+                    ABS(SUM(cxm_Importe * cxm_Sentido)) AS Balance
+            FROM gruposmovim
+                    INNER JOIN movimientos ON movgmv_Cod = gmv_Cod
+                    INNER JOIN cuentasxmovim ON cxmmov_ID = mov_ID
+            WHERE mov_FecHora BETWEEN :date_start AND :date_end
+            GROUP BY gmv_Cod, gmv_Desc";
+
+        $stmt = $connection->prepare($sqlQuery);
+        $stmt->bindValue('date_start', $filters['date_start']);
+        $stmt->bindValue('date_end', $filters['date_end']);
         $stmt->execute();
         return $stmt->fetchAll();
     }

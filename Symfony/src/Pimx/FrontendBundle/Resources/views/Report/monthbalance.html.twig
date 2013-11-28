@@ -1,50 +1,58 @@
-<table class="datagrid" style="float:left;">
-    <thead>
-        <tr>
-            <th>{%trans%}text.month{%endtrans%}</th>
-            <th>{{'text.income'|trans}}</th>
-            <th>{{'text.outcome'|trans}}</th>
-            <th>{%trans%}text.balance{%endtrans%}</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for month_balance in months_balance %}
-            <tr>
-                <td>{{ month_balance.Month }}</td>
-                <td class="amount">{{ month_balance.Income|number_format(2) }}</td>
-                <td class="amount">{{ month_balance.Outcome|number_format(2) }}</td>
-                <td class="amount">{{ month_balance.Balance|number_format(2) }}</td>
-            </tr>
-    {% endfor %}
-    </tbody>
-</table>
+{% extends 'PimxFrontendBundle:Report:finance_layout.html.twig' %}
 
-<div id="monthbalance_chart" class="chart" style="float:left; width:600px; height: 400px;"></div>
-<script>
-    var monthBalanceDataSource = [
+{% block report_content %}
+<div id="report_monthbalance" class="report">
+    <h2>{{'report.monthbalance'|trans}}</h2>
+    
+    <table class="datagrid" style="float:left;">
+        <thead>
+            <tr>
+                <th>{%trans%}text.month{%endtrans%}</th>
+                <th>{{'text.income'|trans}}</th>
+                <th>{{'text.outcome'|trans}}</th>
+                <th>{%trans%}text.balance{%endtrans%}</th>
+            </tr>
+        </thead>
+        <tbody>
         {% for month_balance in months_balance %}
-            { 
-                month: '{{ month_balance.Month }}', 
-                income: {{ month_balance.Income|number_format(2, '.', '') }}, 
-                outcome: {{ month_balance.Outcome|number_format(2, '.', '') }}, 
-                balance: {{ month_balance.Balance|number_format(2, '.', '') }} 
-            },
+                <tr>
+                    <td>{{ month_balance.Month }}</td>
+                    <td class="amount">{{ month_balance.Income|number_format(2) }}</td>
+                    <td class="amount">{{ month_balance.Outcome|number_format(2) }}</td>
+                    <td class="amount">{{ month_balance.Balance|number_format(2) }}</td>
+                </tr>
         {% endfor %}
-        ];
-    $(function() {
-         $("#monthbalance_chart").dxChart({
-            dataSource: monthBalanceDataSource,
-            commonSeriesSettings: {
-                argumentField: 'month'
-            },
-            series: [
-                { valueField: 'income', name: 'Income', color: '#00DD00' },
-                { valueField: 'outcome', name: 'Outcome', color: '#FF0000' },
-                { valueField: 'balance', name: 'Balance', color: '#0000FF', width: 4 }
-            ],
-            tooltip:{
-                enabled: true
-            }
+        </tbody>
+    </table>
+
+    <div id="monthbalance_chart" class="chart" style="float:left; width:600px; height: 400px;"></div>
+    <script>
+        var monthBalanceDataSource = [
+            {% for month_balance in months_balance %}
+                { 
+                    month: '{{ month_balance.Month }}', 
+                    income: {{ month_balance.Income|number_format(2, '.', '') }}, 
+                    outcome: {{ month_balance.Outcome|number_format(2, '.', '') }}, 
+                    balance: {{ month_balance.Balance|number_format(2, '.', '') }} 
+                },
+            {% endfor %}
+            ];
+        $(function() {
+             $("#monthbalance_chart").dxChart({
+                dataSource: monthBalanceDataSource,
+                commonSeriesSettings: {
+                    argumentField: 'month'
+                },
+                series: [
+                    { valueField: 'income', name: 'Income', color: '#00DD00' },
+                    { valueField: 'outcome', name: 'Outcome', color: '#FF0000' },
+                    { valueField: 'balance', name: 'Balance', color: '#0000FF', width: 4 }
+                ],
+                tooltip:{
+                    enabled: true
+                }
+            });
         });
-    });
-</script>
+    </script>
+</div>
+{% endblock %}

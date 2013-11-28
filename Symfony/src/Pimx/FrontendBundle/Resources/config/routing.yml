@@ -22,9 +22,15 @@ _label:
     pattern:  /label/
     defaults: { _controller: PimxFrontendBundle:Label:index }
     
-_report_fin:
-    pattern:  /report/finance/
-    defaults: { _controller: PimxFrontendBundle:Report:finance }
+_report_fin_monthbalance:
+    pattern:  /report/finance/monthbalance/
+    defaults: { _controller: PimxFrontendBundle:Report:monthbalance }
+_report_fin_accountbalance:
+    pattern:  /report/finance/accountbalance/
+    defaults: { _controller: PimxFrontendBundle:Report:accountbalance }
+_report_fin_groupbalance:
+    pattern:  /report/finance/bygroups/
+    defaults: { _controller: PimxFrontendBundle:Report:groupbalance }
     
 login:
     pattern:   /login

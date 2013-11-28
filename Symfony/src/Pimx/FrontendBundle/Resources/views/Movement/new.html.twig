@@ -3,7 +3,7 @@
 {% block main_content %}
 <h1 class="title">{% trans %}movement.newmovement{% endtrans %}</h1>
 
-<form class="entity_form"
+<form class="entity_form standard"
       action="{{ path('_movement_new') }}" method="post" {{ form_enctype(form) }}>
     
     <section>

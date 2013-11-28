@@ -3,5 +3,12 @@
     <li><a href="{{ path('_account') }}">{% trans %}menu.accounts{%endtrans%}</a></li>
     <li><a href="{{ path('_movement') }}">{% trans %}menu.movements{%endtrans%}</a></li>
     <li><a href="{{ path('_label') }}">{% trans %}menu.labels{%endtrans%}</a></li>
-    <li><a href="{{ path('_report_fin') }}">{% trans %}menu.reports{%endtrans%}</a></li>
+    <li>
+        <span>{% trans %}menu.reports{%endtrans%}</span>
+        <ul>
+            <li><a href="{{ path('_report_fin_monthbalance') }}">{{ 'report.monthbalance'|trans }}</a></li>
+            <li><a href="{{ path('_report_fin_accountbalance') }}">{{ 'report.accountbalance'|trans }}</a></li>
+            <li><a href="{{ path('_report_fin_groupbalance') }}">{{ 'report.groupbalance'|trans }}</a></li>
+        </ul>
+    </li>
 </ul>

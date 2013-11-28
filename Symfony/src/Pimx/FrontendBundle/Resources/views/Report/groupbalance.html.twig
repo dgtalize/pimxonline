@@ -1,21 +1,34 @@
 {% extends 'PimxFrontendBundle:Report:finance_layout.html.twig' %}
 
 {% block report_content %}
-<div id="report_accountbalance" class="report">
-    <h2>{{'report.accountbalance'|trans}}</h2>
+<div id="report_groupbalance" class="report">
+    <h2>{{'report.groupbalance'|trans}}</h2>
+    
+    <section class="filters">
+        <form action="" class="standard">
+            <div class="form_row">
+                <label for="date_start">From:</label>
+                <input type="date" name="date_start" id="date_start" value="{{filters['date_start']}}" />
+            </div>
+            <div class="form_row">
+                <label for="date_end">To:</label>
+                <input type="date" name="date_end" id="date_end" value="{{filters['date_end']}}" />
+            </div>
+        </form>
+    </section>
     
     <table class="datagrid" style="float:left;">
         <thead>
             <tr>
-                <th>{{ 'text.account'|trans }}</th>
+                <th>{{ 'text.group'|trans }}</th>
                 <th>{{ 'text.balance'|trans }}</th>
             </tr>
         </thead>
         <tbody>
-        {% for account_balance in accounts_balance %}
+        {% for group_balance in groups_balance %}
                 <tr>
-                    <td>{{ account_balance.Account_Description }}</td>
-                    <td class="amount">{{ account_balance.Balance|number_format(2) }}</td>
+                    <td>{{ group_balance.Group_Description }}</td>
+                    <td class="amount">{{ group_balance.Balance|number_format(2) }}</td>
                 </tr>
         {% endfor %}
         </tbody>
@@ -24,8 +37,8 @@
     <div id="accountbalance_chart" class="chart" style="float:left; width:600px; height: 400px;"></div>
     <script>
         var accountBalanceDataSource = [
-            {% for account_balance in accounts_balance %}
-                {account: '{{ account_balance.Account_Description }}', balance: {{ account_balance.Balance|number_format(2, '.', '') }} },
+            {% for group_balance in groups_balance %}
+                {group: '{{ group_balance.Group_Description }}', balance: {{ group_balance.Balance|number_format(2, '.', '') }} },
             {% endfor %}
             ];
         $(function() {
@@ -33,7 +46,7 @@
                 dataSource: accountBalanceDataSource,
                 series: [
                     { 
-                        argumentField: 'account',
+                        argumentField: 'group',
                         valueField: 'balance', 
                         label:{
                             visible: true,
