@@ -19,7 +19,7 @@ class MovementController extends Controller {
             $filters = $filterForm->getData();
         }
 
-        $pageSize = 12;
+        $pageSize = $this->container->getParameter('grid_page_size');
         $currentPage = $request->get('page', 1);
         $paginator = new Paginator($pageSize, $currentPage);
 //        $movements = $this->getDoctrine()

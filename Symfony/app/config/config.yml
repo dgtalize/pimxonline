@@ -1,5 +1,6 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: "@PimxFrontendBundle/Resources/config/parameters.yml" }
     - { resource: security.yml }
 
 framework:

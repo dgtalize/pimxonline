@@ -114,6 +114,30 @@
                 <source>pagination.next</source>
                 <target>Next &gt;</target>
             </trans-unit>
+            <trans-unit id="29">
+                <source>text.group</source>
+                <target>Group</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>text.type</source>
+                <target>Type</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>report.monthbalance</source>
+                <target>Monthly Balance</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>report.accountbalance</source>
+                <target>Accounts Balance</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>report.groupbalance</source>
+                <target>Groups Balance</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>account.seemovements</source>
+                <target>See movements</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

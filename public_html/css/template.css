@@ -191,6 +191,7 @@ body > header .user_panel {
         position: absolute;
         left: 0;
         top: 41px;
+        z-index: 20;
     }
 }
 
@@ -258,6 +259,7 @@ span.label, a.label {
     background-color: #ff9900;
     color: #FFFFFF;
     padding: 2px 3px;
+    margin: 1px;
 }
 span.label:hover, a.label:hover {
     background-color: #ffcc33;
@@ -302,6 +304,7 @@ table.datagrid td.amount {
 
 ul.pagination {
     background-color: #EFEFEF;
+    display: inline-block;
 }
 ul.pagination li {
     display: inline-block;
@@ -323,6 +326,7 @@ section.filters {
     margin-bottom: 10px;
     padding: 10px 10px 40px 10px;
     position: relative;
+    background-color: #FFFFFF;
     
     border: 1px solid #CCCCCC;
     -mox-border-radius: 3px;
@@ -343,6 +347,17 @@ section.filters button[type="submit"]:hover {
     -moz-box-shadow: 1px -1px 2px 0 #D0D0D0;
     -webkit-box-shadow: 1px -1px 2px 0 #D0D0D0;
     box-shadow: 1px -1px 2px 0 #D0D0D0;
+}
+@media screen and (min-width: 700px) {
+    section.filters {
+        margin-left: 20px;
+        float: right;
+        width: 30%;
+        
+        -moz-box-shadow: 2px 2px 3px 0px #E0E0E0;
+        -webkit-box-shadow: 2px 2px 3px 0px #E0E0E0;
+        box-shadow: 2px 2px 3px 0px #E0E0E0;
+    }
 }
 
 /* ****************** Lists ************************* */

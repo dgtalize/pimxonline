@@ -10,23 +10,30 @@
     <table class="datagrid">
         <thead>
             <tr>
-                <th>{%trans%}text.code{%endtrans%}</th>
-                <th>{%trans%}text.description{%endtrans%}</th>
-                <th>{%trans%}account.sign{%endtrans%}</th>
+                <th>{{ 'text.code'|trans }}</th>
+                <th>{{ 'text.description'|trans }}</th>
+                <th>{{ 'account.sign'|trans }}</th>
+                <th>&nbsp;</th>
             </tr>
         </thead>
         <tbody>
-    {% for item in items %}
-                <tr>
-                    <td>
-                        <a href="{{ path('_account_edit', {'item_id': item.code}) }}">
-                    {{ item.code }}
-                            </a>
-                        </td>
-                        <td>{{ item.description }}</td>
-                        <td>{{ item.sign }}</td>
-                    </tr>
-    {% endfor %}
-                </tbody>
-            </table>
+        {% for item in items %}
+            <tr>
+                <td>
+                    <a href="{{ path('_account_edit', {'item_id': item.code}) }}">
+                        {{ item.code }}
+                    </a>
+                </td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.sign }}</td>
+                <td>
+                    <a href="{{ path('_movement', {'movfilter[acc_cod]': item.code}) }}">
+                        {{ 'account.seemovements'|trans }}
+                    </a>
+                    
+                </td>
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
 {% endblock %}
