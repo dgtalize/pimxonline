@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+@viewport {
+    width: device-width;
+    zoom: 1;
+}
+    
 /* A variation on Eric Meyer's CSS Reset:
    This is disabled because the Blueprint framework already has it.
    You should enable it if you aren't using Blueprint. */
@@ -68,7 +73,6 @@ header, section, article {
 }
 
 body > header {
-    height: 70px;
     border-bottom: 1px solid #D0D0D0;
     position: relative;
 
@@ -94,18 +98,14 @@ body > header {
 
 body > header .pimx_logo {
     margin-right: 20px;
-    float: left;
 }
 
 body > header ul.menu {
     display: block;
-    position: absolute;
-    bottom: 0;
-    left: 230px;
+    width: 100%;
 }
 body > header ul.menu > li {
-    /*margin: 15px 5px 0 0;*/
-    display: inline-block;
+    display: block;
     position: relative;
 }
 body > header ul.menu > li > a,
@@ -138,10 +138,7 @@ body > header ul.menu > li > span:hover {
 }
 body > header ul.menu > li ul {
     display: none;
-    position: absolute;
-    left: 0;
-    top: 41px;
-    
+
     background-color: #FFFFFF;
     border-left: 1px solid #D0D0D0;
     border-bottom: 1px solid #D0D0D0;
@@ -157,7 +154,7 @@ body > header ul.menu > li:hover ul {
     display: block;
 }
 body > header ul.menu > li ul li {
-    
+
 }
 body > header ul.menu > li ul li:hover {
     background-color: #EEEEEE;
@@ -174,7 +171,31 @@ body > header .user_panel {
     right: 10px;
     top: 10px;
 }
+@media screen and (min-width: 700px) {
+    body > header {
+        height: 70px;
+    }
+    body > header .pimx_logo {
+        float: left;
+    }
+    body > header ul.menu {
+        position: absolute;
+        bottom: 0;
+        left: 230px;
+        width: auto;
+    }
+    body > header ul.menu > li {
+        display: inline-block;
+    }
+    body > header ul.menu > li ul {
+        position: absolute;
+        left: 0;
+        top: 41px;
+    }
+}
 
+
+/* *********** Main Content ************** */
 #main_content {
     padding: 0 10px 10px 10px;
 }
@@ -286,10 +307,10 @@ ul.pagination li {
     display: inline-block;
 }
 ul.pagination li.prev {
-    
+
 }
 ul.pagination li.next {
-    
+
 }
 ul.pagination li a,
 ul.pagination li span {
@@ -331,24 +352,10 @@ input, textarea, select {
 /* ---------- Login ---------- */
 form.login {
     display: block;
-    width: 300px;
     min-height: 100px;
-    margin-left: -150px;
-    margin-top: -100px;
-    padding: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    padding: 5%;
+    width: 90%;
     background-color: #FAFAFA;
-
-    border: 1px solid #CCCCCC;
-    -mox-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-
-    -moz-box-shadow: 0px 0px 5px 5px #E0E0E0;
-    -webkit-box-shadow: 0px 0px 5px 5px #E0E0E0;
-    box-shadow: 0px 0px 5px 5px #E0E0E0;
 }
 form.login .error_message {
     font-size: 10pt;
@@ -358,16 +365,48 @@ form.login .form_row {
     margin: 5px 0;
 }
 form.login .form_row label {
-    display: inline-block;
-    width: 100px;
+    display: block;
 }
 form.login .form_row input {
+    display: block;
     border: 1px solid #E0E0E0;
-    padding: 5px 10px;
+    padding: 5px 5%;
+    width: 90%;
+    background-color: #FFFFFF;
 }
 form.login button {
     display: block;
     margin: 0 auto;
+}
+@media screen and (min-width: 400px) {
+    form.login {
+        width: 300px;
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -150px;
+        margin-top: -100px;
+    
+        border: 1px solid #CCCCCC;
+        -mox-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+
+        -moz-box-shadow: 0px 0px 5px 5px #E0E0E0;
+        -webkit-box-shadow: 0px 0px 5px 5px #E0E0E0;
+        box-shadow: 0px 0px 5px 5px #E0E0E0;
+    }
+    form.login .form_row label {
+        display: inline-block;
+        width: 100px;
+    }
+    form.login .form_row input {
+        display: inline-block;
+        border: 1px solid #E0E0E0;
+        padding: 5px 10px;
+        width: auto;
+    }
 }
 
 /* ----- Standard --------- */
@@ -435,27 +474,27 @@ form.standard .form_row .fields_container {
 }
 
 form.standard section {
-	float: left;
-	margin-left: 2.0%;
-	margin-bottom: 30px;
-	width: 48.4%;
+    float: left;
+    margin-left: 2.0%;
+    margin-bottom: 30px;
+    width: 48.4%;
 }
 form.standard section:nth-of-type(2n+1) {
-	margin-left: 0;
-	clear: left;
+    margin-left: 0;
+    clear: left;
 }
 @media screen and (max-width: 600px) {
-	form.standard section {
-		width: 100% !important;
-		margin-left: 0 !important;
-		clear: none !important;
-	}
+    form.standard section {
+        width: 100% !important;
+        margin-left: 0 !important;
+        clear: none !important;
+    }
 }
 @media screen and (max-width: 500px) {
-	form.standard section .form_row {
-		width: 90%;
-	}
-	form.standard section .form_row label {
+    form.standard section .form_row {
+        width: 90%;
+    }
+    form.standard section .form_row label {
         float: none;
     }
     form.standard section input[type=text],

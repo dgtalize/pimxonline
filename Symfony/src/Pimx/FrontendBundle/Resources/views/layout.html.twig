@@ -3,6 +3,9 @@
     <head>
         {% block head %}
             <title>{% block title 'PIM Xtreme Online' %}</title>
+            
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            
             <link rel="stylesheet" href="{{ asset('css/template.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/pimx/jquery-ui-1.10.3.custom.min.css') }}" />
 
@@ -14,20 +17,19 @@
 
             <script src="{{ asset('js/forms.js') }}" ></script>
         {% endblock %}
-        </head>
-        <body>
-
-    {% block body %}
+    </head>
+    <body>
+        {% block body %}
             <header>
                 <a class="pimx_logo" href="{{ path('_home') }}">
                     <img src="{{ asset('images/pimxlogo.png') }}" />
                 </a>
                 {% if is_granted('ROLE_USER') %}
-                {{ include( 'PimxFrontendBundle::mainmenu.html.twig' ) }}
-                <div class="user_panel">
-                    <span class="username">{{ app.user.username }}</span>
-                    <a class="button" href="{{ path('logout') }}">{% trans %}user.logout{%endtrans%}</a>
-                </div>
+                    <div class="user_panel">
+                        <span class="username">{{ app.user.username }}</span>
+                        <a class="button" href="{{ path('logout') }}">{% trans %}user.logout{%endtrans%}</a>
+                    </div>
+                    {{ include( 'PimxFrontendBundle::mainmenu.html.twig' ) }}
                 {% endif %}
             </header>
 

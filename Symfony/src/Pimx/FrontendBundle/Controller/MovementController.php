@@ -55,8 +55,6 @@ class MovementController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($movement);
             $em->flush();
-//            $repository = $this->getDoctrine()->getRepository('PimxModelBundle:Movement');
-//            $repository->persistMovement($movement);
 
             $translator = $this->get('translator');
             $this->get('session')->getFlashBag()->add(
