@@ -318,6 +318,33 @@ ul.pagination li span {
     padding: 5px;
 }
 
+/* *************  Filters  ************* */
+section.filters {
+    margin-bottom: 10px;
+    padding: 10px 10px 40px 10px;
+    position: relative;
+    
+    border: 1px solid #CCCCCC;
+    -mox-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+section.filters button[type="submit"] {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    
+    border-bottom: 0 none;
+    -mox-border-radius: 3px 3px 0 0;
+    -webkit-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0; 
+}
+section.filters button[type="submit"]:hover {
+    -moz-box-shadow: 1px -1px 2px 0 #D0D0D0;
+    -webkit-box-shadow: 1px -1px 2px 0 #D0D0D0;
+    box-shadow: 1px -1px 2px 0 #D0D0D0;
+}
+
 /* ****************** Lists ************************* */
 ul.labels {
 
@@ -529,7 +556,6 @@ form.standard #movement_appliedAccounts input[type=number],
 form.standard #movement_appliedAccounts select {
     width: 120px;
 }
-
 
 form.standard #movement_labels .fields_container {
     display: inline-block;

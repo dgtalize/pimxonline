@@ -1,10 +1,7 @@
 <?php
 
-namespace Pimx\FrontendBundle\Pagination;
+namespace Pimx\ModelBundle\Pagination;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Pimx\ModelBundle\Entity\Movement;
 
 class Paginator {
 

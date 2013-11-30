@@ -3,6 +3,16 @@
 {% block main_content %}
 <h1 class="title">{% trans %}movement.title{% endtrans %}</h1>
 
+{% block data_filters %}
+<section class="filters">
+    {{ form_start(filter_form, { 'attr': {'class': 'standard'} }) }}
+        {{ form_errors(filter_form) }}
+
+        {{ form_rest(filter_form) }}
+    {{ form_end(filter_form) }}
+</section>
+{% endblock %}
+
 <a class="button" href="{{ path('_movement_new') }}">
     {% trans %}text.add{% endtrans %}
 </a>
@@ -33,7 +43,13 @@
             <td>{{ item.type is null ? '' : item.type.description }}</td>
             <td class="amount">{{ item.inTotal|number_format(2) }}</td>
             <td class="amount">{{ item.outTotal|number_format(2) }}</td>
-            <td>{{ item.notes }}</td>
+            <td {{ (item.notes|length > 20) ? ('title="' ~ item.notes ~ '"')|raw : '' }}>
+                {% if item.notes|length > 20 %}
+                    {{ item.notes[:20] ~ '...' }}
+                {% else %}
+                    {{ item.notes }}
+                {% endif %}
+            </td>
             <td>
                 {% for label in item.labels %}
                     <span class="label">{{ label.name }}</span>

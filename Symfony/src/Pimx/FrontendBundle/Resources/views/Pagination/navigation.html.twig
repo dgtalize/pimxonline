@@ -11,8 +11,13 @@
         {% endif %}
     </li>
     <li class="next">
-        <a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage + 1}) }}">
+        {#<a href="{{ path(app.request.attributes.get('_route'), {'page': paginator.currentPage + 1}) }}">
+            {{'pagination.next'|trans}}
+        </a>#}
+        <a href="{{ path(app.request.attributes.get('_route'), 
+                        app.request.attributes.get('_route_params')|merge({'page': paginator.currentPage + 1})) }}">
             {{'pagination.next'|trans}}
         </a>
+            
     </li>
 </ul>

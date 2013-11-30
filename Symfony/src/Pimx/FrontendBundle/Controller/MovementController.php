@@ -4,25 +4,36 @@ namespace Pimx\FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Pimx\FrontendBundle\Pagination\Paginator;
+use Pimx\ModelBundle\Pagination\Paginator;
+use Pimx\FrontendBundle\Form\Type\MovementFilterType;
 use Pimx\ModelBundle\Entity\Movement;
 
 class MovementController extends Controller {
 
     public function indexAction(Request $request) {
+        //Process filters (if any)
+        $filters = array();
+        $filterForm = $this->createForm(new MovementFilterType());
+        $filterForm->handleRequest($request);
+        if ($filterForm->isValid()) {
+            $filters = $filterForm->getData();
+        }
 
         $pageSize = 12;
         $currentPage = $request->get('page', 1);
-
         $paginator = new Paginator($pageSize, $currentPage);
-
+//        $movements = $this->getDoctrine()
+//                ->getRepository('PimxModelBundle:Movement')
+//                ->findBy(array(), array('date' => 'DESC'), $paginator->getPageSize(), // limit
+//                $paginator->getOffset() // offset
+//        );
         $movements = $this->getDoctrine()
                 ->getRepository('PimxModelBundle:Movement')
-                ->findBy(array(), array('date' => 'DESC'), $paginator->getPageSize(), // limit
-                $paginator->getOffset() // offset
-        );
+                ->findByFilters($paginator, $filters)
+        ;
 
         return $this->render('PimxFrontendBundle:Movement:index.html.twig', array(
+                    'filter_form' => $filterForm->createView(),
                     'items' => $movements,
                     'paginator' => $paginator
         ));
