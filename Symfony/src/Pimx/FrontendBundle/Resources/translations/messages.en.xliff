@@ -162,7 +162,7 @@
                 <source>account.currency</source>
                 <target>Currency</target>
             </trans-unit>
-            <trans-unit id="40">
+            <trans-unit id="41">
                 <source>text.account</source>
                 <target>account</target>
             </trans-unit>
