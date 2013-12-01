@@ -12,7 +12,7 @@
             <tr>
                 <th>{{ 'text.code'|trans }}</th>
                 <th>{{ 'text.description'|trans }}</th>
-                <th>{{ 'account.sign'|trans }}</th>
+                <th>{{ 'account.currency'|trans }}</th>
                 <th>&nbsp;</th>
             </tr>
         </thead>
@@ -25,7 +25,7 @@
                     </a>
                 </td>
                 <td>{{ item.description }}</td>
-                <td>{{ item.sign }}</td>
+                <td>{{ item.currency is null ? '' : item.currency.name }}</td>
                 <td>
                     <a href="{{ path('_movement', {'movfilter[acc_cod]': item.code}) }}">
                         {{ 'account.seemovements'|trans }}

@@ -15,6 +15,7 @@ Pimx\ModelBundle\Entity\Account:
             column: cta_Signo
         notes:
             type: text
+            nullable: true
             column: cta_Notas
     manyToOne:
         group:
@@ -27,3 +28,8 @@ Pimx\ModelBundle\Entity\Account:
             joinColumn:
                 name: ctatct_cod
                 referencedColumnName: tct_Cod
+        currency:
+            targetEntity: Currency
+            joinColumn:
+                name: ctacur_id
+                referencedColumnName: cur_id

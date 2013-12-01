@@ -1,0 +1,20 @@
+Pimx\ModelBundle\Entity\CurrencyExchangeRate:
+    type: entity
+    table: currency_x_rate
+    id:
+        id:
+            type: integer
+            column: cxr_id
+    fields:
+        timestamp:
+            type: datetime
+            column: cxr_timestamp
+        rate:
+            type: decimal
+            column: cxr_rate
+    manyToOne:
+        currency:
+            targetEntity: Currency
+            joinColumn:
+                name: cxmcur_id
+                referencedColumnName: cur_id

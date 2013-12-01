@@ -138,6 +138,34 @@
                 <source>account.seemovements</source>
                 <target>See movements</target>
             </trans-unit>
+            <trans-unit id="35">
+                <source>menu.currencies</source>
+                <target>Currencies</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>currency.isoCode</source>
+                <target>ISO Code</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>currency.symbol</source>
+                <target>Symbol</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>text.isActive</source>
+                <target>Active</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>currency.title</source>
+                <target>Currencies</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>account.currency</source>
+                <target>Currency</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>text.account</source>
+                <target>account</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

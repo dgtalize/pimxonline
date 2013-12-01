@@ -29,6 +29,11 @@ class AccountController extends Controller {
             $em->persist($account);
             $em->flush();
 
+            $translator = $this->get('translator');
+            $this->get('session')->getFlashBag()->add(
+                    'notice',
+                    $translator->trans('text.elementsaved', array('%element%' => $translator->trans('text.account')))
+            );
             return $this->redirect($this->generateUrl('_account'));
         }
 
@@ -53,6 +58,11 @@ class AccountController extends Controller {
             $em->persist($account);
             $em->flush();
 
+            $translator = $this->get('translator');
+            $this->get('session')->getFlashBag()->add(
+                    'notice',
+                    $translator->trans('text.elementsaved', array('%element%' => $translator->trans('text.account')))
+            );
             return $this->redirect($this->generateUrl('_account'));
         }
 

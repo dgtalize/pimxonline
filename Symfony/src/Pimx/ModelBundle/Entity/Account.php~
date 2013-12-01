@@ -205,4 +205,32 @@ class Account
     {
         return $this->code;
     }
+    /**
+     * @var \Pimx\ModelBundle\Entity\Currency
+     */
+    private $currency;
+
+
+    /**
+     * Set currency
+     *
+     * @param \Pimx\ModelBundle\Entity\Currency $currency
+     * @return Account
+     */
+    public function setCurrency(\Pimx\ModelBundle\Entity\Currency $currency = null)
+    {
+        $this->currency = $currency;
+    
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return \Pimx\ModelBundle\Entity\Currency 
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
 }

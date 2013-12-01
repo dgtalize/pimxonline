@@ -1,0 +1,23 @@
+Pimx\ModelBundle\Entity\Currency:
+    type: entity
+    table: currencies
+    id:
+        id:
+            type: integer
+            column: cur_id
+    fields:
+        name:
+            type: string
+            length: 50
+            column: cur_name
+        isoCode:
+            type: string
+            length: 3
+            column: cur_isoCode
+        symbol:
+            type: string
+            length: 5
+            column: cur_sign
+        isActive:
+            type: boolean
+            column: cur_active

@@ -5,6 +5,46 @@
 
 <form class="entity_form standard"
       action="{{ path('_account_edit', {'item_id': form.vars.value.code}) }}" method="post" {{ form_enctype(form) }}>
+    
+    <section>
+        <div class="form_row">
+            {{ form_label(form.code) }}
+            {{ form_errors(form.code) }}
+            {{ form_widget(form.code) }}
+        </div>
+        <div class="form_row">
+            {{ form_label(form.description) }}
+            {{ form_errors(form.description) }}
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="form_row">
+            {{ form_label(form.currency) }}
+            {{ form_errors(form.currency) }}
+            {{ form_widget(form.currency) }}
+        </div>
+        <div class="form_row">
+            {{ form_label(form.sign) }}
+            {{ form_errors(form.sign) }}
+            {{ form_widget(form.sign) }}
+        </div>
+    </section>
+    <section>
+        <div class="form_row">
+            {{ form_label(form.type) }}
+            {{ form_errors(form.type) }}
+            {{ form_widget(form.type) }}
+        </div>
+        <div class="form_row">
+            {{ form_label(form.group) }}
+            {{ form_errors(form.group) }}
+            {{ form_widget(form.group) }}
+        </div>
+        <div class="form_row">
+            {{ form_label(form.notes) }}
+            {{ form_errors(form.notes) }}
+            {{ form_widget(form.notes) }}
+        </div>
+    </section>
     {{ form_widget(form) }}
 
     <input type="submit" class="button" value="Save" />

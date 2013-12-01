@@ -18,6 +18,10 @@ _movement_edit:
     pattern:  /movement/edit/{item_id}
     defaults: { _controller: PimxFrontendBundle:Movement:edit }
 
+_currency:
+    pattern:  /currency/
+    defaults: { _controller: PimxFrontendBundle:Currency:index }
+    
 _label:
     pattern:  /label/
     defaults: { _controller: PimxFrontendBundle:Label:index }

@@ -1,10 +1,11 @@
 <ul class="menu">
     {#<li><a href="{{ path('_home') }}">{% trans %}menu.home{%endtrans%}</a></li>#}
     <li><a href="{{ path('_account') }}">{% trans %}menu.accounts{%endtrans%}</a></li>
+    <li><a href="{{ path('_currency') }}">{{ 'menu.currencies'|trans }}</a></li>
     <li><a href="{{ path('_movement') }}">{% trans %}menu.movements{%endtrans%}</a></li>
     <li><a href="{{ path('_label') }}">{% trans %}menu.labels{%endtrans%}</a></li>
     <li>
-        <span>{% trans %}menu.reports{%endtrans%}</span>
+        <span>{{ 'menu.reports'|trans }}</span>
         <ul>
             <li><a href="{{ path('_report_fin_monthbalance') }}">{{ 'report.monthbalance'|trans }}</a></li>
             <li><a href="{{ path('_report_fin_accountbalance') }}">{{ 'report.accountbalance'|trans }}</a></li>

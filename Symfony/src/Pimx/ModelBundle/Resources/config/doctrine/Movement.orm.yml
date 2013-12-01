@@ -21,6 +21,7 @@ Pimx\ModelBundle\Entity\Movement:
             column: mov_FecHoraIng
         notes:
             type: text
+            nullable: true
             column: mov_Detalle
     manyToOne:
         group:

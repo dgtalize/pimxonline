@@ -19,8 +19,12 @@ class AccountType extends AbstractType {
                     'class' => 'PimxModelBundle:AccountGroup',
                     'property' => 'description',
                 ))
+                ->add('currency', 'entity', array(
+                    'class' => 'PimxModelBundle:Currency',
+                    'property' => 'name',
+                ))
                 ->add('sign', 'integer')
-                ->add('notes', 'textarea');
+                ->add('notes', 'textarea', array('required' => false));
     }
 
     public function getName() {

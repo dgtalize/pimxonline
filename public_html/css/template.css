@@ -90,14 +90,16 @@ body > header {
         color-stop(1, rgb(255,255,255))
         );
 
-
-    -moz-box-shadow: 0 2px 5px 3px #E0E0E0;
-    -webkit-box-shadow: 0 2px 5px 3px #E0E0E0;
-    box-shadow: 0 2px 5px 3px #E0E0E0;
+    -moz-box-shadow: 0 2px 5px 3px #D0D0D0;
+    -webkit-box-shadow: 0 2px 5px 3px #D0D0D0;
+    box-shadow: 0 2px 5px 3px #D0D0D0;
 }
 
 body > header .pimx_logo {
     margin-right: 20px;
+}
+body > header .pimx_logo img {
+    max-height: 45px;
 }
 
 body > header ul.menu {
@@ -178,6 +180,9 @@ body > header .user_panel {
     body > header .pimx_logo {
         float: left;
     }
+    body > header .pimx_logo img {
+        max-height: none;
+    }
     body > header ul.menu {
         position: absolute;
         bottom: 0;
@@ -204,7 +209,7 @@ body > header .user_panel {
 
 .flash-message {
     display: block;
-    padding: 3px 10px;
+    padding: 10px 10px 3px 10px;
     margin: 0 -10px;
 }
 .flash-message.notice {
@@ -301,6 +306,9 @@ table.datagrid td {
 }
 table.datagrid td.amount {
     text-align: right;
+}
+table.datagrid td.boolean {
+    text-align: center;
 }
 
 ul.pagination {
