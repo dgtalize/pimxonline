@@ -34,9 +34,16 @@
             </header>
 
             <section id="main_content">
-        {% for flashMessage in app.session.flashbag.get('notice') %}
+            {% for flashMessage in app.session.flashbag.get('notice') %}
                 <div class="flash-message notice"> {{ flashMessage }} </div>
-        {% endfor %}
+                <script type="text/javascript">
+                    setTimeout(function(){
+                        $('.flash-message').slideUp({
+                            duration: 1000
+                        });
+                    }, 4000);
+                </script>
+            {% endfor %}
                 
         {% block main_content %}
         {% endblock %}

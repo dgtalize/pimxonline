@@ -23,7 +23,7 @@ class MovementType extends AbstractType {
                     'required' => false,
                     'empty_value' => '(none)'
                 ))
-                ->add('notes', 'textarea')
+                ->add('notes', 'textarea', array('required' => false))
                 ->add('appliedAccounts', 'collection', array(
                     'type' => new MovementAccountType(),
                     'allow_add' => true,

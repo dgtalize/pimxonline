@@ -69,7 +69,8 @@ class MovementController extends Controller {
 
             $translator = $this->get('translator');
             $this->get('session')->getFlashBag()->add(
-                    'notice', $translator->trans('text.elementsaved', array('%element%', $translator->trans('text.movement')))
+                    'notice',
+                    $translator->trans('text.elementsaved', array('%element%' => $translator->trans('text.movement')))
             );
             return $this->redirect($this->generateUrl('_movement'));
         }

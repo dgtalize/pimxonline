@@ -17,6 +17,7 @@ Pimx\ModelBundle\Entity\MovementAccount:
     manyToOne:
         movement:
             targetEntity: Movement
+            inversedBy: appliedAccounts
             joinColumn:
                 name: cxmmov_ID
                 referencedColumnName: mov_ID
