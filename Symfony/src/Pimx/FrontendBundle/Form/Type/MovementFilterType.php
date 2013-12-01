@@ -17,6 +17,7 @@ class MovementFilterType extends AbstractType {
                     'required' => false,
                     'empty_value' => '(none)'
                 ))
+                ->add('freetext', 'text', array('required' => false))
                 ->add('Filter', 'submit')
                 ->setMethod('GET')
         ;

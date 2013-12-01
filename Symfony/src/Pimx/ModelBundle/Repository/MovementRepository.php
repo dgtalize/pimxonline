@@ -11,29 +11,37 @@ class MovementRepository extends EntityRepository {
      * @return array Results
      */
     public function findByFilters(Paginator $paginator, array $filters) {
-        $queryBulder = $this->createQueryBuilder('mov')
+        $qryBulder = $this->createQueryBuilder('mov')
                 ->innerJoin('mov.appliedAccounts', 'movacc')
                 ->orderBy('mov.date', 'DESC');
 
         if (isset($filters['date_start'])) {
-            $queryBulder->andWhere('mov.date >= :date_start');
-            $queryBulder->setParameter('date_start', $filters['date_start']);
+            $qryBulder->andWhere('mov.date >= :date_start');
+            $qryBulder->setParameter('date_start', $filters['date_start']);
         }
         if (isset($filters['date_end'])) {
-            $queryBulder->andWhere('mov.date <= :date_end');
-            $queryBulder->setParameter('date_end', $filters['date_end']);
+            $qryBulder->andWhere('mov.date <= :date_end');
+            $qryBulder->setParameter('date_end', $filters['date_end']);
         }
         if (isset($filters['acc_cod'])) {
-            $queryBulder->andWhere('movacc.account = :account_cod');
-            $queryBulder->setParameter('account_cod', $filters['acc_cod']);
+            $qryBulder->andWhere('movacc.account = :account_cod');
+            $qryBulder->setParameter('account_cod', $filters['acc_cod']);
+        }
+        if (isset($filters['freetext'])) {
+            $likeCriteria = '%'.$filters['freetext'].'%';
+            $qryBulder->andWhere($qryBulder->expr()->orX(
+                    $qryBulder->expr()->like('mov.name', $qryBulder->expr()->literal($likeCriteria)),
+                    $qryBulder->expr()->like('mov.notes', $qryBulder->expr()->literal($likeCriteria))
+            ));
+//            $qryBulder->setParameter('freetext', $filters['freetext']);
         }
 
         $finalQuery = $this->getEntityManager()
-                        ->createQuery($queryBulder->getDQL())
-                        ->setParameters($queryBulder->getParameters())
-                        ->setFirstResult($paginator->getOffset())
-                        ->setMaxResults($paginator->getPageSize())
-                ;
+                ->createQuery($qryBulder->getDQL())
+                ->setParameters($qryBulder->getParameters())
+                ->setFirstResult($paginator->getOffset())
+                ->setMaxResults($paginator->getPageSize())
+        ;
 
         return $finalQuery->getResult();
     }
