@@ -1,3 +1,8 @@
 # PimxFrontendBundle routes
 _pimx_frontend:
     resource: "@PimxFrontendBundle/Resources/config/routing.yml"
+
+# PimxApiBundle routes
+_pimx_api:
+    resource: "@PimxApiBundle/Resources/config/routing.yml"
+    prefix:   /api

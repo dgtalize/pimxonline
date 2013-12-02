@@ -3,6 +3,7 @@ security:
         Symfony\Component\Security\Core\User\User: plaintext
 
     role_hierarchy:
+        ROLE_API:         ROLE_USER
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
@@ -12,16 +13,23 @@ security:
                 users:
                     testuser:  { password: 123456, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                    apiuser: { password: apipass, roles: [ 'ROLE_API' ] }
 
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        wsse_secured:
+            pattern:    /api/.*
+            stateless:  true
+            wsse:       true
+            security: true
+
         login:
             pattern:  ^/login$
             security: false
-
+            
         secured_area:
             pattern:    ^/
             anonymous: ~
@@ -36,5 +44,6 @@ security:
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api, roles: ROLE_API }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/, roles: ROLE_USER }

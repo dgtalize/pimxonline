@@ -45,5 +45,15 @@ class MovementRepository extends EntityRepository {
 
         return $finalQuery->getResult();
     }
+    
+    public function findLatest($days) {
+        $qryBulder = $this->createQueryBuilder('mov')
+                ->orderBy('mov.date', 'DESC');
+
+        $qryBulder->andWhere('mov.date >= :date_from');
+        $qryBulder->setParameter('date_from', strtotime(date('Y-m-d H:i:s') . " -$days days"));
+
+        return $qryBulder->getQuery()->getResult();
+    }
 
 }

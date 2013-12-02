@@ -1,0 +1,13 @@
+Pimx\ModelBundle\Movement:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        date:
+            expose: true
+        name:
+            expose: true
+        type:
+            expose: true
+        group:
+            expose: true
