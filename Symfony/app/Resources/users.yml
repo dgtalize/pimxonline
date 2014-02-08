@@ -1,0 +1,18 @@
+testuser:  
+  password: '123456'
+  roles: [ 'ROLE_USER' ]
+  dbname: pimxtest
+  dbuser: testuser
+  dbpass: '123456'
+admin: 
+  password: 'adminpass'
+  roles: [ 'ROLE_ADMIN' ]
+  dbname: pimxtest
+  dbuser: testuser
+  dbpass: '123456'
+apiuser:
+  password: 'apipass'
+  roles: [ 'ROLE_API' ]
+  dbname: pimxtest
+  dbuser: testuser
+  dbpass: '123456'

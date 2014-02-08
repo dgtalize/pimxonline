@@ -14,14 +14,14 @@ class SecurityListener {
 
     /* @var Doctrine\Bundle\DoctrineBundle\Registry */
     private $doctrineRegistry;
-    /* @var Symfony\Component\HttpFoundation\Session\Session */
-    private $session;
+    /* @var Symfony\Component\Security\Core\SecurityContext */
+    private $securityContext;
     /* @var Symfony\Component\HttpFoundation\Request */
     private $request;
     private $container;
 
-    public function __construct(Session $session, Registry $doctrineRegistry, ContainerInterface $container) {
-        $this->session = $session;
+    public function __construct(SecurityContext $securityContext, Registry $doctrineRegistry, ContainerInterface $container) {
+        $this->securityContext = $securityContext;
         $this->doctrineRegistry = $doctrineRegistry;
         $this->container = $container;
     }
@@ -46,11 +46,11 @@ class SecurityListener {
 //
 //        $this->doctrineRegistry->resetManager("default");
         
-        
+        $user = $this->securityContext->getToken()->getUser();
         $this->container->get('doctrine.dbal.default_connection')->forceSwitch(
-                $this->request->get('db_name'),
-                $this->request->get('db_user'),
-                $this->request->get('db_pass'));
+                $user->getDbname(), //$this->request->get('db_name'),
+                $user->getDbuser(),
+                $user->getDbpass());
     }
 
     public function setRequest(Request $request = null)
