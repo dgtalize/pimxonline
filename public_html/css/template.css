@@ -469,7 +469,7 @@ form.standard .form_row {
     margin: 5px 0;
     display: inline-block;
 }
-form.standard .form_row * {
+form.standard .form_row > * {
     float: left;
 }
 form.standard label {

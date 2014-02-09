@@ -1,0 +1,15 @@
+{% extends 'PimxFrontendBundle:Note:note_layout.html.twig' %}
+
+{% block main_content %}
+<h1 class="title">{% trans %}note.edit{% endtrans %}</h1>
+
+<form class="entity_form standard"
+      action="{{ path('_note_edit', {'item_id': form.vars.value.id}) }}" method="post" {{ form_enctype(form) }}>
+    
+    <section>    
+    {{ form_widget(form) }}
+    </section>
+    
+    <input type="submit" class="button" value="Save" />
+</form>
+{% endblock %}

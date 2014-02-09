@@ -17,7 +17,7 @@ _movement_new:
 _movement_edit:
     pattern:  /movement/edit/{item_id}
     defaults: { _controller: PimxFrontendBundle:Movement:edit }
-
+    
 _currency:
     pattern:  /currency/
     defaults: { _controller: PimxFrontendBundle:Currency:index }
@@ -35,6 +35,16 @@ _report_fin_accountbalance:
 _report_fin_groupbalance:
     pattern:  /report/finance/bygroups/
     defaults: { _controller: PimxFrontendBundle:Report:groupbalance }
+    
+_note:
+    pattern:  /note/
+    defaults: { _controller: PimxFrontendBundle:Note:index }
+_note_new:
+    pattern:  /note/new/
+    defaults: { _controller: PimxFrontendBundle:Note:new }
+_note_edit:
+    pattern:  /note/edit/{item_id}
+    defaults: { _controller: PimxFrontendBundle:Note:edit }
     
 login:
     pattern:   /login

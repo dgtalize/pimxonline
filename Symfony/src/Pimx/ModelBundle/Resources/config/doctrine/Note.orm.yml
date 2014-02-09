@@ -1,0 +1,30 @@
+Pimx\ModelBundle\Entity\Note:
+    type: entity
+    table: anotaciones
+    id:
+        id:
+            type: integer
+            column: ant_ID
+    fields:
+        name:
+            type: string
+            length: 100
+            column: ant_Nombre
+        content:
+            type: text
+            column: ant_Detalle
+        isEncrypted:
+            type: boolean
+            column: ant_EncriptaDet
+        inputdate:
+            type: datetime
+            column: ant_FecHoraIng
+        lastmodifdate:
+            type: datetime
+            column: ant_FecHoraUltMod
+#    manyToOne:
+#        group:
+#            targetEntity: NoteGroup
+#            joinColumn:
+#                name: anggnt_id
+#                referencedColumnName: gnt_id

@@ -1,0 +1,16 @@
+{% extends 'PimxFrontendBundle::layout.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    
+    <script type="text/javascript">
+        tinymce.init({
+            selector: "textarea.wysiwyg",
+            menu: [],
+            toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright | fontselect fontsizeselect |  bullist numlist outdent indent | link | removeformat code",
+            plugins: "code",
+            width : 300
+         });
+    </script>
+{% endblock %}
