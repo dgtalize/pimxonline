@@ -97,17 +97,23 @@ sensio_framework_extra:
     view:
         annotations: false
         
+#JMS Serializer
+jms_serializer:
+    metadata:
+        auto_detection: true
+        directories:
+            pimx:
+                namespace_prefix: Pimx\ModelBundle\Entity
+                path: "@PimxApiBundle/Resources/config/serializer"
+                
 #FOS Rest
 fos_rest:
     disable_csrf_role: ROLE_API
-    
-    format_listener: true
     routing_loader:
         default_format: json
-        
     view:
         view_response_listener: true
-        jsonp_handler: ~
+#        jsonp_handler: ~
         formats:
             json: true
-  
+    format_listener: true

@@ -1,4 +1,4 @@
-Pimx\ModelBundle\Movement:
+Pimx\ModelBundle\Entity\Movement:
     exclusion_policy: ALL
     properties:
         id:
