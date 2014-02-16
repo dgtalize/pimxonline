@@ -514,6 +514,7 @@ form.standard select {
 form.standard input[type=date],
 form.standard input[type=time]{
     width: 100px;
+    float: left;
 }
 
 form.standard input[type=number]{
@@ -581,10 +582,10 @@ form.standard #movement_appliedAccounts select {
     width: 120px;
 }
 
-form.standard #movement_labels .fields_container {
+form.standard #movement_labels .element {
     display: inline-block;
 }
-form.standard #movement_labels .form_row {
+form.standard #movement_labels input {
     float: left;
 }
 form.standard #movement_labels label {
