@@ -10,6 +10,9 @@ use Pimx\ApiBundle\Security\Authentication\Token\WsseUserToken;
 
 class WsseProvider implements AuthenticationProviderInterface
 {
+    const TOKEN_EXPIRATION = 6000;
+
+
     private $userProvider;
     private $cacheDir;
 
@@ -46,16 +49,17 @@ class WsseProvider implements AuthenticationProviderInterface
             return false;
         }
 
-        // Expire timestamp after 5 minutes
-        if (time() - strtotime($created) > 300) {
+        // Expire timestamp after TOKEN_EXPIRATION seconds
+        if (time() - strtotime($created) > WsseProvider::TOKEN_EXPIRATION) {
             return false;
         }
 
-        // Validate that the nonce is *not* used in the last 5 minutes
+        // Validate that the nonce is *not* used in the last TOKEN_EXPIRATION seconds
         // if it has, this could be a replay attack
-        if (file_exists($this->cacheDir.'/'.$nonce) && file_get_contents($this->cacheDir.'/'.$nonce) + 300 > time()) {
-            throw new NonceExpiredException('Previously used nonce detected');
-        }
+//        if (file_exists($this->cacheDir.'/'.$nonce) 
+//                && file_get_contents($this->cacheDir.'/'.$nonce) + WsseProvider::TOKEN_EXPIRATION > time()) {
+//            throw new NonceExpiredException('Previously used nonce detected');
+//        }
         // If cache directory does not exist we create it
         if (!is_dir($this->cacheDir)) {
             mkdir($this->cacheDir, 0777, true);

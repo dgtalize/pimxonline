@@ -53,10 +53,11 @@ class WsseListener implements ListenerInterface
             $this->securityContext->setToken($authToken);
             
             //connect to database based on the parameters
+            $user = $authToken->getUser();
             $this->container->get('doctrine.dbal.default_connection')->forceSwitch(
-                    $request->get('db_name'),
-                    $request->get('db_user'),
-                    $request->get('db_pass'));
+                    $user->getDbname(), //$this->request->get('db_name'),
+                    $user->getDbuser(),
+                    $user->getDbpass());
 
             return;
         } catch (AuthenticationException $failed) {

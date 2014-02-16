@@ -26,26 +26,7 @@ class SecurityListener {
         $this->container = $container;
     }
 
-    public function onSecurityInteractiveLogin(InteractiveLoginEvent $event) {
-        /* @var $connection Doctrine\DBAL\Connection */
-////        $connection = $this->doctrineRegistry->getConnection("default");
-//        $connection = $this->container->get(sprintf('doctrine.dbal.%s_connection', 'default'));
-////        $connection = $this->container->get($sDbalSvcName);
-//        $connection->close();
-//
-//        $refConn = new \ReflectionObject($connection);
-//        $refParams = $refConn->getProperty('_params');
-//        $refParams->setAccessible('public'); //we have to change it for a moment
-//
-//        $params = $refParams->getValue($connection);
-//        $params['dbname'] = $this->request->get('db_name');
-//        $params['user'] = $this->request->get('db_user');
-//        $params['password'] = $this->request->get('db_pass');
-//        $refParams->setAccessible('private');
-//        $refParams->setValue($connection, $params);
-//
-//        $this->doctrineRegistry->resetManager("default");
-        
+    public function onSecurityInteractiveLogin(InteractiveLoginEvent $event) {        
         $user = $this->securityContext->getToken()->getUser();
         $this->container->get('doctrine.dbal.default_connection')->forceSwitch(
                 $user->getDbname(), //$this->request->get('db_name'),

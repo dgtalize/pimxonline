@@ -1,6 +1,6 @@
 testuser:  
   password: '123456'
-  roles: [ 'ROLE_USER' ]
+  roles: [ 'ROLE_USER', 'ROLE_API' ]
   dbname: pimxtest
   dbuser: testuser
   dbpass: '123456'

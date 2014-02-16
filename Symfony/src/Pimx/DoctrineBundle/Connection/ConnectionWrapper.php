@@ -33,12 +33,12 @@ class ConnectionWrapper extends Connection {
     }
 
     public function forceSwitch($dbName, $dbUser, $dbPassword) {
-        if ($this->session->has(self::SESSION_ACTIVE_DYNAMIC_CONN)) {
-            $current = $this->session->get(self::SESSION_ACTIVE_DYNAMIC_CONN);
-            if ($current[0] === $dbName) {
-                return;
-            }
-        }
+//        if ($this->session->has(self::SESSION_ACTIVE_DYNAMIC_CONN)) {
+//            $current = $this->session->get(self::SESSION_ACTIVE_DYNAMIC_CONN);
+//            if ($current[0] === $dbName) {
+//                return;
+//            }
+//        }
 
         $this->session->set(self::SESSION_ACTIVE_DYNAMIC_CONN, array(
             'dbname' => $dbName,

@@ -1,5 +1,4 @@
-api_movement_latest:
-    pattern:  /movements
-    defaults: { _controller: PimxApiBundle:Movement:latest, _format: ~ }
-    requirements:
-        _method: GET
+api_movement:
+    type: rest
+    prefix: movements
+    resource: Pimx\ApiBundle\Controller\MovementController
