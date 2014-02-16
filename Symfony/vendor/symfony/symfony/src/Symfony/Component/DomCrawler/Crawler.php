@@ -147,8 +147,18 @@ class Crawler extends \SplObjectStorage
         $dom = new \DOMDocument('1.0', $charset);
         $dom->validateOnParse = true;
 
-        if (function_exists('mb_convert_encoding') && in_array(strtolower($charset), array_map('strtolower', mb_list_encodings()))) {
-            $content = mb_convert_encoding($content, 'HTML-ENTITIES', $charset);
+        if (function_exists('mb_convert_encoding')) {
+            $hasError = false;
+            set_error_handler(function () use (&$hasError) {
+                $hasError = true;
+            });
+            $tmpContent = @mb_convert_encoding($content, 'HTML-ENTITIES', $charset);
+
+            restore_error_handler();
+
+            if (!$hasError) {
+                $content = $tmpContent;
+            }
         }
 
         @$dom->loadHTML($content);
@@ -431,7 +441,7 @@ class Crawler extends \SplObjectStorage
         $nodes = array();
 
         while ($node = $node->parentNode) {
-            if (1 === $node->nodeType && '_root' !== $node->nodeName) {
+            if (1 === $node->nodeType) {
                 $nodes[] = $node;
             }
         }
@@ -544,6 +554,7 @@ class Crawler extends \SplObjectStorage
     public function extract($attributes)
     {
         $attributes = (array) $attributes;
+        $count = count($attributes);
 
         $data = array();
         foreach ($this as $node) {
@@ -556,7 +567,7 @@ class Crawler extends \SplObjectStorage
                 }
             }
 
-            $data[] = count($attributes) > 1 ? $elements : $elements[0];
+            $data[] = $count > 1 ? $elements : $elements[0];
         }
 
         return $data;
@@ -573,15 +584,13 @@ class Crawler extends \SplObjectStorage
      */
     public function filterXPath($xpath)
     {
-        $document = new \DOMDocument('1.0', 'UTF-8');
-        $root = $document->appendChild($document->createElement('_root'));
+        $crawler = new static(null, $this->uri);
         foreach ($this as $node) {
-            $root->appendChild($document->importNode($node, true));
+            $domxpath = new \DOMXPath($node->ownerDocument);
+            $crawler->add($domxpath->query($xpath, $node));
         }
 
-        $domxpath = new \DOMXPath($document);
-
-        return new static($domxpath->query($xpath), $this->uri);
+        return $crawler;
     }
 
     /**

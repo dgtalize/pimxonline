@@ -48,6 +48,7 @@ class NegotiatorTest extends TestCase
 
         $this->assertInstanceOf('Negotiation\AcceptHeader', $acceptHeader);
         $this->assertEquals('bar', $acceptHeader->getValue());
+        $this->assertFalse($acceptHeader->hasParameter('q'));
     }
 
     /**
@@ -108,6 +109,22 @@ class NegotiatorTest extends TestCase
             $this->assertEquals($quality, $accepts[$i]->getQuality());
 
             $i++;
+        }
+    }
+
+    /**
+     * @dataProvider dataProviderForParseParameters
+     */
+    public function testParseParameters($value, $expected)
+    {
+        $negotiator = new TestableNegotiator();
+        $parameters = $negotiator->parseParameters($value);
+
+        $this->assertCount(count($expected), $parameters);
+
+        foreach ($expected as $key => $value) {
+            $this->assertArrayHasKey($key, $parameters);
+            $this->assertEquals($value, $parameters[$key]);
         }
     }
 
@@ -235,6 +252,34 @@ class NegotiatorTest extends TestCase
             ),
         );
     }
+
+    public static function dataProviderForParseParameters()
+    {
+        return array(
+            array(
+                'application/json ;q=1.0; level=2;foo= bar',
+                array(
+                    'level' => 2,
+                    'foo'   => 'bar',
+                ),
+            ),
+            array(
+                'application/json ;q = 1.0; level = 2;     FOO  = bAr',
+                array(
+                    'level' => 2,
+                    'foo'   => 'bAr',
+                ),
+            ),
+            array(
+                'application/json;q=1.0',
+                array(),
+            ),
+            array(
+                'application/json;foo',
+                array(),
+            ),
+        );
+    }
 }
 
 class TestableNegotiator extends Negotiator
@@ -242,5 +287,10 @@ class TestableNegotiator extends Negotiator
     public function parseHeader($acceptHeader)
     {
         return parent::parseHeader($acceptHeader);
+    }
+
+    public function parseParameters($value)
+    {
+        return parent::parseParameters($value);
     }
 }

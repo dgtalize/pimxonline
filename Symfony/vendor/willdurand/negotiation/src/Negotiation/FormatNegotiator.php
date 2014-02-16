@@ -23,10 +23,10 @@ class FormatNegotiator extends Negotiator
     /**
      * {@inheritDoc}
      */
-    public function getBest($acceptHeader, array $priorities = array())
+    public function getBest($header, array $priorities = array())
     {
-        $acceptHeaders   = $this->parseHeader($acceptHeader);
-        $priorities      = $this->sanitizePriorities($priorities);
+        $acceptHeaders   = $this->parseHeader($header);
+        $priorities      = $this->sanitize($priorities);
         $catchAllEnabled = $this->isCatchAllEnabled($priorities);
 
         foreach ($acceptHeaders as $accept) {
@@ -41,7 +41,7 @@ class FormatNegotiator extends Negotiator
 
                 foreach ($priorities as $priority) {
                     if (self::CATCH_ALL_VALUE !== $priority && 1 === preg_match($regex, $priority)) {
-                        return new AcceptHeader($priority, $accept->getQuality());
+                        return new AcceptHeader($priority, $accept->getQuality(), $this->parseParameters($priority));
                     }
                 }
 
@@ -52,7 +52,7 @@ class FormatNegotiator extends Negotiator
                 self::CATCH_ALL_VALUE === $mimeType &&
                 self::CATCH_ALL_VALUE !== $value = array_shift($priorities)
             ) {
-                return new AcceptHeader($value, $accept->getQuality());
+                return new AcceptHeader($value, $accept->getQuality(), $this->parseParameters($value));
             }
 
             if (false === $pos = strpos($mimeType, ';')) {
@@ -63,7 +63,7 @@ class FormatNegotiator extends Negotiator
 
             foreach ($priorities as $priority) {
                 if (self::CATCH_ALL_VALUE !== $priority && 1 === preg_match($regex, $priority)) {
-                    return new AcceptHeader($priority, $accept->getQuality());
+                    return new AcceptHeader($priority, $accept->getQuality(), $this->parseParameters($priority));
                 }
             }
         }
@@ -72,31 +72,19 @@ class FormatNegotiator extends Negotiator
     }
 
     /**
-     * Returns the best format (as astring) based on a given `Accept` header,
-     * and a set of priorities.
+     * Returns the best format (as a string) based on a given `Accept` header,
+     * and a set of priorities. Priorities are "formats" such as `json`, `xml`,
+     * etc., not mime types.
      *
-     * @param string $acceptHeader
-     * @param array  $priorities
+     * @param string $acceptHeader A string containing an `Accept` header.
+     * @param array  $priorities   A set of priorities (formats).
      *
      * @return string
      */
     public function getBestFormat($acceptHeader, array $priorities = array())
     {
-        $priorities      = $this->sanitizePriorities($priorities);
+        $mimeTypes       = $this->getMimeTypes($priorities);
         $catchAllEnabled = $this->isCatchAllEnabled($priorities);
-
-        $mimeTypes = array();
-        foreach ($priorities as $priority) {
-            if (isset($this->formats[$priority])) {
-                foreach ($this->formats[$priority] as $mimeType) {
-                    $mimeTypes[] = $mimeType;
-                }
-            }
-        }
-
-        if ($catchAllEnabled) {
-            $mimeTypes[] = self::CATCH_ALL_VALUE;
-        }
 
         if (null !== $accept = $this->getBest($acceptHeader, $mimeTypes)) {
             if (null !== $format = $this->getFormat($accept->getValue())) {
@@ -145,6 +133,34 @@ class FormatNegotiator extends Negotiator
         }
 
         return null;
+    }
+
+    /**
+     * Returns an array of mime types for the given set of formats.
+     *
+     * @param array $formats A set of formats.
+     *
+     * @return array
+     */
+    public function getMimeTypes(array $formats)
+    {
+        $formats         = $this->sanitize($formats);
+        $catchAllEnabled = $this->isCatchAllEnabled($formats);
+
+        $mimeTypes = array();
+        foreach ($formats as $format) {
+            if (isset($this->formats[$format])) {
+                foreach ($this->formats[$format] as $mimeType) {
+                    $mimeTypes[] = $mimeType;
+                }
+            }
+        }
+
+        if ($catchAllEnabled) {
+            $mimeTypes[] = self::CATCH_ALL_VALUE;
+        }
+
+        return $mimeTypes;
     }
 
     /**
