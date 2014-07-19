@@ -12,36 +12,12 @@ class AccountGroup
     /**
      * @var string
      */
-    private $codigo;
+    private $code;
 
     /**
      * @var string
      */
     private $description;
-
-
-    /**
-     * Set codigo
-     *
-     * @param string $codigo
-     * @return AccountGroup
-     */
-    public function setCodigo($codigo)
-    {
-        $this->codigo = $codigo;
-    
-        return $this;
-    }
-
-    /**
-     * Get codigo
-     *
-     * @return string 
-     */
-    public function getCodigo()
-    {
-        return $this->codigo;
-    }
 
     /**
      * Set description
@@ -65,11 +41,6 @@ class AccountGroup
     {
         return $this->description;
     }
-    /**
-     * @var string
-     */
-    private $code;
-
 
     /**
      * Set code

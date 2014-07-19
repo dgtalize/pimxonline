@@ -1,0 +1,13 @@
+Pimx\ModelBundle\Entity\Account:
+    exclusion_policy: ALL
+    properties:
+        code:
+            expose: true
+        description:
+            expose: true
+        sign:
+            expose: true
+        typeCode:
+            expose: true
+        groupCode:
+            expose: true

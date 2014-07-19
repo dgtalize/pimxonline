@@ -1,4 +1,9 @@
 api_movement:
     type: rest
-    prefix: movements
+    prefix: movement
     resource: Pimx\ApiBundle\Controller\MovementController
+  
+api_account:
+    type: rest
+    prefix: account
+    resource: Pimx\ApiBundle\Controller\AccountController

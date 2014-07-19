@@ -9,10 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Account
 {
+    
     /**
      * @var string
      */
-    private $codigo;
+    private $code;
 
     /**
      * @var string
@@ -39,29 +40,6 @@ class Account
      */
     private $type;
 
-
-    /**
-     * Set codigo
-     *
-     * @param string $codigo
-     * @return Account
-     */
-    public function setCodigo($codigo)
-    {
-        $this->codigo = $codigo;
-    
-        return $this;
-    }
-
-    /**
-     * Get codigo
-     *
-     * @return string 
-     */
-    public function getCodigo()
-    {
-        return $this->codigo;
-    }
 
     /**
      * Set description
@@ -154,6 +132,14 @@ class Account
     {
         return $this->group;
     }
+    
+    public function getGroupCode() {
+        if($this->group == null){
+            return NULL;
+        }else{
+            return $this->getGroup()->getCode();
+        }
+    }
 
     /**
      * Set type
@@ -177,11 +163,14 @@ class Account
     {
         return $this->type;
     }
-    /**
-     * @var string
-     */
-    private $code;
 
+    public function getTypeCode() {
+        if($this->type == null){
+            return NULL;
+        }else{
+            return $this->getType()->getCodigo();
+        }
+    }
 
     /**
      * Set code
@@ -233,4 +222,5 @@ class Account
     {
         return $this->currency;
     }
+    
 }

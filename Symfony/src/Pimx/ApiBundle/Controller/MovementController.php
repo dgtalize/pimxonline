@@ -1,12 +1,17 @@
 <?php
+
 namespace Pimx\ApiBundle\Controller;
+
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
+use Pimx\ModelBundle\Entity\Movement;
+
 class MovementController extends FOSRestController {
-    
+
     /**
      * @Rest\View
      */
@@ -15,15 +20,24 @@ class MovementController extends FOSRestController {
                 ->getRepository('PimxModelBundle:Movement')
                 ->findLatest(60)
         ;
-        
-//        $view = $this->view($movements, 200)
-//            ->setTemplate("PimxApiBundle:Movement:getMovements.html.twig")
-//            ->setTemplateVar('movements')
-//        ;
 
         return array('movements' => $movements);
-//        return $this->handleView($view);
     }
 
+    /**
+     * @Rest\View
+     */
+    public function getAction($id) {
+        $movement = $this->getDoctrine()
+                ->getRepository('PimxModelBundle:Movement')
+                ->find($id)
+        ;
+        
+        if (!$movement instanceof Movement) {
+            throw new NotFoundHttpException('Movement not found');
+        }
+
+        return array('movement' => $movement);
+    }
 
 }
