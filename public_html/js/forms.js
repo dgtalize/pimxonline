@@ -6,17 +6,20 @@
 
 $(document).ready(function() {
 
-    $('input[type="date"]').datepicker({
-        dateFormat: 'yy-mm-dd'
-    });
-
+    //no need for datepicker in Chrome
+    if (navigator.userAgent.search("Chrome") < 0) {
+        $('input[type="date"]').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    }
+                
     $('a.add_subitem, button.add_subitem').click(function(ev) {
         // Gets the container of items
         var fieldsContainer = $(this).parent('.fields_container');
 
         // count the current form inputs we have (e.g. 2), use that as the new
         // index when inserting a new item (e.g. 2)
-        fieldsContainer.data('index', fieldsContainer.children('.form_row').length);
+        fieldsContainer.data('index', fieldsContainer.children('.form-group').length);
 
         // prevent the link from creating a "#" on the URL
         ev.preventDefault();
@@ -26,7 +29,7 @@ $(document).ready(function() {
 
     });
 
-    $(' .form_row .fields_container .form_row').each(function(){
+    $(' .form-group .fields_container .form-group').each(function(){
         addTagFormDeleteLink($(this));
     });
 });
@@ -58,7 +61,7 @@ function addTagForm(fieldsContainer, addButton) {
 function addTagFormDeleteLink(form_row) {
     var container = $(form_row).children('.fields_container');
     
-    var removeButton = $('<a class="button del_subitem">delete</a>');
+    var removeButton = $('<a class="btn btn-danger del_subitem">delete</a>');
     container.append(removeButton);
 
     removeButton.click(function(e) {

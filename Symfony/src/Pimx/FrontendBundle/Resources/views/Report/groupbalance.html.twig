@@ -4,20 +4,28 @@
 <div id="report_groupbalance" class="report">
     <h2>{{'report.groupbalance'|trans}}</h2>
     
-    <section class="filters">
-        <form action="" class="standard">
-            <div class="form_row">
-                <label for="date_start">From:</label>
-                <input type="date" name="date_start" id="date_start" value="{{filters['date_start']}}" />
+    <section class="filters panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#filtersBody">Filters</a></h3>
+        </div>
+        <div id="filtersBody" class="panel-collapse collapse">
+            <div class="panel-body">
+                <form action="" role="form">
+                    <div class="form-group">
+                        <label for="date_start">From:</label>
+                        <input type="date" name="date_start" id="date_start" value="{{filters['date_start']}}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="date_end">To:</label>
+                        <input type="date" name="date_end" id="date_end" value="{{filters['date_end']}}" />
+                    </div>
+                </form>
             </div>
-            <div class="form_row">
-                <label for="date_end">To:</label>
-                <input type="date" name="date_end" id="date_end" value="{{filters['date_end']}}" />
-            </div>
-        </form>
+        </div>
     </section>
     
-    <table class="datagrid" style="float:left;">
+   <table class="table table-striped table-hover table-condensed" style="float:left; width: auto;">
         <thead>
             <tr>
                 <th>{{ 'text.group'|trans }}</th>

@@ -1,6 +1,6 @@
 {% set queryParams = app.request.query.all %}
-<ul class="pagination">
-    <li class="prev">
+<ul class="pager">
+    <li class="previous">
         {% if(paginator.currentPage > 1) %}
         <a href="{{ path(
                         app.request.attributes.get('_route'),

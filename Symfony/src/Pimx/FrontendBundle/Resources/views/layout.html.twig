@@ -5,11 +5,14 @@
             <title>{% block title 'PIM Xtreme Online' %}</title>
             
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="mobile-web-app-capable" content="yes">
             
-            <link rel="stylesheet" href="{{ asset('css/template.css') }}" />
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('css/template.css') }}" />            
             <link rel="stylesheet" href="{{ asset('css/pimx/jquery-ui-1.10.3.custom.min.css') }}" />
 
-            <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+            <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
             <script src="{{ asset('js/jquery-ui-1.10.3.custom.min.js') }}"></script>
             <script src="{{ asset('js/knockout-2.2.1.js') }}"></script>
             <script src="{{ asset('js/globalize.min.js') }}"></script>
@@ -20,29 +23,36 @@
     </head>
     <body>
         {% block body %}
-            <header>
-                <a class="pimx_logo" href="{{ path('_home') }}">
-                    <img src="{{ asset('images/pimxlogo.png') }}" />
-                </a>
+            <header class="navbar-fixed-top">
                 {% if is_granted('ROLE_USER') %}
-                    <div class="user_panel">
+                    {# <div class="user_panel">
                         <span class="username">{{ app.user.username }}</span>
-                        <a class="button" href="{{ path('logout') }}">{% trans %}user.logout{%endtrans%}</a>
-                    </div>
+                        <a class="btn btn-primary" href="{{ path('logout') }}">{% trans %}user.logout{%endtrans%}</a>
+                    </div> #}
                     {{ include( 'PimxFrontendBundle::mainmenu.html.twig' ) }}
+                {% else %}
+                    <a class="pimx_logo" href="{{ path('_home') }}">
+                        <img src="{{ asset('images/pimxlogo.png') }}" />
+                    </a>
                 {% endif %}
             </header>
 
-            <section id="main_content">
+            <section id="main_content" class="container">
             {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="flash-message notice"> {{ flashMessage }} </div>
-                <script type="text/javascript">
-                    setTimeout(function(){
-                        $('.flash-message').slideUp({
-                            duration: 1000
-                        });
-                    }, 4000);
-                </script>
+                <div class="alert alert-dismissible alert-info"> 
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    {{ flashMessage }} 
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-dismissible alert-success"> 
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    {{ flashMessage }} 
+                </div>
             {% endfor %}
                 
         {% block main_content %}

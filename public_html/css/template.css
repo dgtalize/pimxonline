@@ -1,82 +1,7 @@
-@charset "UTF-8";
-
-@viewport {
-    width: device-width;
-    zoom: 1;
-}
-    
-/* A variation on Eric Meyer's CSS Reset:
-   This is disabled because the Blueprint framework already has it.
-   You should enable it if you aren't using Blueprint. */
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-weight: inherit;
-    font-style: inherit;
-    font-size: 100%;
-    font-family: Arial, sans-serif;
-    vertical-align: baseline;
-    text-decoration: none;
-}
-body {
-    line-height: 1;
-    color: black;
-}
-ol, ul {
-    list-style: none;
-}
-table {
-    border-collapse:collapse;
-    border-spacing: 0;
-}
-caption, th, td {
-    text-align: left;
-    font-weight: normal;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-    content: "";
-}
-blockquote, q {
-    quotes: "" "";
-}
-abbr,acronym {
-    border:0;
-}
-
-/* Below are the CSS styles that aren't included with Blueprint. It's a good idea to keep them whether or not you use it unless you know what you're doing. */
-/* ----------------------------------------------- */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-    font-size: 11pt;
-}
-header, section, article {
-    display: block;
-}
-
 body > header {
     border-bottom: 1px solid #D0D0D0;
-    position: relative;
 
-    background-image: linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
+/*    background-image: linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
     background-image: -o-linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
     background-image: -moz-linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
     background-image: -webkit-linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
@@ -88,133 +13,55 @@ body > header {
         left top,
         color-stop(0, rgb(255,212,254)),
         color-stop(1, rgb(255,255,255))
-        );
+        );*/
 
-    -moz-box-shadow: 0 2px 5px 3px #D0D0D0;
-    -webkit-box-shadow: 0 2px 5px 3px #D0D0D0;
-    box-shadow: 0 2px 5px 3px #D0D0D0;
+    -moz-box-shadow: 0px 1px 3px 1px #C0C0C0;
+    -webkit-box-shadow: 0px 1px 3px 1px #C0C0C0;
+    box-shadow: 0px 1px 3px 1px #C0C0C0;
+}
+
+body > header .navbar {
+    margin-bottom: 0;
 }
 
 body > header .pimx_logo {
-    margin-right: 20px;
 }
 body > header .pimx_logo img {
-    max-height: 45px;
-}
-
-body > header ul.menu {
-    display: block;
-    width: 100%;
-}
-body > header ul.menu > li {
-    display: block;
-    position: relative;
-}
-body > header ul.menu > li > a,
-body > header ul.menu > li > span {
-    display: block;
-    padding: 10px 5px;
-    color: #333;
-    font-size: 20px;
-    background-color: #FFFFFF;
-
-    border-left: 1px solid #DDDDDD;
-    border-top: 1px solid #DDDDDD;
-    border-right: 1px solid #DDDDDD;
-    -mox-border-radius: 2px 2px 0 0;
-    -webkit-border-radius: 2px 2px 0 0;
-    border-radius: 2px 2px 0 0; 
-
-    /*    -moz-box-shadow: 0px 0px 3px 2px #EEEEEE;
-        -webkit-box-shadow: 0px 0px 3px 2px #EEEEEE;
-        box-shadow: 0px 0px 3px 2px #EEEEEE;*/
-}
-body > header ul.menu > li > a:hover,
-body > header ul.menu > li > span:hover {
-    border-left: 1px solid #D0D0D0;
-    border-top: 1px solid #D0D0D0;
-    border-right: 1px solid #D0D0D0;
-    -moz-box-shadow: inset 0px 0px 3px 2px #EEEEEE;
-    -webkit-box-shadow: inset 0px 0px 3px 2px #EEEEEE;
-    box-shadow: inset 0px 0px 3px 2px #EEEEEE;
-}
-body > header ul.menu > li ul {
-    display: none;
-
-    background-color: #FFFFFF;
-    border-left: 1px solid #D0D0D0;
-    border-bottom: 1px solid #D0D0D0;
-    border-right: 1px solid #D0D0D0;
-    -mox-border-radius: 0 0 2px 2px;
-    -webkit-border-radius: 0 0 2px 2px;
-    border-radius: 0 0 2px 2px;
-    -moz-box-shadow: inset 0px 0px 3px 2px #EEEEEE;
-    -webkit-box-shadow: inset 0px 0px 3px 2px #EEEEEE;
-    box-shadow: inset 0px 0px 3px 2px #EEEEEE;
-}
-body > header ul.menu > li:hover ul {
-    display: block;
-}
-body > header ul.menu > li ul li {
-
-}
-body > header ul.menu > li ul li:hover {
-    background-color: #EEEEEE;
-}
-body > header ul.menu > li ul li a {
-    display: block;
-    padding: 10px 5px;
-    color: #333;
-    font-size: 16px;
+    max-height: 25px;
 }
 
 body > header .user_panel {
     position: absolute;
     right: 10px;
     top: 10px;
-}
-@media screen and (min-width: 700px) {
-    body > header {
-        height: 70px;
-    }
-    body > header .pimx_logo {
-        float: left;
-    }
-    body > header .pimx_logo img {
-        max-height: none;
-    }
-    body > header ul.menu {
-        position: absolute;
-        bottom: 0;
-        left: 230px;
-        width: auto;
-    }
-    body > header ul.menu > li {
-        display: inline-block;
-    }
-    body > header ul.menu > li ul {
-        position: absolute;
-        left: 0;
-        top: 41px;
-        z-index: 20;
-    }
+    z-index: 10;
 }
 
+/* ****** Login ***** */
+form.login .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+form.login input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+form.login input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
 
 /* *********** Main Content ************** */
 #main_content {
-    padding: 0 10px 10px 10px;
-}
-
-
-.flash-message {
-    display: block;
-    padding: 10px 10px 3px 10px;
-    margin: 0 -10px;
-}
-.flash-message.notice {
-    background-color: #99ff99;
-    color: #003300;
+    padding-top: 52px;
 }
 
 /* ******************** General ************************** */
@@ -233,140 +80,22 @@ h2 {
     padding: 5px;
 }
 
-a.button, button, input[type=submit] {
-    display: inline-block;
-    background: #C61AFF;
-    color: #FFFFFF;
-    padding: 5px 7px;
-    cursor: pointer;
-    font-size: 14px;
-    margin: 2px;
-
-    border: 1px solid #BF00FF;
-    -mox-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px; 
-
-}
-a.button:hover, button:hover, input[type=submit]:hover {
-    background: #CC33FF;
-    /*    border-left: 1px solid #D0D0D0;
-        border-top: 1px solid #D0D0D0;
-        border-right: 1px solid #D0D0D0;*/
-
-    -moz-box-shadow: 1px 1px 2px 0 #D0D0D0;
-    -webkit-box-shadow: 1px 1px 2px 0 #D0D0D0;
-    box-shadow: 1px 1px 2px 0 #D0D0D0;
-}
-
-span.label, a.label {
-    font-size: 10pt;
-    display: inline-block;
-    background-color: #ff9900;
-    color: #FFFFFF;
-    padding: 2px 3px;
-    margin: 1px;
-}
-span.label:hover, a.label:hover {
-    background-color: #ffcc33;
-}
-
 /* ********************* Tables ********************** */
-table.datagrid {
-
-}
-table.datagrid td,
-table.datagrid th {
-    /*font-size: small;*/
-    border: 1px solid #DDDDDD;
-    padding: 3px 5px;
-}
-table.datagrid th {
-    font-weight: bold;
-}
-
-table.datagrid thead tr {
-    background-color: #660099;
-}
-table.datagrid thead th {
-    color: #FFFFFF;
-    text-align: center;
-}
-table.datagrid tbody tr:nth-child(odd){
-    background-color: #F0F0F0;
-}
-table.datagrid tbody tr:nth-child(even){
-
-}
-table.datagrid tbody tr:hover {
-    background-color: #ffffcc;
-}
-table.datagrid td {
-    font-size: 11pt;
-}
-table.datagrid td.amount {
+table.table td.amount {
     text-align: right;
 }
-table.datagrid td.boolean {
+table.table td.boolean {
     text-align: center;
 }
 
-ul.pagination {
-    background-color: #EFEFEF;
-    display: inline-block;
-}
-ul.pagination li {
-    display: inline-block;
-}
-ul.pagination li.prev {
-
-}
-ul.pagination li.next {
-
-}
-ul.pagination li a,
-ul.pagination li span {
-    display: block;
-    padding: 5px;
-}
 
 /* *************  Filters  ************* */
 section.filters {
-    margin-bottom: 10px;
-    padding: 10px 10px 40px 10px;
-    position: relative;
-    background-color: #FFFFFF;
-    
-    border: 1px solid #CCCCCC;
-    -mox-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
+/*    height: 40px;
+    overflow: hidden;*/
 }
-section.filters button[type="submit"] {
-    position: absolute;
-    bottom: 0;
-    margin: 0;
-    
-    border-bottom: 0 none;
-    -mox-border-radius: 3px 3px 0 0;
-    -webkit-border-radius: 3px 3px 0 0;
-    border-radius: 3px 3px 0 0; 
-}
-section.filters button[type="submit"]:hover {
-    -moz-box-shadow: 1px -1px 2px 0 #D0D0D0;
-    -webkit-box-shadow: 1px -1px 2px 0 #D0D0D0;
-    box-shadow: 1px -1px 2px 0 #D0D0D0;
-}
-@media screen and (min-width: 700px) {
-    section.filters {
-        margin-left: 20px;
-        float: right;
-        width: 30%;
-        
-        -moz-box-shadow: 2px 2px 3px 0px #E0E0E0;
-        -webkit-box-shadow: 2px 2px 3px 0px #E0E0E0;
-        box-shadow: 2px 2px 3px 0px #E0E0E0;
-    }
+section.filters h2 {
+    cursor: pointer;
 }
 
 /* ****************** Lists ************************* */
@@ -374,7 +103,7 @@ ul.labels {
 
 }
 ul.labels li {
-    margin: 5px 0;
+    margin: 10px 0;
 }
 ul.labels li .child_icon {
     width: 16px;
@@ -395,182 +124,11 @@ ul.labels li a.label {
 }
 
 /* ****************** Forms ************************* */
-input, textarea, select {
-    font-family: Arial, sans-serif;
-    font-size: 10pt;
-}
-
-/* ---------- Login ---------- */
-form.login {
-    display: block;
-    min-height: 100px;
-    padding: 5%;
-    width: 90%;
-    background-color: #FAFAFA;
-}
-form.login .error_message {
-    font-size: 10pt;
-    color: #cc0000;
-}
-form.login .form_row {
-    margin: 5px 0;
-}
-form.login .form_row label {
-    display: block;
-}
-form.login .form_row input {
-    display: block;
-    border: 1px solid #E0E0E0;
-    padding: 5px 5%;
-    width: 90%;
-    background-color: #FFFFFF;
-}
-form.login button {
-    display: block;
-    margin: 0 auto;
-}
-@media screen and (min-width: 400px) {
-    form.login {
-        width: 300px;
-        padding: 10px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-left: -150px;
-        margin-top: -100px;
-    
-        border: 1px solid #CCCCCC;
-        -mox-border-radius: 3px;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-
-        -moz-box-shadow: 0px 0px 5px 5px #E0E0E0;
-        -webkit-box-shadow: 0px 0px 5px 5px #E0E0E0;
-        box-shadow: 0px 0px 5px 5px #E0E0E0;
-    }
-    form.login .form_row label {
-        display: inline-block;
-        width: 100px;
-    }
-    form.login .form_row input {
-        display: inline-block;
-        border: 1px solid #E0E0E0;
-        padding: 5px 10px;
-        width: auto;
-    }
-}
-
-/* ----- Standard --------- */
-form.standard {
-    /*width: 500px;*/
-    display: inline-block;
-}
-form.standard .form_row {
-    margin: 5px 0;
-    display: inline-block;
-}
-form.standard .form_row > * {
-    float: left;
-}
-form.standard label {
-    display: block;
-    width: 150px;
-    margin: 3px 0;
-    font-weight: bold;
-}
-form.standard input[type=text],
-form.standard input[type=number],
-form.standard input[type=password],
-form.standard input[type=date],
-form.standard input[type=time],
-form.standard textarea,
-form.standard select {
-    display: block;
-    padding: 2px 4px;
-    border: 1px solid #DDDDDD;
-    -mox-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-}
-form.standard input[type=text]:focus,
-form.standard input[type=number]:focus,
-form.standard input[type=password]:focus,
-form.standard input[type=date]:focus,
-form.standard input[type=time]:focus,
-form.standard textarea:focus,
-form.standard select:focus {
-    border: 1px solid #C0C0C0;
-    -moz-box-shadow: 0px 0px 3px 3px #D9D9F2;
-    -webkit-box-shadow: 0px 0px 3px 3px #D9D9F2;
-    box-shadow: 0px 0px 3px 3px #D9D9F2;
-}
-form.standard input[type=text],
-form.standard input[type=number],
-form.standard input[type=password],
-form.standard textarea,
-form.standard select {
-    width: 300px;
-}
-form.standard input[type=date],
-form.standard input[type=time]{
-    width: 100px;
-    float: left;
-}
-
-form.standard input[type=number]{
-    text-align: right;
-}
-
-form.standard .form_row .fields_container {
-    background-color: #F0F0F0;
-}
-
-form.standard section {
-    float: left;
-    margin-left: 2.0%;
-    margin-bottom: 30px;
-    width: 48.4%;
-}
-form.standard section:nth-of-type(2n+1) {
-    margin-left: 0;
-    clear: left;
-}
-@media screen and (max-width: 600px) {
-    form.standard section {
-        width: 100% !important;
-        margin-left: 0 !important;
-        clear: none !important;
-    }
-}
-@media screen and (max-width: 500px) {
-    form.standard section .form_row {
-        width: 90%;
-    }
-    form.standard section .form_row label {
-        float: none;
-    }
-    form.standard section input[type=text],
-    form.standard section input[type=number],
-    form.standard section input[type=password],
-    form.standard section textarea,
-    form.standard section select {
-        width: 100%;
-    }
-    form.standard section input[type="date"],
-    form.standard section input[type="time"] {
-        width: 30%;
-    }
-}
-form.standard section.bottom {
-    display: block;
-    float: none;
-}
-
 /* Specifics */
 form.standard #movement_appliedAccounts .fields_container {
     display: inline-block;
 }
-form.standard #movement_appliedAccounts .form_row {
+form.standard #movement_appliedAccounts .form-group {
     float: left;
 }
 form.standard #movement_appliedAccounts label {
@@ -582,11 +140,12 @@ form.standard #movement_appliedAccounts select {
     width: 120px;
 }
 
-form.standard #movement_labels .element {
+form.standard #movement_labels .checkbox {
     display: inline-block;
+    width: 200px;
 }
 form.standard #movement_labels input {
-    float: left;
+
 }
 form.standard #movement_labels label {
 

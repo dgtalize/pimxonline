@@ -15,7 +15,7 @@
     {% for item in treenodes %}
         <li>
             <span class="child_icon">&nbsp;</span>
-            <a href="#" class="label">{{ item.name }}</a>
+            <a href="#" class="label label-warning">{{ item.name }}</a>
             {% if item.children %}
                 <ul>{{ _self.items_tree(item.children) }}</ul>
             {% endif %}

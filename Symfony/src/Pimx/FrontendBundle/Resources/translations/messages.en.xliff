@@ -166,6 +166,38 @@
                 <source>text.account</source>
                 <target>account</target>
             </trans-unit>
+            <trans-unit id="42">
+                <source>text.list</source>
+                <target>List</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>menu.notes</source>
+                <target>Notes</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>text.income</source>
+                <target>Income</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>text.outcome</source>
+                <target>Outcome</target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source>report.finance</source>
+                <target>Financial reports</target>
+            </trans-unit>
+            <trans-unit id="47">
+                <source>text.isencrypted</source>
+                <target>Is encrypted</target>
+            </trans-unit>
+            <trans-unit id="48">
+                <source>text.updatedate</source>
+                <target>Update date</target>
+            </trans-unit>
+            <trans-unit id="49">
+                <source>note.title</source>
+                <target>Notes</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

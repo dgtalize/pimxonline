@@ -27,7 +27,7 @@ twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
     form:
-        resources: ['PimxFrontendBundle:Form:form_row.html.twig']
+        resources: ['::form_layout.html.twig']
 
 # Assetic Configuration
 assetic:
