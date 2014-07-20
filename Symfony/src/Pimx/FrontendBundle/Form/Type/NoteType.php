@@ -11,11 +11,11 @@ class NoteType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('name', 'text')
                 ->add('isEncrypted', 'checkbox', array('required' => false))
+                ->add('cryptPassword', 'password', array('required' => false))
                 ->add('content', 'textarea', array(
                     'required' => true,
                     'attr' => array('class' => 'wysiwyg')
-                    ))
-                ->add('cryptPassword', 'hidden', array('required' => false));
+                    ));
     }
 
     public function getName() {

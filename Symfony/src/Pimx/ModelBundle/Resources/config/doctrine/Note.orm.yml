@@ -5,6 +5,8 @@ Pimx\ModelBundle\Entity\Note:
         id:
             type: integer
             column: ant_ID
+            generator:
+              strategy: IDENTITY
     fields:
         name:
             type: string
@@ -28,3 +30,7 @@ Pimx\ModelBundle\Entity\Note:
 #            joinColumn:
 #                name: anggnt_id
 #                referencedColumnName: gnt_id
+    lifecycleCallbacks:
+        prePersist: [ doStuffOnPrePersist ]
+        preUpdate: [ doStuffOnPreUpdate ]
+        postLoad: [ doStuffOnPostLoad ]

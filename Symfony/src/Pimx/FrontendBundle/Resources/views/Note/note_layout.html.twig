@@ -5,6 +5,12 @@
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
     
     <script type="text/javascript">
+        $(document).ready(function(){
+             $('textarea.wysiwyg').parents('form').submit(function(){
+                 tinymce.triggerSave();
+             });
+             
+        });
         tinymce.init({
             selector: "textarea.wysiwyg",
             menu: [],
