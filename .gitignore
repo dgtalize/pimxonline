@@ -5,3 +5,4 @@
 /public_html/bundles/acmedemo
 *.php~
 *.php~
+/Symfony/src/Pimx/ModelBundle/Entity/*.php~
