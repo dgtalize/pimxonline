@@ -38,6 +38,9 @@ body > header .user_panel {
 }
 
 /* ****** Login ***** */
+form.login {
+    max-width: 400px;
+}
 form.login .form-control {
   position: relative;
   height: auto;
@@ -62,6 +65,7 @@ form.login input[type="password"] {
 /* *********** Main Content ************** */
 #main_content {
     padding-top: 52px;
+    padding-bottom: 20px;
 }
 
 /* ******************** General ************************** */
@@ -126,10 +130,13 @@ ul.labels li a.label {
 /* ****************** Forms ************************* */
 /* Specifics */
 form.standard #movement_appliedAccounts .fields_container {
-    display: inline-block;
+    
+}
+form.standard #movement_appliedAccounts .fields_container .form-group {
+    float: left;
 }
 form.standard #movement_appliedAccounts .form-group {
-    float: left;
+    
 }
 form.standard #movement_appliedAccounts label {
     display: none;
@@ -142,7 +149,7 @@ form.standard #movement_appliedAccounts select {
 
 form.standard #movement_labels .checkbox {
     display: inline-block;
-    width: 200px;
+    width: 150px;
 }
 form.standard #movement_labels input {
 

@@ -17,10 +17,10 @@
         {% block body %}
             {% block main_content %}
                 <div class="container">
-                    <a class="pimx_logo" href="{{ path('_home') }}">
+                    <a class="pimx_logo center-block" href="{{ path('_home') }}">
                         <img src="{{ asset('images/pimxlogo.png') }}" />
                     </a>
-                    <form class="login" action="{{ path('login_check') }}" 
+                    <form class="login center-block" action="{{ path('login_check') }}" 
                           method="post" role="form">
                         <input type="text" id="username" class="form-control"
                                name="_username" placeholder="Username"
@@ -43,7 +43,8 @@
                         </div>
                         #}
 
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        <button type="submit" 
+                                class="btn btn-primary btn-block btn-lg">Login</button>
 
                         {% if error %}
                             <div class="error_message">{{ error.message }}</div>

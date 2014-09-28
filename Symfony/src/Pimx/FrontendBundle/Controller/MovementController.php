@@ -72,7 +72,12 @@ class MovementController extends Controller {
                     'success',
                     $translator->trans('text.elementsaved', array('%element%' => $translator->trans('text.movement')))
             );
-            return $this->redirect($this->generateUrl('_movement'));
+            
+            if($request->request->has("save_and_new")) {
+                return $this->redirect($this->generateUrl('_movement_new'));            
+            } else {
+                return $this->redirect($this->generateUrl('_movement'));
+            }
         }
 
         return $this->render($view, array(
