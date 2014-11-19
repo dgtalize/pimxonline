@@ -4,8 +4,11 @@
         {% block head %}
             <title>{% block title 'PIM Xtreme Online' %}</title>
             
+            <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            
+            <meta name="mobile-web-app-capable" content="yes">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
             <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
             <link rel="stylesheet" href="{{ asset('css/template.css') }}" />
             
@@ -17,7 +20,7 @@
         {% block body %}
             {% block main_content %}
                 <div class="container">
-                    <a class="pimx_logo center-block" href="{{ path('_home') }}">
+                    <a class="pimx_logo center-block text-center" href="{{ path('_home') }}">
                         <img src="{{ asset('images/pimxlogo.png') }}" />
                     </a>
                     <form class="login center-block" action="{{ path('login_check') }}" 

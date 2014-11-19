@@ -129,6 +129,13 @@ ul.labels li a.label {
 
 /* ****************** Forms ************************* */
 /* Specifics */
+@media (min-width: 768px) {
+    form.standard .form-group input[type=date],
+    form.standard .form-group input[type=time] {
+        width: 50%;
+        display: inline-block;
+    }
+}
 form.standard #movement_appliedAccounts .fields_container {
     
 }
