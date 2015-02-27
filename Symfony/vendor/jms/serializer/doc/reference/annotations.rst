@@ -99,7 +99,7 @@ be called to retrieve, or set the value of the given property:
     {
         private $id;
 
-        /** @Accessor(getter="getTrimmedName",setter="setName") */
+        /** @Accessor(getter="getTrimmedName") */
         private $name;
 
         // ...
@@ -398,8 +398,6 @@ Resulting XML:
 This allows you to mark properties which should be set as the value of the
 current element. Note that this has the limitation that any additional
 properties of that object must have the @XmlAttribute annotation.
-XMlValue also has property cdata. Which has the same meaning as the one in
-XMLElement.
 
 .. code-block :: php
 
@@ -510,26 +508,3 @@ Resulting XML:
 .. code-block :: xml
 
     <result name="firstname" value="Adrien"/>
-
-@XmlElement
-~~~~~~~~
-This annotation can be defined on a property to add additional xml serialization/deserialization properties.
-
-.. code-block :: php
-
-    <?php
-    use JMS\Serializer\Annotation\XmlElement;
-
-    class User
-    {
-        /**
-        * @XmlElement(cdata=false)
-        */
-        private $id = 'my_id;
-    }
-
-Resulting XML:
-
-.. code-block :: xml
-
-    <id>my_id</id>

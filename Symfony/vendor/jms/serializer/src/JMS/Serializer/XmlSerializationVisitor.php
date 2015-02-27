@@ -100,33 +100,14 @@ class XmlSerializationVisitor extends AbstractVisitor
 
     public function visitString($data, array $type, Context $context)
     {
-
-        if (null !== $this->currentMetadata) {
-            $doCData = $this->currentMetadata->xmlElementCData;
-        } else {
-            $doCData = true;
-        }
-
         if (null === $this->document) {
             $this->document = $this->createDocument(null, null, true);
-            $this->currentNode->appendChild($doCData ? $this->document->createCDATASection($data) : $this->document->createTextNode((string) $data));
+            $this->currentNode->appendChild($this->document->createCDATASection($data));
 
             return;
         }
 
-        return $doCData ? $this->document->createCDATASection($data) : $this->document->createTextNode((string) $data);
-    }
-
-    public function visitSimpleString($data, array $type, Context $context)
-    {
-        if (null === $this->document) {
-            $this->document = $this->createDocument(null, null, true);
-            $this->currentNode->appendChild($this->document->createTextNode((string) $data));
-
-            return;
-        }
-
-        return $this->document->createTextNode((string) $data);
+        return $this->document->createCDATASection($data);
     }
 
     public function visitBoolean($data, array $type, Context $context)
@@ -198,10 +179,7 @@ class XmlSerializationVisitor extends AbstractVisitor
         }
 
         if ($metadata->xmlAttribute) {
-            $this->setCurrentMetadata($metadata);
             $node = $this->navigator->accept($v, $metadata->type, $context);
-            $this->revertCurrentMetadata();
-
             if (!$node instanceof \DOMCharacterData) {
                 throw new RuntimeException(sprintf('Unsupported value for XML attribute. Expected character data, but got %s.', json_encode($v)));
             }
@@ -219,10 +197,7 @@ class XmlSerializationVisitor extends AbstractVisitor
         if ($metadata->xmlValue) {
             $this->hasValue = true;
 
-            $this->setCurrentMetadata($metadata);
             $node = $this->navigator->accept($v, $metadata->type, $context);
-            $this->revertCurrentMetadata();
-
             if (!$node instanceof \DOMCharacterData) {
                 throw new RuntimeException(sprintf('Unsupported value for property %s::$%s. Expected character data, but got %s.', $metadata->reflection->class, $metadata->reflection->name, is_object($node) ? get_class($node) : gettype($node)));
             }
@@ -238,10 +213,7 @@ class XmlSerializationVisitor extends AbstractVisitor
             }
 
             foreach ($v as $key => $value) {
-                $this->setCurrentMetadata($metadata);
                 $node = $this->navigator->accept($value, null, $context);
-                $this->revertCurrentMetadata();
-
                 if (!$node instanceof \DOMCharacterData) {
                     throw new RuntimeException(sprintf('Unsupported value for a XML attribute map value. Expected character data, but got %s.', json_encode($v)));
                 }
