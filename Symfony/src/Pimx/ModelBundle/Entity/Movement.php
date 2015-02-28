@@ -45,6 +45,11 @@ class Movement {
     private $type;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $labels;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -254,23 +259,15 @@ class Movement {
         return $total;
     }
 
-    
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $labels;
-
-
     /**
      * Add labels
      *
      * @param \Pimx\ModelBundle\Entity\Label $labels
      * @return Movement
      */
-    public function addLabel(\Pimx\ModelBundle\Entity\Label $labels)
-    {
+    public function addLabel(\Pimx\ModelBundle\Entity\Label $labels) {
         $this->labels[] = $labels;
-    
+
         return $this;
     }
 
@@ -279,8 +276,7 @@ class Movement {
      *
      * @param \Pimx\ModelBundle\Entity\Label $labels
      */
-    public function removeLabel(\Pimx\ModelBundle\Entity\Label $labels)
-    {
+    public function removeLabel(\Pimx\ModelBundle\Entity\Label $labels) {
         $this->labels->removeElement($labels);
     }
 
@@ -289,8 +285,12 @@ class Movement {
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getLabels()
-    {
+    public function getLabels() {
         return $this->labels;
     }
+
+    public function __clone() {
+        $this->id = null;
+    }
+
 }
