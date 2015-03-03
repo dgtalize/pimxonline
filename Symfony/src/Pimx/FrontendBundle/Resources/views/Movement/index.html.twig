@@ -36,6 +36,7 @@
                 <th>{{'text.out'|trans}}</th>
                 <th>{{'text.notes'|trans}}</th>
                 <th>{{'text.labels'|trans}}</th>
+                <th>&nbsp;</th>
             </tr>
         </thead>
         <tbody>
@@ -62,6 +63,12 @@
                     {% for label in item.labels %}
                         <span class="label label-warning">{{ label.name }}</span>
                     {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('_movement_new', {'base_on_id': item.id}) }}" title="Create based on..."
+                       class="btn btn-primary">
+                        <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
+                    </a>
                 </td>
             </tr>
         {% endfor %}

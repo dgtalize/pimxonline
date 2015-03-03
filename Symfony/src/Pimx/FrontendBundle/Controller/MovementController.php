@@ -85,7 +85,7 @@ class MovementController extends Controller {
                 case 'save_and_new':
                     return $this->redirect($this->generateUrl('_movement_new')); 
                 case 'save_and_new_based':
-                    return $this->redirect($this->generateUrl('_movement_new', array('based_on_id' => $movement->getId())));
+                    return $this->redirect($this->generateUrl('_movement_new', array('base_on_id' => $movement->getId())));
                 default:
                     return $this->redirect($this->generateUrl('_movement'));
             }
