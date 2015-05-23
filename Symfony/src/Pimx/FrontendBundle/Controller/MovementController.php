@@ -81,7 +81,7 @@ class MovementController extends Controller {
                     $translator->trans('text.elementsaved', array('%element%' => $translator->trans('text.movement')))
             );
             
-            switch ($request->request->has("button_action")){
+            switch ($request->request->get("button_action")){
                 case 'save_and_new':
                     return $this->redirect($this->generateUrl('_movement_new')); 
                 case 'save_and_new_based':
