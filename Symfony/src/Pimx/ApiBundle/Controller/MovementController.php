@@ -2,6 +2,7 @@
 
 namespace Pimx\ApiBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use FOS\RestBundle\Controller\Annotations;
@@ -38,6 +39,11 @@ class MovementController extends FOSRestController {
         }
 
         return array('movement' => $movement);
+    }
+    
+    
+    public function postAction(Request $request) {
+        return array('result' => 'OK');
     }
 
 }

@@ -1,3 +1,8 @@
+api_security:
+    type: rest
+    prefix: security
+    resource: Pimx\ApiBundle\Controller\SecurityController
+    
 api_movement:
     type: rest
     prefix: movement
