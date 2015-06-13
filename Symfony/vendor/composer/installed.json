@@ -921,12 +921,12 @@
         "version_normalized": "1.0.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/fabpot/Twig-extensions.git",
+            "url": "https://github.com/twigphp/Twig-extensions.git",
             "reference": "f91a82ec225e5bb108e01a0f93c9be04f84dcfa0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/fabpot/Twig-extensions/zipball/f91a82ec225e5bb108e01a0f93c9be04f84dcfa0",
+            "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/f91a82ec225e5bb108e01a0f93c9be04f84dcfa0",
             "reference": "f91a82ec225e5bb108e01a0f93c9be04f84dcfa0",
             "shasum": ""
         },
@@ -1260,12 +1260,12 @@
         "version_normalized": "1.15.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/fabpot/Twig.git",
+            "url": "https://github.com/twigphp/Twig.git",
             "reference": "1fb5784662f438d7d96a541e305e28b812e2eeed"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/fabpot/Twig/zipball/1fb5784662f438d7d96a541e305e28b812e2eeed",
+            "url": "https://api.github.com/repos/twigphp/Twig/zipball/1fb5784662f438d7d96a541e305e28b812e2eeed",
             "reference": "1fb5784662f438d7d96a541e305e28b812e2eeed",
             "shasum": ""
         },
@@ -1971,7 +1971,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/schmittjoh/JMSSerializerBundle/zipball/ca66cd3ace6bea5367838c6dfb00a6a0bacb8a79",
+            "url": "https://api.github.com/repos/schmittjoh/JMSSerializerBundle/zipball/c49628cfc8b8ce7404665b4e6528487d780e7d68",
             "reference": "ca66cd3ace6bea5367838c6dfb00a6a0bacb8a79",
             "shasum": ""
         },
@@ -2029,6 +2029,63 @@
             "json",
             "serialization",
             "xml"
+        ]
+    },
+    {
+        "name": "nelmio/cors-bundle",
+        "version": "1.4.0",
+        "version_normalized": "1.4.0.0",
+        "target-dir": "Nelmio/CorsBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/nelmio/NelmioCorsBundle.git",
+            "reference": "553b4c5cdb3ff155f910e8f6e3e0806d42c763a6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/nelmio/NelmioCorsBundle/zipball/553b4c5cdb3ff155f910e8f6e3e0806d42c763a6",
+            "reference": "553b4c5cdb3ff155f910e8f6e3e0806d42c763a6",
+            "shasum": ""
+        },
+        "require": {
+            "symfony/framework-bundle": "~2.2"
+        },
+        "require-dev": {
+            "matthiasnoback/symfony-dependency-injection-test": "0.2.*",
+            "mockery/mockery": "dev-master"
+        },
+        "time": "2015-01-13 17:53:27",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.3.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Nelmio\\CorsBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Nelmio",
+                "homepage": "http://nelm.io"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://github.com/nelmio/NelmioCorsBundle/contributors"
+            }
+        ],
+        "description": "Adds CORS (Cross-Origin Resource Sharing) headers support in your Symfony2 application",
+        "keywords": [
+            "api",
+            "cors",
+            "crossdomain"
         ]
     }
 ]

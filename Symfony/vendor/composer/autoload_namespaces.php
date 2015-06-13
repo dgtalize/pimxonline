@@ -19,6 +19,7 @@ return array(
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src'),
     'PhpCollection' => array($vendorDir . '/phpcollection/phpcollection/src'),
+    'Nelmio\\CorsBundle' => array($vendorDir . '/nelmio/cors-bundle'),
     'Negotiation' => array($vendorDir . '/willdurand/negotiation/src'),
     'Monolog' => array($vendorDir . '/monolog/monolog/src'),
     'Metadata\\' => array($vendorDir . '/jms/metadata/src'),

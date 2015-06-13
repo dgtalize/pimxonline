@@ -23,12 +23,14 @@ class ComposerAutoloaderInit56f27f65a2ad5fb08b37e369c013f249
         self::$loader = $loader = new \Composer\Autoload\ClassLoader();
         spl_autoload_unregister(array('ComposerAutoloaderInit56f27f65a2ad5fb08b37e369c013f249', 'loadClassLoader'));
 
-        $vendorDir = dirname(__DIR__);
-        $baseDir = dirname($vendorDir);
-
         $map = require __DIR__ . '/autoload_namespaces.php';
         foreach ($map as $namespace => $path) {
             $loader->set($namespace, $path);
+        }
+
+        $map = require __DIR__ . '/autoload_psr4.php';
+        foreach ($map as $namespace => $path) {
+            $loader->setPsr4($namespace, $path);
         }
 
         $classMap = require __DIR__ . '/autoload_classmap.php';
@@ -40,9 +42,14 @@ class ComposerAutoloaderInit56f27f65a2ad5fb08b37e369c013f249
 
         $includeFiles = require __DIR__ . '/autoload_files.php';
         foreach ($includeFiles as $file) {
-            require $file;
+            composerRequire56f27f65a2ad5fb08b37e369c013f249($file);
         }
 
         return $loader;
     }
+}
+
+function composerRequire56f27f65a2ad5fb08b37e369c013f249($file)
+{
+    require $file;
 }
