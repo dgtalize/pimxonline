@@ -2,13 +2,13 @@
 
 /*
  * Copyright 2013 Johannes M. Schmitt <schmittjoh@gmail.com>
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,6 +64,9 @@ abstract class Context
         $this->attributes = new Map();
     }
 
+    /**
+     * @param string $format
+     */
     public function initialize($format, VisitorInterface $visitor, GraphNavigator $navigator, MetadataFactoryInterface $factory)
     {
         if ($this->initialized) {
@@ -193,6 +196,9 @@ abstract class Context
         return $this->serializeNull;
     }
 
+    /**
+     * @return string
+     */
     public function getFormat()
     {
         return $this->format;
@@ -232,5 +238,9 @@ abstract class Context
     }
 
     abstract public function getDepth();
+
+    /**
+     * @return integer
+     */
     abstract public function getDirection();
 }
