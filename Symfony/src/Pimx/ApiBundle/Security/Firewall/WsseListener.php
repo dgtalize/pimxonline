@@ -7,8 +7,10 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
+
 use Pimx\ApiBundle\Security\Authentication\Token\WsseUserToken;
 
 class WsseListener implements ListenerInterface
@@ -38,6 +40,10 @@ class WsseListener implements ListenerInterface
 
         $wsseRegex = '/UsernameToken Username="([^"]+)", PasswordDigest="([^"]+)", Nonce="([^"]+)", Created="([^"]+)"/';
         if (!$request->headers->has('x-wsse') || 1 !== preg_match($wsseRegex, $request->headers->get('x-wsse'), $matches)) {
+            //no token then no authorized
+            $response = new Response();
+            $response->setStatusCode(403);
+            $event->setResponse($response);
             return;
         }
 
@@ -76,6 +82,10 @@ class WsseListener implements ListenerInterface
             $response->setStatusCode(403);
             $event->setResponse($response);
 
+        } catch (AuthenticationCredentialsNotFoundException $credNotFoundEx){
+            $response = new Response();
+            $response->setStatusCode(403);
+            $event->setResponse($response);
         }
 
         // By default deny authorization
