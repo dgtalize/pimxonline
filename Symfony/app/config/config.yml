@@ -99,6 +99,9 @@ sensio_framework_extra:
         
 #JMS Serializer
 jms_serializer:
+    handlers:
+        datetime:
+            default_format:       'Y-m-d\TH:i:s'
     metadata:
         auto_detection: true
         directories:

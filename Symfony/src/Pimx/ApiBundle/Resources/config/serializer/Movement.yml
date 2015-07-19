@@ -11,3 +11,9 @@ Pimx\ModelBundle\Entity\Movement:
             expose: true
         group:
             expose: true
+        notes:
+            expose: true
+        appliedAccounts:
+            expose: true
+        labels:
+            expose: true

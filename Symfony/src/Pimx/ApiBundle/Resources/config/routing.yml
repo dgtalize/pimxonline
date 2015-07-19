@@ -12,3 +12,8 @@ api_account:
     type: rest
     prefix: account
     resource: Pimx\ApiBundle\Controller\AccountController
+    
+api_label:
+    type: rest
+    prefix: label
+    resource: Pimx\ApiBundle\Controller\LabelController

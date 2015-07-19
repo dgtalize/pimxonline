@@ -11,15 +11,18 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+
+use Pimx\ModelBundle\Entity\Label;
 use Pimx\ModelBundle\Entity\Movement;
 
 class MovementController extends FOSRestController {
 
     /**
      * @Rest\View
+     * @Rest\Get("/latest")
      */
     public function getLatestAction() {
-        $pageSize = $this->container->getParameter('list_page_size');
+        $pageSize = $this->container->getParameter('grid_page_size');
 
         $movements = $this->getDoctrine()
                 ->getRepository('PimxModelBundle:Movement')
@@ -55,4 +58,32 @@ class MovementController extends FOSRestController {
         return array('result' => 'OK');
     }
 
+    
+    /**
+     * @Rest\View
+     * @Rest\Get("/type")
+     */
+    public function getTypesAction() {
+
+        $types = $this->getDoctrine()
+                ->getRepository('PimxModelBundle:MovementType')
+                ->findAll()
+        ;
+
+        return array('types' => $types);
+    }
+    
+    /**
+     * @Rest\View
+     * @Rest\Get("/group")
+     */
+    public function getGroupsAction() {
+
+        $groups = $this->getDoctrine()
+                ->getRepository('PimxModelBundle:MovementGroup')
+                ->findAll()
+        ;
+
+        return array('groups' => $groups);
+    }
 }
