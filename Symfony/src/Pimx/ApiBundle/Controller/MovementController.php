@@ -14,6 +14,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 use Pimx\ModelBundle\Entity\Label;
 use Pimx\ModelBundle\Entity\Movement;
+use Pimx\ModelBundle\Pagination\Paginator;
 
 class MovementController extends FOSRestController {
 
@@ -21,12 +22,16 @@ class MovementController extends FOSRestController {
      * @Rest\View
      * @Rest\Get("/latest")
      */
-    public function getLatestAction() {
+    public function getLatestAction(Request $request) {
         $pageSize = $this->container->getParameter('grid_page_size');
-
+        $currentPage = $request->get('page', 1);
+        $paginator = new Paginator($pageSize, $currentPage);
+		
+        $filters = array();
+		
         $movements = $this->getDoctrine()
                 ->getRepository('PimxModelBundle:Movement')
-                ->findLatest($pageSize)
+                ->findByFilters($paginator, $filters)
         ;
 
         return array('movements' => $movements);
