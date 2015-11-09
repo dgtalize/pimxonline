@@ -1,14 +1,14 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "dgtalize/pimxonline",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "PIM Xtreme Online",
     "autoload": {
         "psr-0": { "": "src/" }
     },
     "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "2.3.*",
+        "php": ">=5.4.0",
+        "symfony/symfony": "2.7.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.2.*",
         "twig/extensions": "1.0.*",
@@ -20,7 +20,7 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/serializer-bundle": "dev-master",
-        "friendsofsymfony/rest-bundle": "1.1.*",
+        "friendsofsymfony/rest-bundle": "1.7.*",
         "nelmio/cors-bundle": "^1.4"
     },
     "scripts": {
@@ -42,7 +42,7 @@
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "../public_html",
