@@ -7,7 +7,7 @@ Pimx\ModelBundle\Entity\Account:
             expose: true
         sign:
             expose: true
-        typeCode:
+        type:
             expose: true
-        groupCode:
+        group:
             expose: true

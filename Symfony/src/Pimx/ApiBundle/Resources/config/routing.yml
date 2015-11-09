@@ -10,8 +10,8 @@ api_movement:
   
 api_account:
     type: rest
-    prefix: account
     resource: Pimx\ApiBundle\Controller\AccountController
+#    prefix: account
     
 api_label:
     type: rest
