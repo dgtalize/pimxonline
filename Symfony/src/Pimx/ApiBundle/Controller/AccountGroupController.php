@@ -12,39 +12,39 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 
-use Pimx\ModelBundle\Entity\Account;
+use Pimx\ModelBundle\Entity\AccountGroup;
 
 /**
- * @RouteResource("Account", pluralize=false)
+ * @RouteResource("AccountGroup", pluralize=false)
  */
-class AccountController extends /*Controller*/ FOSRestController implements ClassResourceInterface {
+class AccountGroupController extends /*Controller*/ FOSRestController implements ClassResourceInterface {
 
     /**
      * @Rest\View
 	 */
     public function cgetAction() {
-        $accounts = $this->getDoctrine()
-                ->getRepository('PimxModelBundle:Account')
+        $groups = $this->getDoctrine()
+                ->getRepository('PimxModelBundle:AccountGroup')
                 ->findAll()
         ;
 
-        return $accounts;
+        return $groups;
     }
 
     /**
      * @Rest\View
 	 */
     public function getAction($code) {
-        $account = $this->getDoctrine()
-                ->getRepository('PimxModelBundle:Account')
+        $accountGroup = $this->getDoctrine()
+                ->getRepository('PimxModelBundle:AccountGroup')
                 ->find($code)
         ;
         
-        if (!$account instanceof Account) {
-            throw new NotFoundHttpException('Account not found');
+        if (!$accountGroup instanceof AccountGroup) {
+            throw new NotFoundHttpException('Account Group not found');
         }
 
-        return $account;
+        return $accountGroup;
     }
 
     /**
