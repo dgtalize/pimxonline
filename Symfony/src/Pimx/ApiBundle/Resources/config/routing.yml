@@ -11,11 +11,11 @@ api_movement:
 api_account:
     type: rest
     resource: Pimx\ApiBundle\Controller\AccountController
-	
+
 api_account_type:
     type: rest
     resource: Pimx\ApiBundle\Controller\AccountTypeController
-	
+
 api_account_group:
     type: rest
     resource: Pimx\ApiBundle\Controller\AccountGroupController

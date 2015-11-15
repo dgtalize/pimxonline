@@ -114,6 +114,9 @@ fos_rest:
     disable_csrf_role: ROLE_API
     routing_loader:
         default_format: json
+    body_listener:
+        decoders:
+            json: fos_rest.decoder.jsontoform
     view:
         view_response_listener: true
 #        jsonp_handler: ~

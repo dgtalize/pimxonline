@@ -13,6 +13,7 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 
 use Pimx\ModelBundle\Entity\Account;
+use Pimx\ApiBundle\Form\Type\AccountType;
 
 /**
  * @RouteResource("Account", pluralize=false)
@@ -47,10 +48,41 @@ class AccountController extends /*Controller*/ FOSRestController implements Clas
         return $account;
     }
 
+    
     /**
      * @Rest\View
 	 */
     public function postAction(Request $request) {
-        return array('result' => 'OK');
+		$account = new Account();
+		$form = $this->createForm(new AccountType(), $account, array("method" => "POST"));
+		$form->handleRequest($request);
+		//$form->submit($request);
+		
+		if($form->isValid()){
+			$account = $form->getData();
+			print_r($account); die();
+			return array('result' => 'OK');
+		}
+		print_r($form->getErrors());die();
+        return $form;
     }
+
+    /**
+     * @Rest\View
+	 */
+    public function putAction(Request $request, $code) {
+		$account = new Account();
+		$form = $this->createForm(new AccountType(), $account, array("method" => "PUT"));
+		$form->handleRequest($request);
+		//$form->submit(null);
+		
+		if($form->isValid()){
+			$account = $form->getData();
+			//print_r($account); die();
+			return array('result' => 'OK');
+		}
+		
+        return $form;
+    }
+	
 }
