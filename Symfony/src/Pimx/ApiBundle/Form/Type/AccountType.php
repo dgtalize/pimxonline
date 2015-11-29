@@ -5,18 +5,30 @@ namespace Pimx\ApiBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use FOS\RestBundle\Form\Transformer\EntityToIdObjectTransformer;
 
 class AccountType extends AbstractType {
 
+	private $container;
+
+	public function __construct($container) {
+		$this->container = $container;
+	}
+
     public function buildForm(FormBuilderInterface $builder, array $options) {
+		$accountTypeTransformer = new EntityToIdObjectTransformer(
+				$this->container->get('doctrine')->getManager(), 
+				"PimxModelBundle:AccountType");
+		
         $builder->add('code', 'text')
                 ->add('description', 'text', array('required'=>true))
                 /*->add('type', 'entity', array(
                     'class' => 'PimxModelBundle:AccountType',
                     'property' => 'description',
 					'required' => false
-                ))
-                ->add('group', 'entity', array(
+                ))*/
+				->add($builder->create('type', 'text')->addModelTransformer($accountTypeTransformer))
+                /*->add('group', 'entity', array(
                     'class' => 'PimxModelBundle:AccountGroup',
                     'property' => 'description',
 					'required' => false

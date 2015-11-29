@@ -5,8 +5,14 @@ api_security:
     
 api_movement:
     type: rest
-    prefix: movement
     resource: Pimx\ApiBundle\Controller\MovementController
+
+api_movement_type:
+    type: rest
+    resource: Pimx\ApiBundle\Controller\MovementTypeController
+api_movement_group:
+    type: rest
+    resource: Pimx\ApiBundle\Controller\MovementGroupController
   
 api_account:
     type: rest
@@ -15,7 +21,6 @@ api_account:
 api_account_type:
     type: rest
     resource: Pimx\ApiBundle\Controller\AccountTypeController
-
 api_account_group:
     type: rest
     resource: Pimx\ApiBundle\Controller\AccountGroupController

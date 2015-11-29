@@ -54,13 +54,13 @@ class AccountController extends /*Controller*/ FOSRestController implements Clas
 	 */
     public function postAction(Request $request) {
 		$account = new Account();
-		$form = $this->createForm(new AccountType(), $account, array("method" => "POST"));
+		$form = $this->createForm(new AccountType($this->container), $account, array("method" => "POST"));
 		$form->handleRequest($request);
 		//$form->submit($request);
 		
 		if($form->isValid()){
 			$account = $form->getData();
-			print_r($account); die();
+			//print_r($account); die();
 			return array('result' => 'OK');
 		}
 		print_r($form->getErrors());die();
@@ -72,7 +72,7 @@ class AccountController extends /*Controller*/ FOSRestController implements Clas
 	 */
     public function putAction(Request $request, $code) {
 		$account = new Account();
-		$form = $this->createForm(new AccountType(), $account, array("method" => "PUT"));
+		$form = $this->createForm(new AccountType($this->container), $account, array("method" => "PUT"));
 		$form->handleRequest($request);
 		//$form->submit(null);
 		
