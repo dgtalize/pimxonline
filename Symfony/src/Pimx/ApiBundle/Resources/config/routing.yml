@@ -1,9 +1,31 @@
+api_security:
+    type: rest
+    prefix: security
+    resource: Pimx\ApiBundle\Controller\SecurityController
+    
 api_movement:
     type: rest
-    prefix: movement
     resource: Pimx\ApiBundle\Controller\MovementController
+
+api_movement_type:
+    type: rest
+    resource: Pimx\ApiBundle\Controller\MovementTypeController
+api_movement_group:
+    type: rest
+    resource: Pimx\ApiBundle\Controller\MovementGroupController
   
 api_account:
     type: rest
-    prefix: account
     resource: Pimx\ApiBundle\Controller\AccountController
+
+api_account_type:
+    type: rest
+    resource: Pimx\ApiBundle\Controller\AccountTypeController
+api_account_group:
+    type: rest
+    resource: Pimx\ApiBundle\Controller\AccountGroupController
+    
+api_label:
+    type: rest
+    prefix: label
+    resource: Pimx\ApiBundle\Controller\LabelController

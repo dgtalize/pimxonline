@@ -40,7 +40,15 @@ class MovementController extends Controller {
     }
 
     public function newAction(Request $request) {
-        $movement = new \Pimx\ModelBundle\Entity\Movement();
+        $baseOnId = $request->get("base_on_id");
+        /** @var $movement \Pimx\ModelBundle\Entity\Movement */
+        $movement = null;
+        if($baseOnId){
+            $basedOnMovement = $this->getDoctrine()->getRepository('PimxModelBundle:Movement')->find($baseOnId);
+            $movement = clone $basedOnMovement;
+        }else{
+            $movement = new \Pimx\ModelBundle\Entity\Movement();
+        }        
         $movement->setDate(new \DateTime());
 
         return $this->processSaveForm($request, $movement, 'PimxFrontendBundle:Movement:new.html.twig');
@@ -72,7 +80,15 @@ class MovementController extends Controller {
                     'success',
                     $translator->trans('text.elementsaved', array('%element%' => $translator->trans('text.movement')))
             );
-            return $this->redirect($this->generateUrl('_movement'));
+            
+            switch ($request->request->get("button_action")){
+                case 'save_and_new':
+                    return $this->redirect($this->generateUrl('_movement_new')); 
+                case 'save_and_new_based':
+                    return $this->redirect($this->generateUrl('_movement_new', array('base_on_id' => $movement->getId())));
+                default:
+                    return $this->redirect($this->generateUrl('_movement'));
+            }
         }
 
         return $this->render($view, array(

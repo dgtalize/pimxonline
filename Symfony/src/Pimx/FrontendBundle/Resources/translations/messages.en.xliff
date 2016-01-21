@@ -198,6 +198,10 @@
                 <source>note.title</source>
                 <target>Notes</target>
             </trans-unit>
+            <trans-unit id="50">
+                <source>movement.newmovement</source>
+                <target>New movement</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

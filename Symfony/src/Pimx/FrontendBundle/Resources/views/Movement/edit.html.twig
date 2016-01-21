@@ -1,59 +1,69 @@
 {% extends 'PimxFrontendBundle::layout.html.twig' %}
 
 {% block main_content %}
-<h1 class="title">{% trans %}movement.edit{% endtrans %}</h1>
+    <h1 class="title">{% trans %}movement.edit{% endtrans %}</h1>
 
-<form class="" method="post" {{ form_enctype(form) }}
-      action="{{ path('_movement_edit', {'item_id': form.vars.value.id}) }}">
-    
-    <div class="row">        
-        <section class="col-md-6">
-            <div class="form-group">
-                {{ form_label(form.name) }}
-                {{ form_errors(form.name) }}
-                {{ form_widget(form.name) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.date) }}
-                {{ form_errors(form.date) }}
-                {{ form_widget(form.date) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.type) }}
-                {{ form_errors(form.type) }}
-                {{ form_widget(form.type) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.group) }}
-                {{ form_errors(form.group) }}
-                {{ form_widget(form.group) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.labels) }}
-                {{ form_errors(form.labels) }}
-                {{ form_widget(form.labels) }}
-            </div>
-        </section>
-        <section class="col-md-6">
-            <div class="form-group">
-                {{ form_label(form.notes) }}
-                {{ form_errors(form.notes) }}
-                {{ form_widget(form.notes) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.appliedAccounts) }}
-                {{ form_errors(form.appliedAccounts) }}
-                {{ form_widget(form.appliedAccounts) }}
-            </div>
-        </section>
-    </div>
-    
-    <div class="row">
-        <section class="col-md-12">
-            {{ form_widget(form) }}
-            <input type="submit" class="btn btn-primary" value="Save" />
-        </section>
-    </div>
-</form>
+    <form class="entity_form standard" method="post" {{ form_enctype(form) }}
+          action="{{ path('_movement_edit', {'item_id': form.vars.value.id}) }}">
+
+        <div class="row">        
+            <section class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.name) }}
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.date) }}
+                    {{ form_errors(form.date) }}
+                    {{ form_widget(form.date) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.type) }}
+                    {{ form_errors(form.type) }}
+                    {{ form_widget(form.type) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.group) }}
+                    {{ form_errors(form.group) }}
+                    {{ form_widget(form.group) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.labels) }}
+                    {{ form_errors(form.labels) }}
+                    {{ form_widget(form.labels) }}
+                </div>
+            </section>
+            <section class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.notes) }}
+                    {{ form_errors(form.notes) }}
+                    {{ form_widget(form.notes) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.appliedAccounts) }}
+                    {{ form_errors(form.appliedAccounts) }}
+                    {{ form_widget(form.appliedAccounts) }}
+                </div>
+            </section>
+        </div>
+
+        <div class="row">
+            <section class="col-md-12">
+                {{ form_widget(form) }}
+
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="submit" class="btn btn-primary" name="button_action" value="save" >
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save
+                    </button>
+                    <a class="btn btn-default"
+                       href="{{ path('_movement_new', {'base_on_id': form.vars.value.id}) }}">
+                        <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
+                        Create based on...
+                    </a>
+                </div>
+            </section>
+        </div>
+    </form>
 
 {% endblock %}

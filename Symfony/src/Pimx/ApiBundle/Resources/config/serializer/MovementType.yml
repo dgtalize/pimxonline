@@ -1,0 +1,7 @@
+Pimx\ModelBundle\Entity\MovementType:
+    exclusion_policy: ALL
+    properties:
+        codigo:
+            expose: true
+        description:
+            expose: true

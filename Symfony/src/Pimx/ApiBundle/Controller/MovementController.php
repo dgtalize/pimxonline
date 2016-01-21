@@ -2,26 +2,39 @@
 
 namespace Pimx\ApiBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
-use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\Annotations\ApiDoc;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\Annotations\RouteResource;
+use FOS\RestBundle\Routing\ClassResourceInterface;
 
+use Pimx\ModelBundle\Entity\Label;
 use Pimx\ModelBundle\Entity\Movement;
+use Pimx\ModelBundle\Pagination\Paginator;
 
-class MovementController extends FOSRestController {
+/**
+ * @RouteResource("Movement", pluralize=false)
+ */
+class MovementController extends FOSRestController implements ClassResourceInterface  {
 
     /**
      * @Rest\View
      */
-    public function getLatestAction() {
+    public function cgetAction() {
+        $pageSize = $this->container->getParameter('grid_page_size');
+        $currentPage = 1; //$request->get('page', 1);
+        $paginator = new Paginator($pageSize, $currentPage);
+		
+        $filters = array();
+		
         $movements = $this->getDoctrine()
                 ->getRepository('PimxModelBundle:Movement')
-                ->findLatest(60)
+                ->findByFilters($paginator, $filters)
         ;
 
-        return array('movements' => $movements);
+        return $movements;
     }
 
     /**
@@ -32,12 +45,18 @@ class MovementController extends FOSRestController {
                 ->getRepository('PimxModelBundle:Movement')
                 ->find($id)
         ;
-        
-        if (!$movement instanceof Movement) {
+
+        if (!($movement instanceof Movement)) {
             throw new NotFoundHttpException('Movement not found');
         }
 
-        return array('movement' => $movement);
+        return $movement;
     }
 
+    /**
+     * @Rest\View
+     */
+    public function postAction(Request $request) {
+        return array('result' => 'OK');
+    }
 }
