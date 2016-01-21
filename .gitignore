@@ -6,3 +6,4 @@
 *.php~
 *.php~
 /Symfony/src/Pimx/ModelBundle/Entity/*.php~
+/Symfony/vendor
