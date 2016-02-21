@@ -64,6 +64,29 @@ class MovementController extends Controller {
         return $this->processSaveForm($request, $movement, 'PimxFrontendBundle:Movement:edit.html.twig');
     }
 
+    public function deleteAction(Request $request) {
+        $item_id = $request->get('item_id');
+
+        $movement = $this->getDoctrine()
+                ->getRepository('PimxModelBundle:Movement')
+                ->find($item_id);
+
+		try{
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($movement);
+			$em->flush();
+			
+			$translator = $this->get('translator');
+			$this->addFlash('success', 
+					$translator->trans('text.elementdeleted', array('%element%' => $translator->trans('text.movement')))
+			);
+		} catch (Exception $ex) {
+			$this->addFlash('danger', 'An error ocurred deleting the movement');
+		}
+			
+		return $this->redirectToRoute('_movement');
+    }
+	
     private function processSaveForm(Request $request, Movement $movement, $view) {
         $form = $this->createForm(new \Pimx\FrontendBundle\Form\Type\MovementType(), $movement);
         $form->handleRequest($request);

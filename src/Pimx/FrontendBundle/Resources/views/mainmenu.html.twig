@@ -20,7 +20,7 @@
                 <li><a href="{{ path('_account') }}">{% trans %}menu.accounts{%endtrans%}</a></li>
                 <li><a href="{{ path('_currency') }}">{{ 'menu.currencies'|trans }}</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'menu.movements'|trans }}</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'menu.movements'|trans }} <i class="fa fa-caret-down"></i></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ path('_movement') }}">{{ 'text.list'|trans }}</a></li>
                         <li><a href="{{ path('_movement_new') }}">{{ 'text.add'|trans }}</a></li>
@@ -28,7 +28,7 @@
                 </li>
                 <li><a href="{{ path('_label') }}">{% trans %}menu.labels{%endtrans%}</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'menu.reports'|trans }}</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'menu.reports'|trans }} <i class="fa fa-caret-down"></i></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ path('_report_fin_monthbalance') }}">{{ 'report.monthbalance'|trans }}</a></li>
                         <li><a href="{{ path('_report_fin_accountbalance') }}">{{ 'report.accountbalance'|trans }}</a></li>
@@ -36,8 +36,10 @@
                     </ul>
                 </li>
                 <li><a href="{{ path('_note') }}">{{ 'menu.notes'|trans }}</a></li>
-                <li><a href="{{ path('logout') }}" class="">{{ 'user.logout'|trans }}</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('logout') }}" class="">{{ 'user.logout'|trans }}</a></li>
+			</ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

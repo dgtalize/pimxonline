@@ -17,6 +17,9 @@ _movement_new:
 _movement_edit:
     pattern:  /movement/edit/{item_id}
     defaults: { _controller: PimxFrontendBundle:Movement:edit }
+_movement_delete:
+    pattern:  /movement/delete/{item_id}
+    defaults: { _controller: PimxFrontendBundle:Movement:delete }
     
 _currency:
     pattern:  /currency/

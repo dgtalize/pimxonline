@@ -19,6 +19,13 @@
                     {{ form_widget(form.date) }}
                 </div>
                 <div class="form-group">
+                    {{ form_label(form.labels) }}
+                    {{ form_errors(form.labels) }}
+                    {{ form_widget(form.labels) }}
+                </div>
+            </section>
+            <section class="col-md-6">
+                <div class="form-group">
                     {{ form_label(form.type) }}
                     {{ form_errors(form.type) }}
                     {{ form_widget(form.type) }}
@@ -28,13 +35,6 @@
                     {{ form_errors(form.group) }}
                     {{ form_widget(form.group) }}
                 </div>
-                <div class="form-group">
-                    {{ form_label(form.labels) }}
-                    {{ form_errors(form.labels) }}
-                    {{ form_widget(form.labels) }}
-                </div>
-            </section>
-            <section class="col-md-6">
                 <div class="form-group">
                     {{ form_label(form.notes) }}
                     {{ form_errors(form.notes) }}
