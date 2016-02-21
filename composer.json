@@ -45,7 +45,7 @@
     "minimum-stability": "dev",
     "extra": {
         "symfony-app-dir": "app",
-        "symfony-web-dir": "../public_html",
+        "symfony-web-dir": "public_html",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         },

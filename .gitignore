@@ -7,3 +7,6 @@
 *.php~
 /Symfony/src/Pimx/ModelBundle/Entity/*.php~
 /Symfony/vendor
+/vendor
+/app/cache
+/app/logs
