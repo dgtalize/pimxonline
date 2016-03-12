@@ -1,8 +1,19 @@
 {% extends 'PimxFrontendBundle::layout.html.twig' %}
 
+{% macro accountsCollectionItem(formData) %}
+	<tr class="crud-item">
+		<td>{{ form_widget(formData.account) }}</td>
+		<td>{{ form_widget(formData.sign) }}</td>
+		<td>{{ form_widget(formData.amount) }}</td>
+		<td>
+			<a href="#" class="btn btn-sm btn-danger delete-item-btn" title="Remove"><i class="fa fa-trash"></i></a>
+		</td>
+	</tr>
+{% endmacro %}
+	
 {% block main_content %}
     <h1 class="title">{% trans %}movement.newmovement{% endtrans %}</h1>
-
+	
     <form class="entity_form standard"
           action="{{ path('_movement_new') }}" method="post" {{ form_enctype(form) }}>
 
@@ -41,9 +52,22 @@
                     {{ form_widget(form.notes) }}
                 </div>
                 <div class="form-group">
-                    {{ form_label(form.appliedAccounts) }}
                     {{ form_errors(form.appliedAccounts) }}
-                    {{ form_widget(form.appliedAccounts) }}
+					<div class="panel panel-default applied-accounts-list">
+						<div class="panel-heading">
+							Applied accounts
+							<a href="#" class="btn btn-xs btn-primary pull-right new-item-btn">
+								<i class="fa fa-plus"></i> Add new
+							</a>
+						</div>
+						<table class="table table-condensed crud-symf"
+							 data-prototype="{{ _self.accountsCollectionItem(form.appliedAccounts.vars.prototype)|e }}">
+							{% for appliedAccount in form.appliedAccounts %}
+								{{ _self.accountsCollectionItem(appliedAccount) }}
+							{% endfor %}
+						</table>
+						{% do form.appliedAccounts.setRendered %}
+					</div>
                 </div>
             </section>
         </div>
@@ -70,4 +94,17 @@
 
     </form>
 
+{% endblock %}
+
+
+{% block js_bottom %}
+
+    <script src="{{asset('js/jquery.crudsymf.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.crud-symf').crudsymf({
+                newButton: $('.applied-accounts-list .new-item-btn')
+            });
+        });
+    </script>
 {% endblock %}
