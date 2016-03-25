@@ -60,7 +60,7 @@
 								<i class="fa fa-plus"></i> Add new
 							</a>
 						</div>
-						<table class="table table-condensed crud-symf"
+						<table class="table table-condensed listin"
 							 data-prototype="{{ _self.accountsCollectionItem(form.appliedAccounts.vars.prototype)|e }}">
 							{% for appliedAccount in form.appliedAccounts %}
 								{{ _self.accountsCollectionItem(appliedAccount) }}
@@ -99,11 +99,14 @@
 
 {% block js_bottom %}
 
-    <script src="{{asset('js/jquery.crudsymf.js')}}"></script>
+    <script src="{{asset('js/jquery.crudlistin.min.js')}}"></script>
     <script>
         $(document).ready(function () {
-            $('.crud-symf').crudsymf({
-                newButton: $('.applied-accounts-list .new-item-btn')
+            $('.crud-listin').crudlistin({
+                newButton: $('.applied-accounts-list .new-item-btn'),
+				beforeRemoveElement: function() {
+					return confirm('Delete item?');
+				}
             });
         });
     </script>

@@ -1,19 +1,14 @@
-//Crud-List plugin
+//CRUD Listin plugin
 (function ($) {
 
     var methods = {
         init: function (options) {
-            // This is the easiest way to have default options.
-            var settings = $.extend({
-                // These are the defaults.
-                listSelector: '.crud-symf',
-                newButton: null,
-                newItemLast: true
-            }, options);
+            var settings = $.extend($.fn.crudlistin.defaults, options);
 
             return this.each(function (index, element) {
                 crudList = $(element);
 
+				/*
                 if (settings.newButton === null) {
                     var newButton = $('<a></a>')
                             .attr('href', '#')
@@ -23,58 +18,74 @@
 
                     settings.newButton = newButton;
                 }
+				*/
 
                 // count the current form inputs we have (e.g. 2), use that as the new
                 // index when inserting a new item (e.g. 2)
                 crudList.data('index', crudList.find('.crud-item').length);
 
-                //remove all datepickers in prototype to avoid problems
-                crudList.find('.item-prototype input.datepicker').each(function (index, element) {
-                    $(element).datepicker('destroy');
-                });
-
                 //click on the "New" button
                 settings.newButton.click(function (e) {
-                    var currentCList = $(this).closest(settings.listSelector);
+                    //var currentCList = $(this).closest(settings.listSelector);
                     //addNew(currentCList);
-                    addNew(crudList, settings.newItemLast);
+					
+					addNew(crudList, settings.newItemLast, settings);						
                     return false;
                 });
                 
                 //click on the "Delete" button
-                prepareDeleteButton(crudList.find('.delete-item-btn'));
+                prepareDeleteButton(crudList.find(settings.removeButtonSelector), settings);
             });
         },
         addnew: function () {
             return this.each(function (index, element) {
                 crudList = $(element);
-                addNew(crudList, settings.newItemLast);
+                addNew(crudList, settings.newItemLast, settings);
             });
         } // add new element
     };
 
     //---- Main method for the plugin
-    $.fn.crudsymf = function (methodOrOptions) {
+    $.fn.crudlistin = function (methodOrOptions) {
         if (methods[methodOrOptions]) {
             return methods[methodOrOptions].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof methodOrOptions === 'object' || !methodOrOptions) {
             // Default to "init"
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + methodOrOptions + ' does not exist on CrudSymf');
+            $.error('Method ' + methodOrOptions + ' does not exist on CRUDListin');
         }
     };
+    //---- Default settings
+	$.fn.crudlistin.defaults = {
+		listSelector: '.crud-listin',
+		newButton: null,
+		removeButtonSelector: '.delete-item-btn',
+		newItemLast: true,
+		itemIndexPlaceholder: /__name__/g,
+		beforeAddElement: function() {},
+		afterAddElement: function() {},
+		beforeRemoveElement: function() {},
+		afterRemoveElement: function() {}
+	};
 
 
-    function addNew(crudList, newItemLast) {
+    //---- Auxiliar internal methods
+    function addNew(crudList, newItemLast, settings) {
+		//Event: before add
+		var beforeAddResult = true;
+		beforeAddResult = settings.beforeAddElement.call();
+		if(beforeAddResult === false) return;
+					
         // Get the data-prototype explained earlier
         var prototype = crudList.data('prototype');
         // get the new index
         var index = crudList.data('index');
 
-        // Replace '$$name$$' in the prototype's HTML to
+        // Replace '__name__' in the prototype's HTML to
         // instead be a number based on how many items we have
-        var newForm = prototype.replace(/__name__/g, index);
+        //var newForm = prototype.replace(/__name__/g, index);
+		var newForm = prototype.replace(settings.itemIndexPlaceholder, index);
 
         // increase the index with one for the next item
         crudList.data('index', index + 1);
@@ -83,11 +94,10 @@
         //var newItem = $('<div></div>').addClass('crud-item').append(newForm);
         var newItem = $(newForm);
 
-        // add a delete link to the new form (if it not exist)
-        //addTagFormDeleteLink(newItem);
+        /* // add a delete link to the new form (if it not exist)
         if (newItem.find('.delete-item-btn').length == 0) {
             newItem.append('<a href="#" class="delete-item-btn">x</a>');
-        }
+        }*/
 
         if (newItemLast) {
             crudList.append(newItem);
@@ -96,13 +106,27 @@
         }
 
         // handle the removal
-        prepareDeleteButton(newItem.find('.delete-item-btn'));
+        prepareDeleteButton(newItem.find('.delete-item-btn'), settings);
+		
+		//Event: after add
+		settings.afterAddElement.call();
     }
 
-    function prepareDeleteButton(button) {
+    function prepareDeleteButton(button, settings) {
         $(button).click(function (e) {
             e.preventDefault();
-            $(this).closest('.crud-item').remove();
+			
+			//Event: before remove
+			var beforeRemoveResult = true;
+			beforeRemoveResult = settings.beforeRemoveElement.call();
+			if(beforeRemoveResult !== false) {
+				//do remove
+				$(this).closest('.crud-item').remove();
+			}
+			
+			//Event: after remove
+			settings.afterRemoveElement.call();
+			
             return false;
         });
     }
