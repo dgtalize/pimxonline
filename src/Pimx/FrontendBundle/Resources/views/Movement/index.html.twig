@@ -1,100 +1,98 @@
 {% extends 'PimxFrontendBundle::layout.html.twig' %}
 
 {% block main_content %}
-<h1 class="title">{% trans %}movement.title{% endtrans %}</h1>
+    <h1 class="title">{% trans %}movement.title{% endtrans %}</h1>
 
-{% block data_filters %}
-<section class="filters panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#filtersBody">
-				Filters <i class="fa fa-caret-down"></i>
-			</a>
-		</h3>
+    {% block data_filters %}
+        <section class="filters card">
+            <div class="card-header">
+                <a data-toggle="collapse" data-parent="#accordion" href="#filtersBody">
+                    Filters <i class="fa fa-caret-down"></i>
+                </a>
+            </div>
+            <div id="filtersBody" class="panel-collapse collapse">
+                <div class="card-block">
+                    {{ form_start(filter_form) }}
+                    {{ form_errors(filter_form) }}
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{form_row(filter_form.date_start)}}
+                            {{form_row(filter_form.date_end)}}
+                        </div>
+                        <div class="col-sm-6">
+                            {{form_row(filter_form.acc_cod)}}
+                            {{form_row(filter_form.freetext)}}
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-filter"></i> Filter
+                    </button>
+                    {{ form_end(filter_form) }}
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+    <a class="btn btn-primary" href="{{ path('_movement_new') }}">
+        <i class="fa fa-plus"></i> {% trans %}text.add{% endtrans %}
+    </a>
+    <div class="table-responsive">
+        <table id="movements_grid" class="table table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>{{'text.name'|trans}}</th>
+                    <th>{{'text.date'|trans}}</th>
+                    <th>{{'text.group'|trans}}</th>
+                    <th>{{'text.type'|trans}}</th>
+                    <th class="text-right">{{'text.in'|trans}}</th>
+                    <th class="text-right">{{'text.out'|trans}}</th>
+                    <th>{{'text.notes'|trans}}</th>
+                    <th>{{'text.labels'|trans}}</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('_movement_edit', {'item_id': item.id}) }}">
+                                {{ item.name }}
+                            </a>
+                        </td>
+                        <td class="datetime">{{ item.date|date('Y-m-d H:i') }}</td>
+                        <td>{{ item.group is null ? '' : item.group.description }}</td>
+                        <td>{{ item.type is null ? '' : item.type.description }}</td>
+                        <td class="amount">{{ item.inTotal|number_format(2) }}</td>
+                        <td class="amount">{{ item.outTotal|number_format(2) }}</td>
+                        <td {{ (item.notes|length > 20) ? ('title="' ~ item.notes ~ '"')|raw : '' }}>
+                            {% if item.notes|length > 20 %}
+                                {{ item.notes[:20] ~ '...' }}
+                            {% else %}
+                                {{ item.notes }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% for label in item.labels %}
+                                <span class="label label-warning">{{ label.name }}</span>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <a href="{{ path('_movement_new', {'base_on_id': item.id}) }}" title="Create based on..."
+                               class="btn btn-primary btn-sm">
+                                <i class="fa fa-clone"></i>
+                            </a>
+                            <a href="{{ path('_movement_delete', {'item_id': item.id}) }}" title="Delete"
+                               class="btn btn-primary btn-sm btn-delete">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-    <div id="filtersBody" class="panel-collapse collapse">
-        <div class="panel-body">
-            {{ form_start(filter_form) }}
-                {{ form_errors(filter_form) }}
 
-				<div class="row">
-					<div class="col-sm-6">
-						{{form_row(filter_form.date_start)}}
-						{{form_row(filter_form.date_end)}}
-					</div>
-					<div class="col-sm-6">
-						{{form_row(filter_form.acc_cod)}}
-						{{form_row(filter_form.freetext)}}
-					</div>
-				</div>
-				
-				<button type="submit" class="btn btn-primary">
-					<i class="fa fa-filter"></i> Filter
-				</button>
-            {{ form_end(filter_form) }}
-        </div>
-    </div>
-</section>
-{% endblock %}
-
-<a class="btn btn-primary" href="{{ path('_movement_new') }}">
-    <i class="fa fa-plus"></i> {% trans %}text.add{% endtrans %}
-</a>
-<div class="table-responsive">
-    <table id="movements_grid" class="table table-striped table-hover table-condensed">
-        <thead>
-            <tr>
-                <th>{{'text.name'|trans}}</th>
-                <th>{{'text.date'|trans}}</th>
-                <th>{{'text.group'|trans}}</th>
-                <th>{{'text.type'|trans}}</th>
-                <th class="text-right">{{'text.in'|trans}}</th>
-                <th class="text-right">{{'text.out'|trans}}</th>
-                <th>{{'text.notes'|trans}}</th>
-                <th>{{'text.labels'|trans}}</th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for item in items %}
-            <tr>
-                <td>
-                    <a href="{{ path('_movement_edit', {'item_id': item.id}) }}">
-                        {{ item.name }}
-                    </a>
-                </td>
-                <td class="datetime">{{ item.date|date('Y-m-d H:i') }}</td>
-                <td>{{ item.group is null ? '' : item.group.description }}</td>
-                <td>{{ item.type is null ? '' : item.type.description }}</td>
-                <td class="amount">{{ item.inTotal|number_format(2) }}</td>
-                <td class="amount">{{ item.outTotal|number_format(2) }}</td>
-                <td {{ (item.notes|length > 20) ? ('title="' ~ item.notes ~ '"')|raw : '' }}>
-                    {% if item.notes|length > 20 %}
-                        {{ item.notes[:20] ~ '...' }}
-                    {% else %}
-                        {{ item.notes }}
-                    {% endif %}
-                </td>
-                <td>
-                    {% for label in item.labels %}
-                        <span class="label label-warning">{{ label.name }}</span>
-                    {% endfor %}
-                </td>
-                <td>
-                    <a href="{{ path('_movement_new', {'base_on_id': item.id}) }}" title="Create based on..."
-                       class="btn btn-primary btn-sm">
-                        <i class="fa fa-clone"></i>
-                    </a>
-                    <a href="{{ path('_movement_delete', {'item_id': item.id}) }}" title="Delete"
-                       class="btn btn-primary btn-sm btn-delete">
-                        <i class="fa fa-trash"></i>
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-{{ include( 'PimxFrontendBundle:Pagination:navigation.html.twig', {'paginator': paginator} ) }}
+    {{ include( 'PimxFrontendBundle:Pagination:navigation.html.twig', {'paginator': paginator} ) }}
 {% endblock %}

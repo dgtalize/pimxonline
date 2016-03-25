@@ -1,0 +1,25 @@
+{
+    "name": "pimx-online",
+    "authors": [
+        "DGtalize"
+    ],
+    "description": "PIM Xtreme Online",
+    "main": "",
+    "moduleType": [],
+    "license": "Propietary",
+    "homepage": "pimxonline.dgtalize.com",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "public_html/bower_components/",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "tether": "v1.2.0",
+        "bootstrap": "v4.0.0-alpha.2",
+        "eonasdan-bootstrap-datetimepicker": "^4.17.37"
+    }
+}

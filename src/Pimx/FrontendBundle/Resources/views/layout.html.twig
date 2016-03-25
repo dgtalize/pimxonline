@@ -3,38 +3,47 @@
     <head>
         {% block head %}
             <title>{% block title 'PIM Xtreme Online' %}</title>
-            
+
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="mobile-web-app-capable" content="yes">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="theme-color" content="#820882">
-			<link rel="shortcut icon" type="image/x-icon" href="{{asset('favicon.ico')}}"/>
-            
-            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-            <link rel="stylesheet" href="{{ asset('css/template.css') }}" />            
-            <link rel="stylesheet" href="{{ asset('css/pimx/jquery-ui-1.10.3.custom.min.css') }}" />
+            <meta name="theme-color" content="#820882">
+            <link rel="shortcut icon" type="image/x-icon" href="{{asset('favicon.ico')}}"/>
 
-            <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-            <script src="{{ asset('js/jquery-ui-1.10.3.custom.min.js') }}"></script>
-            <script src="{{ asset('js/knockout-2.2.1.js') }}"></script>
-            <script src="{{ asset('js/globalize.min.js') }}"></script>
-            <script src="{{ asset('js/dx.chartjs.js') }}"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            {#
+            <link rel="stylesheet" href="{{ asset('css/frontend.css') }}" />            
+            #}
 
-            <script src="{{ asset('js/forms.js') }}" ></script>
-            <script src="{{ asset('js/main.js') }}" ></script>
+            {% stylesheets
+                'bower_components/tether/dist/css/tether.min.css'
+                'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
+                'css/frontend.css'
+                filter='cssrewrite' output='css/compiled/frontend.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+
+            {% javascripts
+            'bower_components/jquery/dist/jquery.min.js'
+            'bower_components/tether/dist/js/tether.min.js'
+            'bower_components/bootstrap/dist/js/bootstrap.min.js'
+            'bower_components/moment/min/moment.min.js'
+            'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+            'js/knockout-2.2.1.js'
+            'js/globalize.min.js'
+            'js/dx.chartjs.js'
+            'js/forms.js'
+            'js/main.js'
+            output='js/compiled/frontend.js' %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
         {% endblock %}
     </head>
     <body>
         {% block body %}
             <header class="navbar-fixed-top">
                 {% if is_granted('ROLE_USER') %}
-                    {# <div class="user_panel">
-                        <span class="username">{{ app.user.username }}</span>
-                        <a class="btn btn-primary" href="{{ path('logout') }}">{% trans %}user.logout{%endtrans%}</a>
-                    </div> #}
                     {{ include( 'PimxFrontendBundle::mainmenu.html.twig' ) }}
                 {% else %}
                     <a class="pimx_logo" href="{{ path('_home') }}">
@@ -44,30 +53,30 @@
             </header>
 
             <section id="main_content" class="container">
-            {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="alert alert-dismissible alert-info"> 
-                    <button type="button" class="close" data-dismiss="alert">
-                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                    </button>
-                    {{ flashMessage }} 
-                </div>
-            {% endfor %}
-            {% for flashMessage in app.session.flashbag.get('success') %}
-                <div class="alert alert-dismissible alert-success"> 
-                    <button type="button" class="close" data-dismiss="alert">
-                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                    </button>
-                    {{ flashMessage }} 
-                </div>
-            {% endfor %}
-                
-        {% block main_content %}
-        {% endblock %}
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="alert alert-dismissible alert-info"> 
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        {{ flashMessage }} 
+                    </div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-dismissible alert-success"> 
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        {{ flashMessage }} 
+                    </div>
+                {% endfor %}
+
+                {% block main_content %}
+                {% endblock %}
             </section>
 
-        {% block js_bottom %}
+            {% block js_bottom %}
+            {% endblock %}
+
         {% endblock %}
-		
-{% endblock %}
-        </body>
-    </html>
+    </body>
+</html>

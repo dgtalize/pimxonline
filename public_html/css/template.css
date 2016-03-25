@@ -1,20 +1,5 @@
 body > header {
     border-bottom: 1px solid #D0D0D0;
-
-/*    background-image: linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
-    background-image: -o-linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
-    background-image: -moz-linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
-    background-image: -webkit-linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
-    background-image: -ms-linear-gradient(bottom, rgb(255,212,254) 0%, rgb(255,255,255) 100%);
-
-    background-image: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0, rgb(255,212,254)),
-        color-stop(1, rgb(255,255,255))
-        );*/
-
     -moz-box-shadow: 0px 1px 3px 1px #C0C0C0;
     -webkit-box-shadow: 0px 1px 3px 1px #C0C0C0;
     box-shadow: 0px 1px 3px 1px #C0C0C0;

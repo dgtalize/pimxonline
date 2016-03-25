@@ -3,27 +3,31 @@
     <head>
         {% block head %}
             <title>{% block title 'PIM Xtreme Online' %}</title>
-            
+
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="mobile-web-app-capable" content="yes">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="theme-color" content="#820882">
-			<link rel="shortcut icon" type="image/x-icon" href="{{asset('favicon.ico')}}"/>
+            <meta name="theme-color" content="#820882">
+            <link rel="shortcut icon" type="image/x-icon" href="{{asset('favicon.ico')}}"/>
 
-            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-            <link rel="stylesheet" href="{{ asset('css/template.css') }}" />
-            
-            <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="{{ asset('css/frontend.css') }}" />
+
+            {% javascripts
+            'bower_components/jquery/dist/jquery.min.js'
+            'bower_components/bootstrap/dist/js/bootstrap.min.js'
+            'js/main.js'
+            output='js/compiled/frontend-login.js' %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
         {% endblock %}
-        </head>
-        <body>
+    </head>
+    <body>
         {% block body %}
             {% block main_content %}
                 <div class="container">
-                    <a class="pimx_logo center-block text-center" href="{{ path('_home') }}">
+                    <a class="pimx_logo center-block text-xs-center m-b-2" href="{{ path('_home') }}">
                         <img src="{{ asset('images/pimxlogo.png') }}" />
                     </a>
                     <form class="login center-block" action="{{ path('login_check') }}" 
@@ -61,5 +65,5 @@
             {% endblock %}
 
         {% endblock %}
-                </body>
-            </html>
+    </body>
+</html>

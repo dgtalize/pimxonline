@@ -8,8 +8,8 @@ $(document).ready(function() {
 
     //no need for datepicker in Chrome
     if (navigator.userAgent.search("Chrome") < 0) {
-        $('input[type="date"]').datepicker({
-            dateFormat: 'yy-mm-dd'
+        $('input[type="date"]').datetimepicker({
+            format: 'YYYY-MM-DD'
         });
     }
                 

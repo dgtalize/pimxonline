@@ -19,7 +19,7 @@ framework:
     default_locale:  "%locale%"
     trusted_proxies: ~
     session:         ~
-    fragments:       ~
+    fragments:       { path: /_fragment }
     http_method_override: true
 
 # Twig Configuration
@@ -33,8 +33,10 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ ]
-    #java: /usr/bin/java
+    bundles:
+        - PimxFrontendBundle
+    write_to:       "%kernel.root_dir%/../public_html"
+    read_from:      "%kernel.root_dir%/../public_html"
     filters:
         cssrewrite: ~
         #closure:
