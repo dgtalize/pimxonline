@@ -20,6 +20,7 @@
     "dependencies": {
         "tether": "v1.2.0",
         "bootstrap": "v4.0.0-alpha.2",
-        "eonasdan-bootstrap-datetimepicker": "^4.17.37"
+        "eonasdan-bootstrap-datetimepicker": "^4.17.37",
+        "jquery-crudlistin": "v1.1.0"
     }
 }

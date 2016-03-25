@@ -4,12 +4,15 @@ namespace Pimx\FrontendBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class MovementType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('name', 'text')
+        $builder
+                ->add('id', HiddenType::class)
+                ->add('name', 'text')
                 ->add('date', 'datetime', array('date_widget' => 'single_text', 'time_widget' => 'single_text'))
                 ->add('type', 'entity', array(
                     'class' => 'PimxModelBundle:MovementType',
@@ -40,12 +43,13 @@ class MovementType extends AbstractType {
                     'class' => 'PimxModelBundle:Label',
                     'property' => 'name',
                     'multiple' => true,
-                    'expanded' => true
+                    'expanded' => true,
+                    'label_attr' => array('class' => '')
                     ))
             ;
     }
 
-    public function getName() {
+    public function getBlockPrefix() {
         return 'movement';
     }
     

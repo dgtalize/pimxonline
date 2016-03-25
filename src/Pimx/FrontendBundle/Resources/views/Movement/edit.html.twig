@@ -1,108 +1,107 @@
 {% extends 'PimxFrontendBundle::layout.html.twig' %}
 
+{% set isAdding = form.id.vars.value is empty %}
+
 {% macro accountsCollectionItem(formData) %}
-	<tr class="crud-item">
-		<td>{{ form_widget(formData.account) }}</td>
-		<td>{{ form_widget(formData.sign) }}</td>
-		<td>{{ form_widget(formData.amount) }}</td>
-		<td>
-			<a href="#" class="btn btn-sm btn-danger delete-item-btn" title="Remove"><i class="fa fa-trash"></i></a>
-		</td>
-	</tr>
+    <tr class="crud-item">
+        <td>{{ form_widget(formData.account) }}</td>
+        <td>{{ form_widget(formData.sign) }}</td>
+        <td>{{ form_widget(formData.amount) }}</td>
+        <td>
+            <a href="#" class="btn btn-sm btn-danger delete-item-btn" title="Remove"><i class="fa fa-trash"></i></a>
+        </td>
+    </tr>
 {% endmacro %}
-	
+
 {% block main_content %}
-    <h1 class="title">{% trans %}movement.edit{% endtrans %}</h1>
+    <h1 class="title">
+        {% if isAdding %}
+            {{'movement.newmovement'|trans}}
+        {% else %}
+            {{'movement.edit'|trans}}
+        {% endif %}
+    </h1>
 
-    <form class="entity_form standard" method="post" {{ form_enctype(form) }}
-          action="{{ path('_movement_edit', {'item_id': form.vars.value.id}) }}">
+    {{form_start(form)}}
 
-        <div class="row">        
-            <section class="col-md-6">
-                <div class="form-group">
-                    {{ form_label(form.name) }}
-                    {{ form_errors(form.name) }}
-                    {{ form_widget(form.name) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.date) }}
-                    {{ form_errors(form.date) }}
-                    {{ form_widget(form.date) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.labels) }}
-                    {{ form_errors(form.labels) }}
-                    {{ form_widget(form.labels) }}
-                </div>
-            </section>
-            <section class="col-md-6">
-                <div class="form-group">
-                    {{ form_label(form.type) }}
-                    {{ form_errors(form.type) }}
-                    {{ form_widget(form.type) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.group) }}
-                    {{ form_errors(form.group) }}
-                    {{ form_widget(form.group) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.notes) }}
-                    {{ form_errors(form.notes) }}
-                    {{ form_widget(form.notes) }}
-                </div>
-                <div class="form-group">
-                    {{ form_errors(form.appliedAccounts) }}
-					<div class="panel panel-default applied-accounts-list">
-						<div class="panel-heading">
-							Applied accounts
-							<a href="#" class="btn btn-xs btn-primary pull-right new-item-btn">
-								<i class="fa fa-plus"></i> Add new
-							</a>
-						</div>
-						<table class="table table-condensed crud-listin"
-							 data-prototype="{{ _self.accountsCollectionItem(form.appliedAccounts.vars.prototype)|e }}">
-							{% for appliedAccount in form.appliedAccounts %}
-								{{ _self.accountsCollectionItem(appliedAccount) }}
-							{% endfor %}
-						</table>
-						{% do form.appliedAccounts.setRendered %}
-					</div>
-                </div>
-            </section>
-        </div>
+    <div class="row">        
+        <section class="col-md-6">
+            {{form_row(form.name)}}
+            {{form_row(form.date)}}
 
-        <div class="row">
-            <section class="col-md-12">
-                {{ form_widget(form) }}
+            {% form_theme form.labels 'PimxFrontendBundle:Movement:_label_list.html.twig' %}
+            {{form_row(form.labels)}}
+        </section>
+        <section class="col-md-6">
+            {{form_row(form.type)}}
+            {{form_row(form.group)}}
+            {{form_row(form.notes)}}
+            <div class="form-group">
+                {{ form_errors(form.appliedAccounts) }}
+                <div class="card applied-accounts-list">
+                    <div class="card-header">
+                        Applied accounts
+                        <a href="#" class="btn btn-sm btn-primary pull-xs-right new-item-btn">
+                            <i class="fa fa-plus"></i> Add new
+                        </a>
+                    </div>
+                    <table class="table table-sm crud-listin"
+                           data-prototype="{{ _self.accountsCollectionItem(form.appliedAccounts.vars.prototype)|e }}">
+                        {% for appliedAccount in form.appliedAccounts %}
+                            {{ _self.accountsCollectionItem(appliedAccount) }}
+                        {% endfor %}
+                    </table>
+                    {% do form.appliedAccounts.setRendered %}
+                </div>
+            </div>
+        </section>
+    </div>
 
-                <div class="btn-group" role="group" aria-label="...">
-                    <button type="submit" class="btn btn-primary" name="button_action" value="save" >
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save
+    <div class="row">
+        <section class="col-md-12">
+            {{ form_widget(form) }}
+
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="submit" class="btn btn-primary" name="button_action" value="save" >
+                    <i class="fa fa-check"></i> Save
+                </button>
+                {% if isAdding %}
+                    <button type="submit" class="btn btn-primary" name="button_action" value="save_and_new" >
+                        <i class="fa fa-check"></i>
+                        <i class="fa fa-plus"></i>
+                        Save and New
                     </button>
-                    <a class="btn btn-default"
+                    <button type="submit" class="btn btn-secondary" name="button_action" value="save_and_new_based" >
+                        <i class="fa fa-check"></i>
+                        <i class="fa fa-copy"></i>
+                        Save and New (based on...)
+                    </button>
+                {% else %}
+                    <a class="btn btn-secondary"
                        href="{{ path('_movement_new', {'base_on_id': form.vars.value.id}) }}">
-                        <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
+                        <i class="fa fa-copy"></i>
                         Create based on...
                     </a>
-                </div>
-            </section>
-        </div>
-    </form>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+
+    {{form_end(form)}}
 
 {% endblock %}
 
 
 {% block js_bottom %}
 
-    <script src="{{asset('js/jquery.crudlistin.min.js')}}"></script>
+    <script src="{{asset('bower_components/jquery-crudlistin/dist/jquery.crudlistin.min.js')}}"></script>
     <script>
         $(document).ready(function () {
             $('.crud-listin').crudlistin({
                 newButton: $('.applied-accounts-list .new-item-btn'),
-				beforeRemoveElement: function() {
-					return confirm('Delete item?');
-				}
+                beforeRemoveElement: function () {
+                    return confirm('Delete item?');
+                }
             });
         });
     </script>

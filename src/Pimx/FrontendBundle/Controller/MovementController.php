@@ -5,6 +5,7 @@ namespace Pimx\FrontendBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Pimx\ModelBundle\Pagination\Paginator;
+use Pimx\FrontendBundle\Form\Type\MovementType;
 use Pimx\FrontendBundle\Form\Type\MovementFilterType;
 use Pimx\ModelBundle\Entity\Movement;
 
@@ -42,16 +43,19 @@ class MovementController extends Controller {
     public function newAction(Request $request) {
         $baseOnId = $request->get("base_on_id");
         /** @var $movement \Pimx\ModelBundle\Entity\Movement */
-        $movement = null;
-        if($baseOnId){
-            $basedOnMovement = $this->getDoctrine()->getRepository('PimxModelBundle:Movement')->find($baseOnId);
-            $movement = clone $basedOnMovement;
-        }else{
-            $movement = new \Pimx\ModelBundle\Entity\Movement();
-        }        
-        $movement->setDate(new \DateTime());
+        $movement = new \Pimx\ModelBundle\Entity\Movement();
 
-        return $this->processSaveForm($request, $movement, 'PimxFrontendBundle:Movement:new.html.twig');
+        //If it's get, prepare/initialize movement
+        if ($request->isMethod(Request::METHOD_GET)) {
+            if ($baseOnId) {
+                $basedOnMovement = $this->getDoctrine()->getRepository('PimxModelBundle:Movement')->find($baseOnId);
+                $movement = clone $basedOnMovement;
+                $movement->setId(null);
+            }
+            $movement->setDate(new \DateTime());
+        }
+
+        return $this->processSaveForm($request, $movement, 'PimxFrontendBundle:Movement:edit.html.twig');
     }
 
     public function editAction(Request $request) {
@@ -71,24 +75,23 @@ class MovementController extends Controller {
                 ->getRepository('PimxModelBundle:Movement')
                 ->find($item_id);
 
-		try{
-			$em = $this->getDoctrine()->getManager();
-			$em->remove($movement);
-			$em->flush();
-			
-			$translator = $this->get('translator');
-			$this->addFlash('success', 
-					$translator->trans('text.elementdeleted', array('%element%' => $translator->trans('text.movement')))
-			);
-		} catch (Exception $ex) {
-			$this->addFlash('danger', 'An error ocurred deleting the movement');
-		}
-			
-		return $this->redirectToRoute('_movement');
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($movement);
+            $em->flush();
+
+            $translator = $this->get('translator');
+            $this->addFlash('success', $translator->trans('text.elementdeleted', array('%element%' => $translator->trans('text.movement')))
+            );
+        } catch (Exception $ex) {
+            $this->addFlash('danger', 'An error ocurred deleting the movement');
+        }
+
+        return $this->redirectToRoute('_movement');
     }
-	
+
     private function processSaveForm(Request $request, Movement $movement, $view) {
-        $form = $this->createForm(new \Pimx\FrontendBundle\Form\Type\MovementType(), $movement);
+        $form = $this->createForm(new MovementType(), $movement);
         $form->handleRequest($request);
 
         //Validate before save
@@ -100,13 +103,12 @@ class MovementController extends Controller {
 
             $translator = $this->get('translator');
             $this->get('session')->getFlashBag()->add(
-                    'success',
-                    $translator->trans('text.elementsaved', array('%element%' => $translator->trans('text.movement')))
+                    'success', $translator->trans('text.elementsaved', array('%element%' => $translator->trans('text.movement')))
             );
-            
-            switch ($request->request->get("button_action")){
+
+            switch ($request->request->get("button_action")) {
                 case 'save_and_new':
-                    return $this->redirect($this->generateUrl('_movement_new')); 
+                    return $this->redirect($this->generateUrl('_movement_new'));
                 case 'save_and_new_based':
                     return $this->redirect($this->generateUrl('_movement_new', array('base_on_id' => $movement->getId())));
                 default:

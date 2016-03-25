@@ -4,16 +4,31 @@
 //var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
 //var $newLinkLi = $('<li></li>').append($addTagLink);
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     //no need for datepicker in Chrome
     if (navigator.userAgent.search("Chrome") < 0) {
-        $('input[type="date"]').datetimepicker({
-            format: 'YYYY-MM-DD'
+        $('.input-group.date').datetimepicker({
+            format: 'YYYY-MM-DD',
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        });
+        $('.input-group.time').datetimepicker({
+            format: 'HH:mm',
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
         });
     }
-                
-    $('a.add_subitem, button.add_subitem').click(function(ev) {
+
+    $('a.add_subitem, button.add_subitem').click(function (ev) {
         // Gets the container of items
         var fieldsContainer = $(this).parent('.fields_container');
 
@@ -29,7 +44,7 @@ $(document).ready(function() {
 
     });
 
-    $(' .form-group .fields_container .form-group').each(function(){
+    $(' .form-group .fields_container .form-group').each(function () {
         addTagFormDeleteLink($(this));
     });
 });
@@ -60,11 +75,11 @@ function addTagForm(fieldsContainer, addButton) {
 
 function addTagFormDeleteLink(form_row) {
     var container = $(form_row).children('.fields_container');
-    
+
     var removeButton = $('<a class="btn btn-danger del_subitem">delete</a>');
     container.append(removeButton);
 
-    removeButton.click(function(e) {
+    removeButton.click(function (e) {
         // prevent the link from creating a "#" on the URL
         e.preventDefault();
 

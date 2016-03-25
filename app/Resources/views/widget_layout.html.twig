@@ -1,0 +1,44 @@
+{% use "bootstrap_3_layout.html.twig" %}
+
+{% block form_widget_simple -%}
+    {{- parent() -}}
+    {% if help is defined %}
+        <p class="help-block">{{ help }}</p>
+    {% endif %}
+{%- endblock form_widget_simple %}
+
+{%- block number_widget -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' number')|trim}) -%}
+    {{- parent() -}}
+{%- endblock number_widget -%}
+
+{% block money_widget -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' money')|trim}) -%}
+    {{- parent() -}}
+{%- endblock money_widget %}
+
+{% block date_widget -%}
+    {% if widget == 'single_text' %}
+        <div class="input-group date">
+            {{- block('form_widget_simple') -}}
+            <span class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </span>
+        </div>
+    {% else -%}
+        {{- parent() -}}
+    {% endif %}
+{%- endblock date_widget %}
+
+{% block time_widget -%}
+    {% if widget == 'single_text' %}
+        <div class="input-group time">
+        {{- block('form_widget_simple') -}}
+            <span class="input-group-addon">
+                <i class="fa fa-clock-o"></i>
+            </span>
+        </div>
+    {% else -%}
+        {{- parent() -}}
+    {% endif %}
+{%- endblock time_widget %}

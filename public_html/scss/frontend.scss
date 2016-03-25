@@ -2,22 +2,25 @@
 
 @import '../bower_components/bootstrap/scss/bootstrap';
 
+body {
+    padding-top: 55px;
+}
+
+/* Header */
 body > header {
     border-bottom: 1px solid #D0D0D0;
     -moz-box-shadow: 0px 1px 3px 1px #C0C0C0;
     -webkit-box-shadow: 0px 1px 3px 1px #C0C0C0;
     box-shadow: 0px 1px 3px 1px #C0C0C0;
-}
-
-body > header .pimx_logo {
-}
-body > header .pimx_logo img {
-    max-height: 25px;
+    
+    .pimx_logo img {
+        max-height: 25px;
+    }
 }
 
 /* Navbar */
 .navbar-nav .nav-item {
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(xs) {
         float: none;
         &:first-child {
             clear: both;
@@ -28,48 +31,31 @@ body > header .pimx_logo img {
 /* ****** Login ***** */
 form.login {
     max-width: 400px;
-}
-form.login .form-control {
-    position: relative;
-    height: auto;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 10px;
-    font-size: 16px;
-}
 
-form.login input[type="text"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-form.login input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+    }
+    input[type="text"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
 }
 
 /* *********** Main Content ************** */
 #main_content {
-    padding-top: 52px;
     padding-bottom: 20px;
-}
-
-/* ******************** General ************************** */
-h1 {
-    margin: 0 -10px 10px -10px;
-    padding: 10px;
-    font-weight: bold;
-    font-size: x-large;
-    background-color: #F6F6F6;
-}
-h2 {
-    margin: 10px 0 10px 0;
-    font-weight: bold;
-    font-size: large;
-    background-color: #F6F6F6;
-    padding: 5px;
 }
 
 /* ********************* Tables ********************** */
@@ -80,15 +66,6 @@ table.table td.boolean {
     text-align: center;
 }
 
-
-/* *************  Filters  ************* */
-section.filters {
-    /*    height: 40px;
-        overflow: hidden;*/
-}
-section.filters h2 {
-    cursor: pointer;
-}
 
 /* ****************** Lists ************************* */
 ul.labels {
@@ -115,46 +92,9 @@ ul.labels li a.label {
     font-size: 12pt;
 }
 
-/* ****************** Forms ************************* */
-/* Specifics */
-@media (min-width: 768px) {
-    form.standard .form-group input[type=date],
-    form.standard .form-group input[type=time] {
-        width: 50%;
-        display: inline-block;
-    }
-}
-form.standard #movement_appliedAccounts .fields_container {
-
-}
-form.standard #movement_appliedAccounts .fields_container .form-group {
-    float: left;
-}
-form.standard #movement_appliedAccounts .form-group {
-
-}
-form.standard #movement_appliedAccounts label {
-    display: none;
-}
-form.standard #movement_appliedAccounts input[type=text],
-form.standard #movement_appliedAccounts input[type=number],
-form.standard #movement_appliedAccounts select {
-    width: 120px;
-}
-
-form.standard #movement_labels .checkbox {
-    display: inline-block;
-    width: 150px;
-}
-form.standard #movement_labels input {
-
-}
-form.standard #movement_labels label {
-
-}
 
 table#movements_grid td.datetime {
-    font-size: 9pt;
+    font-size: 0.8em;
     white-space: nowrap;
 }
 
