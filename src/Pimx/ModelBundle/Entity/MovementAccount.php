@@ -17,7 +17,7 @@ class MovementAccount
     /**
      * @var integer
      */
-    private $sign;
+    private $sign = 1;
 
     /**
      * @var float

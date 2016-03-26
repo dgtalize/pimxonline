@@ -3,6 +3,8 @@
 namespace Pimx\FrontendBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -13,11 +15,14 @@ class MovementAccountType extends AbstractType {
                     'class' => 'PimxModelBundle:Account',
                     'property' => 'description',
                 ))
-                ->add('sign', 'choice', array(
-                    'choices' => array('1' => 'In', '-1' => 'Out'),
+//                ->add('sign', 'choice', array(
+//                    'choices' => array('1' => 'In', '-1' => 'Out'),
+//                    'required' => true
+//                ))
+                ->add('sign', HiddenType::class, array(
                     'required' => true
                 ))
-                ->add('amount', 'number')
+                ->add('amount', NumberType::class)
             ;
     }
 

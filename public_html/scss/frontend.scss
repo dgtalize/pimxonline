@@ -12,7 +12,7 @@ body > header {
     -moz-box-shadow: 0px 1px 3px 1px #C0C0C0;
     -webkit-box-shadow: 0px 1px 3px 1px #C0C0C0;
     box-shadow: 0px 1px 3px 1px #C0C0C0;
-    
+
     .pimx_logo img {
         max-height: 25px;
     }
@@ -92,10 +92,27 @@ ul.labels li a.label {
     font-size: 12pt;
 }
 
-
+/* ***************** Movements ****************** */
 table#movements_grid td.datetime {
     font-size: 0.8em;
     white-space: nowrap;
+}
+
+.applied-accounts-list .sign-btn {
+    &::after {
+        font-family: "FontAwesome";
+    }
+    &.btn-danger {
+        &::after {
+            content: '\f063';
+        }
+    }
+    &.btn-success {
+        background-color: $brand-success;
+        &::after {
+            content: '\f062';
+        }
+    }
 }
 
 /* ****************** Reports ************************* */

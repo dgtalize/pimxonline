@@ -4,9 +4,13 @@
 
 {% macro accountsCollectionItem(formData) %}
     <tr class="crud-item">
-        <td>{{ form_widget(formData.account) }}</td>
-        <td>{{ form_widget(formData.sign) }}</td>
-        <td>{{ form_widget(formData.amount) }}</td>
+        <td>{{ form_widget(formData.account, {attr: {class: 'form-control-sm'} }) }}</td>
+        <td>
+            <button class="btn btn-sm sign-btn {{formData.sign.vars.value == 1 ? 'btn-success' : 'btn-danger'}}" href="#">
+            </button>
+            {{ form_widget(formData.sign) }}
+        </td>
+        <td>{{ form_widget(formData.amount, {attr: {class: 'form-control-sm'} }) }}</td>
         <td>
             <a href="#" class="btn btn-sm btn-danger delete-item-btn" title="Remove"><i class="fa fa-trash"></i></a>
         </td>
@@ -101,8 +105,28 @@
                 newButton: $('.applied-accounts-list .new-item-btn'),
                 beforeRemoveElement: function () {
                     return confirm('Delete item?');
+                },
+                afterAddElement: function (element) {
+                    prepareSignButton(element.find('.sign-btn'));
                 }
             });
+            
+            prepareSignButton($('.applied-accounts-list .sign-btn'));
         });
+
+        function prepareSignButton(button) {
+            button
+                    .click(function () {
+                        $(this).toggleClass('btn-success').toggleClass('btn-danger');
+
+                        var signHidden = $(this).closest('td').find('input[type=hidden]');
+                        if ($(this).hasClass('btn-success')) {
+                            signHidden.val('1');
+                        } else {
+                            signHidden.val('-1');
+                        }
+                        return false;
+                    });
+        }
     </script>
 {% endblock %}

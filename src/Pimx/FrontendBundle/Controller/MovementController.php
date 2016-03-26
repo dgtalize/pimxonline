@@ -23,11 +23,6 @@ class MovementController extends Controller {
         $pageSize = $this->container->getParameter('grid_page_size');
         $currentPage = $request->get('page', 1);
         $paginator = new Paginator($pageSize, $currentPage);
-//        $movements = $this->getDoctrine()
-//                ->getRepository('PimxModelBundle:Movement')
-//                ->findBy(array(), array('date' => 'DESC'), $paginator->getPageSize(), // limit
-//                $paginator->getOffset() // offset
-//        );
         $movements = $this->getDoctrine()
                 ->getRepository('PimxModelBundle:Movement')
                 ->findByFilters($paginator, $filters)
@@ -69,6 +64,7 @@ class MovementController extends Controller {
     }
 
     public function deleteAction(Request $request) {
+        $logger = $this->get('logger');
         $item_id = $request->get('item_id');
 
         $movement = $this->getDoctrine()
@@ -83,7 +79,8 @@ class MovementController extends Controller {
             $translator = $this->get('translator');
             $this->addFlash('success', $translator->trans('text.elementdeleted', array('%element%' => $translator->trans('text.movement')))
             );
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
+            $logger->error('An error ocurred deleting the movement. ' . $ex->getMessage());
             $this->addFlash('danger', 'An error ocurred deleting the movement');
         }
 
@@ -102,7 +99,7 @@ class MovementController extends Controller {
             $em->flush();
 
             $translator = $this->get('translator');
-            $this->get('session')->getFlashBag()->add(
+            $this->addFlash(
                     'success', $translator->trans('text.elementsaved', array('%element%' => $translator->trans('text.movement')))
             );
 
