@@ -49,6 +49,11 @@ _note_edit:
     pattern:  /note/edit/{item_id}
     defaults: { _controller: PimxFrontendBundle:Note:edit }
     
+database_backup:
+    pattern:  /database/backup
+    defaults: { _controller: PimxFrontendBundle:Database:backup }
+    
+    
 login:
     pattern:   /login
     defaults:  { _controller: PimxFrontendBundle:Security:login }

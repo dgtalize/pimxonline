@@ -206,6 +206,14 @@
                 <source>text.elementdeleted</source>
                 <target>The %element% has been succesfully deleted!</target>
             </trans-unit>
+            <trans-unit id="52">
+                <source>text.backup</source>
+                <target>Backup</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>menu.database</source>
+                <target>Database</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

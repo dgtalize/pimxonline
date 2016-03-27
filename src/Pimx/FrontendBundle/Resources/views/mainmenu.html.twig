@@ -28,6 +28,12 @@
                 </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="{{ path('_note') }}">{{ 'menu.notes'|trans }}</a></li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'menu.database'|trans }}</a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a class="dropdown-item" href="{{ path('database_backup') }}">{{ 'text.backup'|trans }}</a></li>
+                </ul>
+            </li>
         </ul>
         <ul class="nav navbar-nav pull-xs-right">
             <li class="nav-item"><a class="nav-link" href="{{ path('logout') }}" class="">{{ 'user.logout'|trans }}</a></li>
