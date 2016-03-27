@@ -53,22 +53,10 @@
             </header>
 
             <section id="main_content" class="container">
-                {% for flashMessage in app.session.flashbag.get('notice') %}
-                    <div class="alert alert-dismissible alert-info"> 
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                        </button>
-                        {{ flashMessage }} 
-                    </div>
-                {% endfor %}
-                {% for flashMessage in app.session.flashbag.get('success') %}
-                    <div class="alert alert-dismissible alert-success"> 
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                        </button>
-                        {{ flashMessage }} 
-                    </div>
-                {% endfor %}
+
+                {% block flash %}
+                    {{ include('PimxFrontendBundle::_flash_messages.html.twig') }}
+                {% endblock %}
 
                 {% block main_content %}
                 {% endblock %}

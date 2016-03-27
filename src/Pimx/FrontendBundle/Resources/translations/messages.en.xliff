@@ -214,6 +214,14 @@
                 <source>menu.database</source>
                 <target>Database</target>
             </trans-unit>
+            <trans-unit id="54">
+                <source>database.backup</source>
+                <target>Backup Database</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>database.backup_error</source>
+                <target>An error ocurred performing the database backup.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -12,3 +12,6 @@
 /app/logs
 /public_html/images/Thumbs.db
 /public_html/bundles
+/public_html/css/compiled
+/public_html/js/compiled
+/db
