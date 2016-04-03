@@ -93,6 +93,14 @@ ul.labels li a.label {
 }
 
 /* ***************** Movements ****************** */
+#movement_labels {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
 table#movements_grid td.datetime {
     font-size: 0.8em;
     white-space: nowrap;
