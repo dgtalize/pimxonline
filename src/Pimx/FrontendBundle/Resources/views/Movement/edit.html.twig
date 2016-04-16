@@ -8,7 +8,11 @@
         <td>
             <button class="btn btn-sm sign-btn {{formData.sign.vars.value == 1 ? 'btn-success' : 'btn-danger'}}" href="#">
             </button>
-            {{ form_widget(formData.sign) }}
+            {% set signValue = '-1' %}
+            {% if not formData.sign.vars.value is empty %}
+                {% set signValue = formData.sign.vars.value %}
+            {% endif %}
+            {{ form_widget(formData.sign, {'attr': {'value': signValue} }) }}
         </td>
         <td>{{ form_widget(formData.amount, {attr: {class: 'form-control-sm'} }) }}</td>
         <td>
