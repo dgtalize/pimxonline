@@ -13,17 +13,27 @@ body > header {
     -webkit-box-shadow: 0px 1px 3px 1px #C0C0C0;
     box-shadow: 0px 1px 3px 1px #C0C0C0;
 
-    .pimx_logo img {
-        max-height: 25px;
-    }
 }
 
 /* Navbar */
-.navbar-nav .nav-item {
-    @include media-breakpoint-down(xs) {
-        float: none;
-        &:first-child {
-            clear: both;
+.navbar {
+    .navbar-brand {
+        img {
+            max-height: 25px;
+        }
+        @include media-breakpoint-down(xs) {
+            float: none;
+            display: inline-block;
+        }
+    }
+    .navbar-nav {
+        .nav-item {
+            @include media-breakpoint-down(xs) {
+                float: none;
+                &:first-child {
+                    clear: both;
+                }
+            }
         }
     }
 }
@@ -66,6 +76,10 @@ table.table td.boolean {
     text-align: center;
 }
 
+/* ********************* Forms ********************** */
+.form-inline {
+
+}
 
 /* ****************** Lists ************************* */
 ul.labels {
@@ -101,9 +115,17 @@ ul.labels li a.label {
     }
 }
 
-table#movements_grid td.datetime {
-    font-size: 0.8em;
-    white-space: nowrap;
+table#movements_grid { 
+    tr.future {
+        td {
+            color: $gray-light;
+            font-style: italic;
+        }
+    }
+    td.datetime {
+        font-size: 0.8em;
+        white-space: nowrap;
+    }
 }
 
 .applied-accounts-list .sign-btn {

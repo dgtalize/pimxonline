@@ -55,7 +55,7 @@
             </thead>
             <tbody>
                 {% for item in items %}
-                    <tr>
+                    <tr class="{{item.date > date() ? 'future' : ''}}">
                         <td>
                             <a href="{{ path('_movement_edit', {'item_id': item.id}) }}">
                                 {{ item.name }}
