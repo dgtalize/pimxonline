@@ -15,3 +15,5 @@
 /public_html/css/compiled
 /public_html/js/compiled
 /db
+/.idea
+/app/config/parameters.yml
