@@ -19,13 +19,15 @@
         {% stylesheets
         'bower_components/tether/dist/css/tether.min.css'
         'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
+        'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css'
+        '../node_modules/select2-bootstrap-theme/dist/select2-bootstrap.min.css'
         'css/frontend.css'
         filter='cssrewrite' output='css/compiled/frontend.css' %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
 
         {% javascripts
-        '../node_modules/jquery/dist/jquery.min.js'
+        'bower_components/jquery/dist/jquery.min.js'
         'bower_components/tether/dist/js/tether.min.js'
         '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
         'bower_components/moment/min/moment.min.js'
@@ -38,6 +40,7 @@
         output='js/compiled/frontend.js' %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     {% endblock %}
 </head>
 <body>
@@ -52,7 +55,7 @@
         </header>
     {% endif %}
 
-    <section id="main_content" class="container">
+    <section id="main_content" class="container pt-2">
 
         {% block flash %}
             {{ include('PimxFrontendBundle::_flash_messages.html.twig') }}

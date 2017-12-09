@@ -108,11 +108,11 @@
             </trans-unit>
             <trans-unit id="27">
                 <source>pagination.prev</source>
-                <target>&lt; Previous</target>
+                <target>Previous</target>
             </trans-unit>
             <trans-unit id="28">
                 <source>pagination.next</source>
-                <target>Next &gt;</target>
+                <target>Next</target>
             </trans-unit>
             <trans-unit id="29">
                 <source>text.group</source>

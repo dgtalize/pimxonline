@@ -1,26 +1,26 @@
 {% set queryParams = app.request.query.all %}
-<ul class="pager">
-    <li class="previous">
+<nav>
+    <ul class="pagination">
         {% if(paginator.currentPage > 1) %}
-        <a href="{{ path(
-                        app.request.attributes.get('_route'),
-                        queryParams|merge({'page': paginator.currentPage - 1})
-                    ) }}">
-            {{'pagination.prev'|trans}}
-        </a>
+            <li class="page-item">
+                <a href="{{ path(app.request.attributes.get('_route'), queryParams|merge({'page': paginator.currentPage - 1}) ) }}"
+                   class="page-link">
+                    <i class="fa fa-angle-left"></i> {{ 'pagination.prev'|trans }}
+                </a>
+            </li>
         {% else %}
-        <span>
-            {{'pagination.prev'|trans}}
-        </span>
+            <li class="page-item disabled">
+                <a class="page-link" href="#">
+                    <i class="fa fa-angle-left"></i> {{ 'pagination.prev'|trans }}
+                </a>
+            </li>
         {% endif %}
-    </li>
-    <li class="next">
-        <a href="{{ path(
-                    app.request.attributes.get('_route'),
-                    queryParams|merge({'page': paginator.currentPage + 1})
-                ) }}">
-            {{'pagination.next'|trans}}
-        </a>
-            
-    </li>
-</ul>
+        <li class="page-item">
+            <a href="{{ path(app.request.attributes.get('_route'), queryParams|merge({'page': paginator.currentPage + 1})) }}"
+               class="page-link">
+                {{ 'pagination.next'|trans }} <i class="fa fa-angle-right"></i>
+            </a>
+
+        </li>
+    </ul>
+</nav>

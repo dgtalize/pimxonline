@@ -4,7 +4,7 @@
 
 {% macro accountsCollectionItem(formData) %}
     <tr class="crud-item">
-        <td>{{ form_widget(formData.account, {attr: {class: 'form-control-sm'} }) }}</td>
+        <td>{{ form_widget(formData.account, {attr: {class: 'form-control-sm select2'} }) }}</td>
         <td>
             <button class="btn btn-sm sign-btn {{formData.sign.vars.value == 1 ? 'btn-success' : 'btn-danger'}}" href="#">
             </button>
@@ -42,7 +42,7 @@
         </section>
         <section class="col-md-6">
             {{form_row(form.type)}}
-            {{form_row(form.group)}}
+            {{form_row(form.group, {'attr': {'class': 'select2'}} )}}
             {{form_row(form.notes)}}
             <div class="form-group">
                 {{ form_errors(form.appliedAccounts) }}
@@ -112,6 +112,7 @@
                 },
                 afterAddElement: function (element) {
                     prepareSignButton(element.find('.sign-btn'));
+                    element.find('.select2').select2();
                 }
             });
             

@@ -85,11 +85,7 @@ ul.labels li a.label {
 
 /* ***************** Movements ****************** */
 #movement_labels {
-    &::after {
-        content: "";
-        display: table;
-        clear: both;
-    }
+    @extend .row;
 }
 
 table#movements_grid { 
