@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-light" role="navigation">
 
+    <a class="navbar-brand" href="{{ path('_home') }}">
+        <img src="{{ asset('images/pimxlogo.png') }}" alt="PIM Xtreme"/>
+    </a>
     <button class="navbar-toggler" type="button"
             data-toggle="collapse" data-target="#top-menu-collapsible"
             aria-controls="top-menu-collapsible" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,9 +10,6 @@
     </button>
 
     <div class="collapse navbar-collapse" id="top-menu-collapsible">
-        <a class="navbar-brand" href="/">
-            <img src="{{ asset('images/pimxlogo.png') }}" alt="PIM Xtreme"/>
-        </a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('_account') }}">{{ 'menu.accounts'|trans }}</a>

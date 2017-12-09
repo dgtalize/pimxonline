@@ -69,7 +69,7 @@
         <section class="col-md-12">
             {{ form_widget(form) }}
 
-            <div class="btn-group" role="group" aria-label="...">
+            <div class="btn-group" role="group" aria-label="Actions">
                 <button type="submit" class="btn btn-primary" name="button_action" value="save" >
                     <i class="fa fa-check"></i> Save
                 </button>
@@ -77,18 +77,18 @@
                     <button type="submit" class="btn btn-primary" name="button_action" value="save_and_new" >
                         <i class="fa fa-check"></i>
                         <i class="fa fa-plus"></i>
-                        Save and New
+                        <span class="d-sm-inline d-none">Save and New</span>
                     </button>
                     <button type="submit" class="btn btn-secondary" name="button_action" value="save_and_new_based" >
                         <i class="fa fa-check"></i>
                         <i class="fa fa-copy"></i>
-                        Save and New (based on...)
+                        <span class="d-sm-inline d-none">Save and New (based on...)</span>
                     </button>
                 {% else %}
                     <a class="btn btn-secondary"
                        href="{{ path('_movement_new', {'base_on_id': form.vars.value.id}) }}">
                         <i class="fa fa-copy"></i>
-                        Create based on...
+                        <span class="d-sm-inline d-none">Create based on...</span>
                     </a>
                 {% endif %}
             </div>
