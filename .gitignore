@@ -17,3 +17,4 @@
 /db
 /.idea
 /app/config/parameters.yml
+/node_modules

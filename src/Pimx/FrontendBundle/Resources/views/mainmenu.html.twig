@@ -1,33 +1,43 @@
-<nav class="navbar navbar-full navbar-light bg-faded" role="navigation">
-    <button class="navbar-toggler hidden-sm-up pull-xs-left" type="button" 
-            data-toggle="collapse" data-target="#top-menu-collapsible">
-        <i class="fa fa-navicon"></i>
+<nav class="navbar navbar-expand-sm sticky-top navbar-light bg-light" role="navigation">
+
+    <button class="navbar-toggler" type="button"
+            data-toggle="collapse" data-target="#top-menu-collapsible"
+            aria-controls="top-menu-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="hidden-sm-up navbar-brand pimx_logo" href="{{ path('_home') }}">
-        <img src="{{ asset('images/pimxlogo.png') }}" alt="PIM Xtreme" />
-    </a>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-toggleable-xs" id="top-menu-collapsible">
-        <a class="navbar-brand hidden-xs-down" href="/">
-            <img src="{{ asset('images/pimxlogo.png') }}" alt="PIM Xtreme" />
+
+    <div class="collapse navbar-collapse" id="top-menu-collapsible">
+        <a class="navbar-brand" href="/">
+            <img src="{{ asset('images/pimxlogo.png') }}" alt="PIM Xtreme"/>
         </a>
-        <ul class="menu nav navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="{{ path('_account') }}">{% trans %}menu.accounts{%endtrans%}</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ path('_currency') }}">{{ 'menu.currencies'|trans }}</a></li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'menu.movements'|trans }}</a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a class="dropdown-item" href="{{ path('_movement') }}">{{ 'text.list'|trans }}</a></li>
-                    <li><a class="dropdown-item" href="{{ path('_movement_new') }}">{{ 'text.add'|trans }}</a></li>
-                </ul>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('_account') }}">{% trans %}menu.accounts{% endtrans %}</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="{{ path('_label') }}">{% trans %}menu.labels{%endtrans%}</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('_currency') }}">{{ 'menu.currencies'|trans }}</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="movementsDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ 'menu.movements'|trans }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="movementsDropdown">
+                    <a class="dropdown-item" href="{{ path('_movement') }}">{{ 'text.list'|trans }}</a>
+                    <a class="dropdown-item" href="{{ path('_movement_new') }}">{{ 'text.add'|trans }}</a>
+                </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="{{ path('_label') }}">{% trans %}
+                    menu.labels{% endtrans %}</a></li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ 'menu.reports'|trans }} </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a class="dropdown-item" href="{{ path('_report_fin_monthbalance') }}">{{ 'report.monthbalance'|trans }}</a></li>
-                    <li><a class="dropdown-item" href="{{ path('_report_fin_accountbalance') }}">{{ 'report.accountbalance'|trans }}</a></li>
-                    <li><a class="dropdown-item" href="{{ path('_report_fin_groupbalance') }}">{{ 'report.groupbalance'|trans }}</a></li>
+                    <li><a class="dropdown-item"
+                           href="{{ path('_report_fin_monthbalance') }}">{{ 'report.monthbalance'|trans }}</a></li>
+                    <li><a class="dropdown-item"
+                           href="{{ path('_report_fin_accountbalance') }}">{{ 'report.accountbalance'|trans }}</a></li>
+                    <li><a class="dropdown-item"
+                           href="{{ path('_report_fin_groupbalance') }}">{{ 'report.groupbalance'|trans }}</a></li>
                 </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="{{ path('_note') }}">{{ 'menu.notes'|trans }}</a></li>
@@ -39,7 +49,8 @@
             </li>
         </ul>
         <ul class="nav navbar-nav pull-xs-right">
-            <li class="nav-item"><a class="nav-link" href="{{ path('logout') }}" class="">{{ 'user.logout'|trans }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ path('logout') }}" class="">{{ 'user.logout'|trans }}</a>
+            </li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>

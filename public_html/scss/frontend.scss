@@ -1,46 +1,23 @@
 @import 'variables';
 
-@import '../bower_components/bootstrap/scss/bootstrap';
+// Bootstrap
+@import '../../node_modules/bootstrap/scss/bootstrap';
 
-body {
-    padding-top: 55px;
-}
+
+// --------------- Custom styles
 
 /* Header */
-body > header {
-    border-bottom: 1px solid #D0D0D0;
-    -moz-box-shadow: 0px 1px 3px 1px #C0C0C0;
-    -webkit-box-shadow: 0px 1px 3px 1px #C0C0C0;
-    box-shadow: 0px 1px 3px 1px #C0C0C0;
-
-}
-
-/* Navbar */
-.navbar {
-    .navbar-brand {
-        img {
-            max-height: 25px;
-        }
-        @include media-breakpoint-down(xs) {
-            float: none;
-            display: inline-block;
-        }
-    }
-    .navbar-nav {
-        .nav-item {
-            @include media-breakpoint-down(xs) {
-                float: none;
-                &:first-child {
-                    clear: both;
-                }
-            }
-        }
+.navbar-brand {
+    img {
+        max-height: 2rem;
     }
 }
 
 /* ****** Login ***** */
 form.login {
     max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 
     .form-control {
         position: relative;
@@ -118,7 +95,7 @@ ul.labels li a.label {
 table#movements_grid { 
     tr.future {
         td {
-            color: $gray-light;
+            color: $gray-600;
             font-style: italic;
         }
     }
@@ -138,7 +115,7 @@ table#movements_grid {
         }
     }
     &.btn-success {
-        background-color: $brand-success;
+        background-color: theme-color("success");
         &::after {
             content: '\f062';
         }

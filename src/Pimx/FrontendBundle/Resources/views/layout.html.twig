@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        {% block head %}
-            <title>{% block title 'PIM Xtreme Online' %}</title>
+<head>
+    {% block head %}
+        <title>{% block title 'PIM Xtreme Online' %}</title>
 
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta name="mobile-web-app-capable" content="yes">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="theme-color" content="#820882">
-            <link rel="shortcut icon" type="image/x-icon" href="{{asset('favicon.ico')}}"/>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="theme-color" content="#820882">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-            {#
-            <link rel="stylesheet" href="{{ asset('css/frontend.css') }}" />            
-            #}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        {#
+        <link rel="stylesheet" href="{{ asset('css/frontend.css') }}" />
+        #}
 
-            {% stylesheets
-                'bower_components/tether/dist/css/tether.min.css'
-                'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
-                'css/frontend.css'
-                filter='cssrewrite' output='css/compiled/frontend.css' %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-            {% endstylesheets %}
+        {% stylesheets
+        'bower_components/tether/dist/css/tether.min.css'
+        'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
+        'css/frontend.css'
+        filter='cssrewrite' output='css/compiled/frontend.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
 
-            {% javascripts
-            'bower_components/jquery/dist/jquery.min.js'
-            'bower_components/tether/dist/js/tether.min.js'
-            'bower_components/bootstrap/dist/js/bootstrap.min.js'
-            'bower_components/moment/min/moment.min.js'
-            'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
-            'js/knockout-2.2.1.js'
-            'js/globalize.min.js'
-            'js/dx.chartjs.js'
-            'js/forms.js'
-            'js/main.js'
-            output='js/compiled/frontend.js' %}
-            <script src="{{ asset_url }}"></script>
-            {% endjavascripts %}
+        {% javascripts
+        'bower_components/jquery/dist/jquery.min.js'
+        'bower_components/tether/dist/js/tether.min.js'
+        'bower_components/bootstrap/dist/js/bootstrap.min.js'
+        'bower_components/moment/min/moment.min.js'
+        'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+        'js/knockout-2.2.1.js'
+        'js/globalize.min.js'
+        'js/dx.chartjs.js'
+        'js/forms.js'
+        'js/main.js'
+        output='js/compiled/frontend.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    {% if is_granted('ROLE_USER') %}
+        {{ include( 'PimxFrontendBundle::mainmenu.html.twig' ) }}
+    {% else %}
+        <header class="">
+            <a class="pimx_logo" href="{{ path('_home') }}">
+                <img src="{{ asset('images/pimxlogo.png') }}"/>
+            </a>
+        </header>
+    {% endif %}
+
+    <section id="main_content" class="container">
+
+        {% block flash %}
+            {{ include('PimxFrontendBundle::_flash_messages.html.twig') }}
         {% endblock %}
-    </head>
-    <body>
-        {% block body %}
-            <header class="navbar-fixed-top">
-                {% if is_granted('ROLE_USER') %}
-                    {{ include( 'PimxFrontendBundle::mainmenu.html.twig' ) }}
-                {% else %}
-                    <a class="pimx_logo" href="{{ path('_home') }}">
-                        <img src="{{ asset('images/pimxlogo.png') }}" />
-                    </a>
-                {% endif %}
-            </header>
 
-            <section id="main_content" class="container">
-
-                {% block flash %}
-                    {{ include('PimxFrontendBundle::_flash_messages.html.twig') }}
-                {% endblock %}
-
-                {% block main_content %}
-                {% endblock %}
-            </section>
-
-            {% block js_bottom %}
-            {% endblock %}
-
+        {% block main_content %}
         {% endblock %}
-    </body>
+    </section>
+
+    {% block js_bottom %}
+    {% endblock %}
+
+{% endblock %}
+</body>
 </html>
