@@ -10,9 +10,9 @@
         <a class="navbar-brand" href="/">
             <img src="{{ asset('images/pimxlogo.png') }}" alt="PIM Xtreme"/>
         </a>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('_account') }}">{% trans %}menu.accounts{% endtrans %}</a>
+                <a class="nav-link" href="{{ path('_account') }}">{{ 'menu.accounts'|trans }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('_currency') }}">{{ 'menu.currencies'|trans }}</a>

@@ -1,32 +1,32 @@
 _account:
-    pattern:  /account/
+    pattern:  /accounts
     defaults: { _controller: PimxFrontendBundle:Account:index }
 _account_new:
-    pattern:  /account/new/
+    pattern:  /accounts/new
     defaults: { _controller: PimxFrontendBundle:Account:new }
 _account_edit:
-    pattern:  /account/edit/{item_id}
+    pattern:  /accounts/{item_id}/edit
     defaults: { _controller: PimxFrontendBundle:Account:edit }
     
 _movement:
-    pattern:  /movement/
+    pattern:  /movements
     defaults: { _controller: PimxFrontendBundle:Movement:index }
 _movement_new:
-    pattern:  /movement/new/
+    pattern:  /movements/new
     defaults: { _controller: PimxFrontendBundle:Movement:new }
 _movement_edit:
-    pattern:  /movement/edit/{item_id}
+    pattern:  /movements/{item_id}/edit
     defaults: { _controller: PimxFrontendBundle:Movement:edit }
 _movement_delete:
-    pattern:  /movement/delete/{item_id}
+    pattern:  /movements/{item_id}/delete
     defaults: { _controller: PimxFrontendBundle:Movement:delete }
     
 _currency:
-    pattern:  /currency/
+    pattern:  /currencies/
     defaults: { _controller: PimxFrontendBundle:Currency:index }
     
 _label:
-    pattern:  /label/
+    pattern:  /labels/
     defaults: { _controller: PimxFrontendBundle:Label:index }
     
 _report_fin_monthbalance:
@@ -40,13 +40,13 @@ _report_fin_groupbalance:
     defaults: { _controller: PimxFrontendBundle:Report:groupbalance }
     
 _note:
-    pattern:  /note/
+    pattern:  /notes/
     defaults: { _controller: PimxFrontendBundle:Note:index }
 _note_new:
-    pattern:  /note/new/
+    pattern:  /notes/new/
     defaults: { _controller: PimxFrontendBundle:Note:new }
 _note_edit:
-    pattern:  /note/edit/{item_id}
+    pattern:  /notes/{item_id}/edit
     defaults: { _controller: PimxFrontendBundle:Note:edit }
     
 database_backup:

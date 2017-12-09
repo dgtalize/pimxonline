@@ -25,9 +25,9 @@
         {% endstylesheets %}
 
         {% javascripts
-        'bower_components/jquery/dist/jquery.min.js'
+        '../node_modules/jquery/dist/jquery.min.js'
         'bower_components/tether/dist/js/tether.min.js'
-        'bower_components/bootstrap/dist/js/bootstrap.min.js'
+        '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
         'bower_components/moment/min/moment.min.js'
         'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
         'js/knockout-2.2.1.js'
@@ -43,7 +43,7 @@
 <body>
 {% block body %}
     {% if is_granted('ROLE_USER') %}
-        {{ include( 'PimxFrontendBundle::mainmenu.html.twig' ) }}
+        {{ include( 'PimxFrontendBundle::_mainmenu.html.twig' ) }}
     {% else %}
         <header class="">
             <a class="pimx_logo" href="{{ path('_home') }}">
